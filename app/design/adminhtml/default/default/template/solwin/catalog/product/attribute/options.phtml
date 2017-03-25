@@ -49,6 +49,7 @@
                         <th class="nobr"><?php echo Mage::helper('catalog')->__('Image') ?></th>
                         <th class="nobr"><?php echo Mage::helper('catalog')->__('Thumbnail') ?></th>
                         <th class="nobr"><?php echo Mage::helper('catalog')->__('Description') ?></th>
+                        <th class="nobr"><?php echo Mage::helper('catalog')->__('Params') ?></th>
                         <th>
                             <?php if (!$this->getReadOnly()):?>
                                 <?php echo $this->getAddNewButtonHtml() ?>
@@ -69,6 +70,9 @@
                         </td>
 						<td class="a-left">
 							<textarea name="option[description][{{id}}]" class=""><?php echo $_store->getDescription() ?></textarea>
+						</td>
+						<td class="a-left">
+							<textarea name="option[params][{{id}}]" class=""><?php echo $_store->getParams() ?></textarea>
 						</td>
                     </tr>
             </table>
