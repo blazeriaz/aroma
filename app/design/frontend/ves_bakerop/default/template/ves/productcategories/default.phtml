@@ -1,0 +1,73 @@
+<div class="product-categories">
+    <div class="block <?php echo $prefix; ?> ">
+        <?php if($title){ ?>
+        <div class="block-title">
+            <strong>
+                <span><?php echo $title; ?></span>
+            </strong>
+        </div>
+        <?php }?>
+        <div class="block-content">
+            <div class="custom-static">
+                <div class="row">
+                <?php $_catalogCatgoryHelper = Mage::helper('catalog/category');
+                $cats = $this->getConfig('catsid');
+                $catIds = explode(',',$cats);
+                $number_check_limit = 1;
+                ?>
+                <?php foreach($catIds as $catId): 
+                    $category = Mage::getModel('catalog/category')->load($catId);
+
+                    if($number_check_limit <= $this->getConfig('limit')):?>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="image pull-right">
+                            <a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>"><img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$category->getThumbnail()?>" alt=""></a>
+                            <div class="info-actions action-button">
+                                <a class="button" href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>">
+                                    <?php echo $this->__("Shop Now");?>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                            <div class="info-actions pull-left">        
+                                <a class="name" href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>">
+                                        <?php echo $category->getName()?>                                    
+                                </a>
+                                <p><?php if($enable_price): ?>
+                                        - <?php echo $category->getProductCount() ?> items -
+                                    <?php endif; ?>
+                                </p>
+                                <?php /*
+                                $cat = Mage::getModel('catalog/category')->load($category->getId());
+                                $subCatIds = $cat->getChildren();
+                                ?>
+                                <ul class="custom-links">
+                                <?php foreach(explode(',',$subCatIds) as $subCat) :?>
+                                <li>
+                                    <?php
+                                        $subCategory = Mage::getModel('catalog/category')->load($subCat);
+                                    ?>
+                                        <a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($subCategory)?>">
+                                            <?php echo $subCategory->getName()?>(<?php echo $subCategory->getProductCount() ?>)
+                                        </a>
+                                </li>
+                                <?php endforeach; ?>
+                                </ul>
+
+                                <div class="view">
+                                    <a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>"><br>View all</a>
+                                </div><?php */?>
+                            </div>
+                        </div>
+                        </div>
+                    <?php $number_check_limit ++ ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
+                <div class="clear clr">
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

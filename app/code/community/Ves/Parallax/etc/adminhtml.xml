@@ -1,0 +1,89 @@
+<?xml version="1.0"?> 
+<config>
+    <menu>
+            <vesextensions module="ves_parallax">
+                <title>Ves</title>
+                <sort_order>50</sort_order>
+                <children>
+                    <parallax translate="title" module="ves_parallax">
+                        <title>Ves Parallax</title>
+                        <children>
+                            <add module="ves_parallax">
+                                <title>Add File</title>
+                                <sort_order>0</sort_order>
+                                <action>parallax/adminhtml_banner/add</action>
+                            </add>
+
+                            
+                            <index module="ves_parallax">
+                                <title>Manage Files</title>
+                                <sort_order>3</sort_order>
+                                <action>parallax/adminhtml_banner/index</action>
+                            </index>
+                            <configuration translate="title" module="ves_parallax">
+                                <title>Configuration</title>
+                                <sort_order>4</sort_order>
+                                <action>adminhtml/system_config/edit/section/ves_parallax</action>
+                            </configuration>
+                        </children>
+                    </parallax>
+                </children>
+            </vesextensions>
+        </menu>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vesextensions module="ves_parallax">
+                            <title>Ves</title>
+                            <sort_order>50</sort_order>
+                            <children>
+                                <parallax translate="title" module="ves_parallax">
+                                    <title>Ves Parallax</title>
+                                    <children>
+                                        <add module="ves_parallax">
+                                            <title>Add File</title>
+                                            <sort_order>0</sort_order>
+                                            <action>parallax/adminhtml_banner/add</action>
+                                        </add>
+
+                                        
+                                        <index module="ves_parallax">
+                                            <title>Manage Files</title>
+                                            <sort_order>3</sort_order>
+                                            <action>parallax/adminhtml_banner/index</action>
+                                        </index>
+                                        <configuration translate="title" module="ves_parallax">
+                                            <title>Configuration</title>
+                                            <sort_order>4</sort_order>
+                                            <action>adminhtml/system_config/edit/section/ves_parallax</action>
+                                        </configuration>
+                                    </children>
+                                </parallax>
+                            </children>
+                        </vesextensions>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ves_parallax>
+                                            <title>Ves Parallax</title>
+                                        </ves_parallax>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+       <translate>
+            <modules>
+                <Ves_Parallax>
+                    <files>
+                        <default>Ves_Parallax.csv</default>
+                    </files>
+                </Ves_Parallax>
+            </modules>
+        </translate>
+</config>

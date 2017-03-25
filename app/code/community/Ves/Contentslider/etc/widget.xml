@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<widgets>
+    <ves_content_slider type="ves_contentslider/widget_slider"  translate="label description" module="ves_contentslider" >
+        <name>Ves Content Slider : Generate Slider </name>
+        <description type="desc">Generate A Content Slider</description>
+        <parameters>
+			<show translate="label" module="core">
+				<label>Enabled</label>
+				<sort_order>10</sort_order>
+				<type>select</type>
+				<values>
+                    <yes translate="label">
+                        <label>Yes</label>
+                        <value>true</value>
+                    </yes>
+                    <no translate="label">
+                        <label>No</label>
+                        <value>false</value>
+                    </no>
+                </values>
+				<visible>1</visible>
+				<required>0</required>
+				<value>true</value>
+			</show>
+			<bannerId translate="label" module="core">
+				<label>Banner Id</label>
+				<sort_order>20</sort_order>
+				<type>select</type>
+                <source_model>ves_contentslider/system_config_source_listBanner</source_model>
+				<description>Choose Banner for your slideshow</description>
+                <visible>1</visible>
+                
+			</bannerId>
+        </parameters>
+    </ves_content_slider>   
+</widgets>

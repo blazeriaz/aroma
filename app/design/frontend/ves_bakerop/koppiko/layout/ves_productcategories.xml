@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<cms_index_index translate="label">
+		<reference name="content">
+			<!-- <block type="ves_productcategories/list" name="ves.list" before="-"></block> -->
+		</reference>
+   </cms_index_index>
+</layout>

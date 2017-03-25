@@ -1,0 +1,67 @@
+<?xml version="1.0"?> 
+<config>
+    <menu>
+            <vesextensions module="ves_productcategories">
+                <title>VenusTheme</title>
+                <sort_order>51</sort_order>
+                <children>
+                    <productcategories translate="title" module="ves_productcategories">
+                        <title>Ves Product Categories</title>
+                        <children>
+                             
+                            <configuration translate="title" module="ves_productcategories">
+                                <title>Configuration</title>
+                                <sort_order>2</sort_order>
+                                <action>adminhtml/system_config/edit/section/ves_productcategories</action>
+                            </configuration>
+                        </children>
+                    </productcategories>
+                </children>
+            </vesextensions>
+        </menu>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vesextensions module="ves_productcategories">
+                            <title>VenusTheme</title>
+                            <sort_order>51</sort_order>
+                            <children>
+                                <productcategories translate="title" module="ves_productcategories">
+                                    <title>Ves Product Categories</title>
+                                    <children>
+                                         
+                                        <configuration translate="title" module="ves_productcategories">
+                                            <title>Configuration</title>
+                                            <sort_order>2</sort_order>
+                                            <action>adminhtml/system_config/edit/section/ves_productcategories</action>
+                                        </configuration>
+                                    </children>
+                                </productcategories>
+                            </children>
+                        </vesextensions>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ves_productcategories>
+                                            <title>Ves Product Categories</title>
+                                        </ves_productcategories>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<ves_productcategories>
+					<files>
+						<default>ves_productcategories.csv</default>
+					</files>
+				</ves_productcategories>
+			</modules>
+		</translate>
+</config>

@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<html>
+<?php
+date_default_timezone_set('Asia/Kolkata');
+?>
+<head>
+
+    <title>BiggBuyy | E-Privilege Cards</title>
+	<link rel="icon" href="http://biggbuyy.com/images/fav_icon.ico" type="image/icon" sizes="16x16"> 
+    <!-- meta info -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="BiggBuyy Privilege" />
+    <meta name="description" content="BiggBuyy Privilege">
+    <meta name="author" content="Nexevo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/boostrap.css">
+    <!-- Font Awesome styles (icons) -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/font_awesome.css">
+    <!-- Main Template styles -->
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/styles.css">
+    <!-- IE 8 Fallback -->
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/ie.css" />
+<![endif]-->
+
+    <!-- Your custom styles (blank file) -->
+    <link rel="stylesheet" href="<?php echo base_url()?>assets/css/mystyles.css">
+</head>
+
+<body>
+
+    <div class="global-wrap">
+
+
+        <!-- //////////////////////////////////
+	//////////////MAIN HEADER///////////// 
+	////////////////////////////////////-->
+        <div class="top-main-area">
+            <div class="container">
+				<div class="col-sm-6">
+					<a href="<?php echo WEB_URL.'home/'?>" class="logo mt5">
+						<img src="<?php echo base_url()?>assets/img/logo.png" alt="Image Alternative text" title="BiggBuyy" />
+					</a>
+				</div>
+				<div class="col-sm-6">
+					<!-- LOGIN REGISTER LINKS --> 
+					<?php 
+					if($this->session->userdata('user_login')):?>
+					<ul class="login-register">
+						<li><a href="<?php echo WEB_URL.'home/useraccount/'?>"><i class="fa fa-user" style="font-size: 19px;padding-top: 10px;color: #000;opacity: 1;"></i>My Account</a></li>
+						<li class="bg-your-bag"><a class="popup-text shopping-cart" data-toggle="modal" data-target="#myModal3"><i class="fa cart-ico"></i>Your Bag (<?php echo count($this->cart->contents());?>)</a></li>
+						<div class="modal right fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+											<h3>Load up on the deals love bigg time!</h3>
+										</div>
+										<div class="modal-body">										
+											<div class="shopping-cart-box">
+                                             <?php if ($cart = $this->cart->contents()): $grand_total = 0;?>
+                                             
+											<?php foreach ($cart as $item):
+												echo form_hidden('cart['. $item['id'] .'][id]', $item['id']);
+												echo form_hidden('cart['. $item['id'] .'][rowid]', $item['rowid']);
+												echo form_hidden('cart['. $item['id'] .'][name]', $item['name']);
+												echo form_hidden('cart['. $item['id'] .'][price]', $item['price']);
+												echo form_hidden('cart['. $item['id'] .'][qty]', $item['qty']);?>
+												<div class="col-sm-12 shopping-cart-items">
+													<div class="col-sm-12" style="border-bottom: solid 1px #fbfbfb;margin-bottom: 20px;">
+														<div class="col-xs-4">
+															<a href="#"><img src="<?php echo base_url()?>backend/assets/packages/<?php echo $item['image']; ?>" width="52" height="50"/></a>
+														</div>
+														<div class="col-xs-8">
+															<h5><?php echo $item['name']; ?></h5>
+															<span class="shopping-cart-item-price">₹ <?php $grand_total = $grand_total + $item['subtotal']; ?>
+			<?php echo number_format($item['subtotal'],2) ?></span>
+														</div>
+													</div>													
+												</div>
+												<?php endforeach; else:?> 
+												<p align="center">Your Cart is empty</p>
+												<?php endif;?>
+												<div class="col-sm-12 header-cart-links">
+													<ul class="list-inline text-center">
+														<?php if($this->cart->contents()):?>
+                                                        <li style="border-left: 0px"><a href="<?php echo WEB_URL.'cart/'?>"><i class="fa fa-shopping-cart"></i> View Cart</a>
+														</li>
+                                                        <li style="border-left: solid 1px #d9d9d9;"><a href="<?php echo WEB_URL.'billing/index/'?>"><i class="fa fa-check-square"></i> Checkout</a>
+														</li>
+                                                        <?php else: ?>
+														<a href="<?php echo WEB_URL.'home/card/'?>">Click here</a>
+														<?php endif;?>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div><!-- modal-content -->
+								</div><!-- modal-dialog -->
+							</div><!-- modal -->
+							<!--<li class="shopping-cart"><a href="<?php echo WEB_URL.'cart'?>"><i class="fa fa-shopping-cart"></i>Your Bag</a>
+							<div class="shopping-cart-box">
+								<ul class="shopping-cart-items">
+									<li>
+										<a href="privillege-card-detail.php">
+											<img src="<?php echo base_url()?>assets/img/70x70.png" alt="Image Alternative text" title="AMaze" />
+											<h5>New Glass Collection</h5><span class="shopping-cart-item-price">$150</span>
+										</a>
+									</li>
+									<li>
+										<a href="privillege-card-detail.php">
+											<img src="<?php echo base_url()?>assets/img/70x70.png" alt="Image Alternative text" title="Gamer Chick" />
+											<h5>Playstation Accessories</h5><span class="shopping-cart-item-price">$170</span>
+										</a>
+									</li>
+								</ul>
+								<ul class="list-inline text-center">
+									<li><a href="<?php echo WEB_URL.'cart'?>"><i class="fa fa-shopping-cart"></i> View Cart</a>
+									</li>
+									<li><a href="<?php echo WEB_URL.'home/checkout'?>"><i class="fa fa-check-square"></i> Checkout</a>
+									</li>
+								</ul>
+							</div>
+						</li>-->									
+						</li>
+					</ul>
+					<?php else:?>
+					
+					<ul class="login-register">
+						<li><a class="popup-text" data-toggle="modal" data-target="#myModal1"><i class="fa sign-up-ico"></i>Sign up</a></li>
+							<div class="modal right fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>										
+											<h3>New User? Sign up here</h3>
+										</div>
+										<div class="modal-body">
+											<div class="signin-text">
+												<p>Sign up to become a BiggBuyy insider</p>												
+											</div>
+											<div class="col-sm-12">
+                                            <p align="center" style="color:#ec008c" id="res"> </p>
+											<form class="dialog-form" name="user_signup" id="user_signup">
+											  <div class="form-group">													
+													<input type="text" placeholder="Name" class="form-control" name="name" id="name" required>
+												</div>
+												<div class="form-group">													
+													<input type="text" placeholder="Email id" class="form-control" name="cus_email" id="cus_email" required>
+												</div>
+												<div class="form-group">													
+													<input type="text" placeholder="Mobile Number" class="form-control" name="mobno" id="mobno" required>
+												</div>
+												<div class="form-group">													
+													<input type="password" placeholder="Password" class="form-control" name="pwd" id="pwd" required>
+												</div>
+												<div class="form-group">													
+													<input type="password" placeholder="Re-enter Password" class="form-control" name="cpwd" id="cpwd" required>
+												</div>
+												<div class="row">
+													<div class="col-md-8">
+														<div class="form-group">															
+															<input type="text" placeholder="Location" class="form-control" name="location" id="location" required>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">															
+															<input type="text" placeholder="PIN Code" class="form-control" name="pin" id="pin" required>
+														</div>
+													</div>
+												</div>
+												<div class="checkbox" style="margin-bottom: 20px;">													
+													<label>
+														<input type="checkbox" name="chck" id="chck">I agree to <a href="<?php echo WEB_URL.'home/terms'?>">Terms of Use</a> and <a href="<?php echo WEB_URL.'home/policy'?>">Privacy Policy</a>
+													</label>
+												</div>
+												<input type="submit" value="Sign up" class="btn btn-primary">
+											</form>	
+											</div>
+										</div>
+									</div><!-- modal-content -->
+								</div><!-- modal-dialog -->
+							</div><!-- modal -->
+						<li class="bg-sign-in"><a class="popup-text" data-toggle="modal" data-target="#myModal2"><i class="fa sign-in-ico"></i>Sign In</a></li>
+						<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>										
+											<h3>Bigg Sign in to Buyy, Bigg Privilege cards</h3>											
+										</div>
+										<div class="modal-body">		
+											<div class="signin-text">
+												<p>Sign in to BiggBuyy</p>												
+											</div>
+                                            <p align="center" style="color:#ec008c" id="lres"> </p></h5>
+                                            
+											<form class="dialog-form" name="login_form" id="login_form">
+												<div class="form-group">													
+													<input type="text" placeholder="E-mail id" class="form-control" name="uname">
+												</div>
+												<div class="form-group">													
+													<input type="password" placeholder="Password" class="form-control" name="upwd">
+												</div>
+												<div class="checkbox">
+													<label>
+														<input type="checkbox">Keep me signed in
+													</label>
+												</div>
+												<input type="submit" value="Sign in" class="btn btn-primary">
+											</form>
+											<!--<ul class="dialog-alt-links">
+												<li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">Not member yet</a>
+												</li>
+												<li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Forgot password</a>
+												</li>
+											</ul>-->
+											<div class="col-sm-12 header-cart-links">
+												<ul class="list-inline text-center">
+													<li style="border-left:0px"><a href="<?php echo WEB_URL.'home/forgetpassword' ?>" style="font-size:15px">Forgot Password</a></li>
+												</ul>
+											</div>
+										</div>
+									</div><!-- modal-content -->
+								</div><!-- modal-dialog -->
+							</div><!-- modal -->
+							<li class="bg-your-bag"><a class="popup-text shopping-cart" data-toggle="modal" data-target="#myModal3"><i class="fa cart-ico"></i>Your Bag (<?php echo count($this->cart->contents());?>)</a></li>
+							<div class="modal right fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>	
+											<h3>Load up on the deals love bigg time!</h3>
+										</div>
+										<div class="modal-body">										
+											<div class="shopping-cart-box">
+                                             <?php if ($cart = $this->cart->contents()): $grand_total = 0;?>
+                                             
+											<?php foreach ($cart as $item):
+												echo form_hidden('cart['. $item['id'] .'][id]', $item['id']);
+												echo form_hidden('cart['. $item['id'] .'][rowid]', $item['rowid']);
+												echo form_hidden('cart['. $item['id'] .'][name]', $item['name']);
+												echo form_hidden('cart['. $item['id'] .'][price]', $item['price']);
+												echo form_hidden('cart['. $item['id'] .'][qty]', $item['qty']);?>
+												<div class="col-sm-12 shopping-cart-items">
+													<div class="col-sm-12" style="border-bottom: solid 1px #fbfbfb;margin-bottom: 20px;">
+														<div class="col-sm-4">
+															<a href="#"><img src="<?php echo base_url()?>backend/assets/packages/<?php echo $item['image']; ?>" width="52" height="50"/></a>
+														</div>
+														<div class="col-sm-8">
+															<h5><?php echo $item['name']; ?></h5>
+															<span class="shopping-cart-item-price">₹ <?php $grand_total = $grand_total + $item['subtotal']; ?>
+			<?php echo number_format($item['subtotal'],2) ?></span>
+														</div>
+													</div>														
+												</div>
+												<?php endforeach; else:?> 
+												<p align="center">Gee… Your cart is empty right now. Fill it up with some fun.</p>
+												<?php endif;?>
+												<div class="col-sm-12 header-cart-links">
+													<ul class="list-inline text-center">
+														<?php if($this->cart->contents()):?>
+                                                         <li style="border-left: 0px"><a href="<?php echo WEB_URL.'cart/'?>"><i class="fa fa-shopping-cart"></i> View Cart</a>
+														</li>
+                                                        <li style="border-left: solid 1px #d9d9d9;"><a href="<?php echo WEB_URL.'billing/index/'?>"><i class="fa fa-check-square"></i> Checkout</a>
+														</li>
+                                                        <?php else: ?>
+														<a href="<?php echo WEB_URL.'home/card/'?>">Click here</a>
+														<?php endif;?>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div><!-- modal-content -->
+								</div><!-- modal-dialog -->
+							</div><!-- modal -->
+					</ul>					
+					<?php endif;?>
+				</div>
+			</div>
+        </div>
+        <header class="main">
+            <div class="container">
+                <div class="row">
+					<div class="col-md-2">
+						
+					</div>
+                    <div class="col-md-7">
+                        <!-- MAIN NAVIGATION -->
+                        <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
+                        <nav>
+                            <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
+                                <li class=""><a href="<?php echo WEB_URL.'home/'?>">Home</a></li>
+                                <li><a href="<?php echo WEB_URL.'home/card'?>">E-PRIVILEGE Cards</a></li>
+                                <li><a href="<?php echo WEB_URL.'home/websitereview'?>">Reviews</a></li>
+                                <!--<li><a href="<?php echo WEB_URL.'home/work'?>">How We Work</a></li>-->
+                                <li><a href="<?php echo WEB_URL.'home/faq'?>">FAQs</a></li>                                
+                            </ul>
+                        </nav>
+                        <!-- END MAIN NAVIGATION -->
+                    </div>
+                    <div class="col-md-3">
+						<p class="support-number">BIGG SUPPORT : 180030022899</p>
+					</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- LOGIN REGISTER LINKS CONTENT -->
+        <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
+            <i class="fa fa-sign-in dialog-icon"></i>
+            <h3>Member Login</h3>
+            <h5>Welcome back, friend. Login to get started </br></br>
+            <p align="center" style="color:#ec008c" id="lres"> </p></h5>
+            <form class="dialog-form" name="login_form" id="login_form">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="text" placeholder="email@domain.com" class="form-control" name="uname">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="My secret password" class="form-control" name="upwd">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Keep me signed in
+                    </label>
+                </div>
+                <input type="submit" value="Sign in" class="btn btn-primary">
+            </form>
+            <ul class="dialog-alt-links">
+                <li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out"></a>
+                </li>
+                <li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Forgot password</a>
+                </li>
+            </ul>
+        </div>
+        <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
+            <i class="fa fa-edit dialog-icon"></i>
+            <h3>Member Register</h3>
+            <h5>Ready to get best offers? Let's get started!</br></h5>
+			<form class="dialog-form" name="user_signup" id="user_signup">
+											  <div class="form-group">													
+													<input type="text" placeholder="Name" class="form-control" name="name" id="name" required>
+												</div>
+												<div class="form-group">													
+													<input type="text" placeholder="E-mail" class="form-control" name="cus_email" id="cus_email" required>
+												</div>
+												<div class="form-group">												
+													<input type="password" placeholder="Password" class="form-control" name="pwd" id="pwd" required>
+												</div>
+												<div class="form-group">													
+													<input type="password" placeholder="Type your password again" class="form-control" name="cpwd" id="cpwd" required>
+												</div>
+												<div class="row">
+													<div class="col-md-8">
+														<div class="form-group">															
+															<input type="text" placeholder="Your Area" class="form-control" name="location" id="location" required>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">															
+															<input type="text" placeholder="Zip Code" class="form-control" name="pin" id="pin" required>
+														</div>
+													</div>
+												</div>
+												<div class="checkbox" style="margin-bottom: 20px;">													
+													<label>
+														<input type="checkbox" name="chck" id="chck">I agree to <a href="<?php echo WEB_URL.'home/terms'?>">Terms of Use</a> and <a href="<?php echo WEB_URL.'home/policy'?>">Privacy Policy</a>
+													</label>												
+												</div>
+												<input type="submit" value="Sign up" class="btn btn-primary">
+											</form>	            
+            <ul class="dialog-alt-links">
+                <li><a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">Already member</a>
+                </li>
+            </ul>
+        </div>
+
+
+		<!--<div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-move-from-top mfp-ready" tabindex="-1" style="overflow: hidden;">
+			<div class="mfp-container mfp-s-ready mfp-inline-holder">
+				<div class="mfp-content">
+				 
+				</div> 
+				</div> 
+				</div>-->
+       
+	   <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix" role="dialog">            
+			<h3 style="text-transform: uppercase;color: #ec088e;font-size: 15px;">Having trouble signing in?</h3>
+			<h5>Enter your email address and we will send you a link to reset your password</h5>			
+			<form class="dialog-form" style="border-top:0px;margin-top: 0px;">                
+				<input type="email" placeholder="E-mail" class="form-control">
+				<input type="submit" value="Reset password" class="btn btn-primary">
+			</form>
+		</div>
+
+	   
+	   <!--<div class="mfp-wrap mfp-close-btn-in mfp-auto-cursor mfp-move-from-top mfp-ready" tabindex="-1" style="overflow: hidden;">
+			<div class="mfp-container mfp-s-ready mfp-inline-holder">
+				<div class="mfp-content">
+					<div id="password-recover-dialog" class="mfp-with-anim mfp-dialog clearfix">
+						<i class="icon-retweet dialog-icon"></i>
+						<h3>Password Recovery</h3>
+						<h5>Fortgot your password? Don't worry we can deal with it</h5>
+						<form class="dialog-form">
+							<label>E-mail</label>
+							<input type="text" placeholder="email@domain.com" class="span12">
+							<input type="submit" value="Request new password" class="btn btn-primary">
+						</form>
+						<button title="Close (Esc)" type="button" class="mfp-close">×</button>
+					</div>
+				</div>
+			<div class="mfp-preloader">Loading...</div>
+			</div>
+		</div>-->
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+ <script src="<?php echo base_url()?>backend/assets/js/jquery-2.1.0.min.js"></script>
+ <script src="<?php echo base_url()?>backend/assets/js/jquery.validate.min.js"></script>
+ <script>
+$(document).ready(function(e) {
+ $("#user_signup").submit(function(){
+	 //alert("testing");
+	 $.ajax({
+		 type:"POST",
+		 data:$("#user_signup").serialize(),
+		 url:"<?php echo WEB_URL.'home/signup'?>",
+		 beforeSend: function(send)
+		 {
+		 	//$("#res").html("Loading...");
+			$("#res").html('<img src="<?php echo base_url()?>assets/js/btn-ajax-loader.gif" style="width:20px!important;height:20px!important"/> &nbsp; Creating ...');
+		 },
+		 success: function(data)
+		 {
+		 	$("#res").html(data);
+		 },
+		 error: function(err)
+		 {
+			 $("#res").html("Something went wrong");
+		 },
+		 });
+	return false;
+	 });
+});
+</script>
+<script>
+$(document).ready(function(e) {
+ $("#login_form").submit(function(){
+	 //alert("testing");
+	 $.ajax({
+		 type:"POST",
+		 data:$("#login_form").serialize(),
+		 url:"<?php echo WEB_URL.'login/logexe'?>",
+		 beforeSend: function(send)
+		 {
+		 	//$("#res").html("Loading...");
+			$("#lres").html('<img src="<?php echo base_url()?>assets/js/btn-ajax-loader.gif" style="width:20px!important;height:20px!important"/> &nbsp; Signing In ...');
+		 },
+		 success: function(data)
+		 {
+		 	if(data == "You are Authorized User")
+			{
+				location.href="<?php echo WEB_URL.'home/myaccount/'?>";
+			}
+			else
+			{
+				$("#lres").html(data);
+			}
+		 },
+		 error: function(err,errorThrown)
+		 {
+		 	
+			 $("#lres").html("Something went wrong");
+		 },
+		 });
+	return false;
+	 });
+});
+</script>

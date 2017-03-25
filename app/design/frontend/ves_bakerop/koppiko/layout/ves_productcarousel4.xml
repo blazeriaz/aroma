@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>ves_productcarousel4/style.css</name></action>
+	</reference>
+</layout>

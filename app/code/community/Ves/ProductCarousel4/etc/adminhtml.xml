@@ -1,0 +1,67 @@
+<?xml version="1.0"?> 
+<config>
+    <menu>
+            <vesextensions module="ves_productcarousel4">
+                <title>VenusTheme</title>
+                <sort_order>51</sort_order>
+                <children>
+                    <productcarousel4 translate="title" module="ves_productcarousel4">
+                        <title>Ves Product Carousel4</title>
+                        <children>
+                             
+                            <configuration translate="title" module="ves_productcarousel4">
+                                <title>Configuration</title>
+                                <sort_order>2</sort_order>
+                                <action>adminhtml/system_config/edit/section/ves_productcarousel4</action>
+                            </configuration>
+                        </children>
+                    </productcarousel4>
+                </children>
+            </vesextensions>
+        </menu>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vesextensions module="ves_productcarousel4">
+                            <title>VenusTheme</title>
+                            <sort_order>51</sort_order>
+                            <children>
+                                <productcarousel4 translate="title" module="ves_productcarousel4">
+                                    <title>Ves Product Carousel4</title>
+                                    <children>
+                                         
+                                        <configuration translate="title" module="ves_productcarousel4">
+                                            <title>Configuration</title>
+                                            <sort_order>2</sort_order>
+                                            <action>adminhtml/system_config/edit/section/ves_productcarousel4</action>
+                                        </configuration>
+                                    </children>
+                                </productcarousel4>
+                            </children>
+                        </vesextensions>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ves_productcarousel4>
+                                            <title>Ves Product Carousel4</title>
+                                        </ves_productcarousel4>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<Ves_ProductCarousel4>
+					<files>
+						<default>Ves_ProductCarousel4.csv</default>
+					</files>
+				</Ves_ProductCarousel4>
+			</modules>
+		</translate>
+</config>

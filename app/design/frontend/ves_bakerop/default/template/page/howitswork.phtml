@@ -1,0 +1,28 @@
+<?php 
+
+?>
+<section id="ves-masstop2" class="ves-masstop2" style="background-color:#fff;padding-top:20px;padding-bottom:40px;float: left;">
+	<div class="container">
+		<center><h1 class="welcometext roast">ROAST TO ORDER -<span style="text-transform:capitalize;"> How Its Work</span></h1></center>
+		<div class="col-sm-3 how-its-work">
+			<center><img src="<?php echo $this->getSkinUrl() ?>/images/how-we-work-1.png">
+			<h3 class="welcometext feature">COFFEE SELECTION</h3></center>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('how-we-work-1')->toHtml() ?>
+		</div>	
+		<div class="col-sm-3 how-its-work">
+			<center><img src="<?php echo $this->getSkinUrl() ?>/images/how-we-work-2.png">
+			<h3 class="welcometext feature">COFFEE ROASTING</h3></center>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('how-we-work-2')->toHtml() ?>
+		</div>	
+		<div class="col-sm-3 how-its-work">
+			<center><img src="<?php echo $this->getSkinUrl() ?>/images/how-we-work-3.png">
+			<h3 class="welcometext feature">FREE SHIPPING</h3></center>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('how-we-work-3')->toHtml() ?>
+		</div>
+		<div class="col-sm-3 how-its-work">
+			<center><img src="<?php echo $this->getSkinUrl() ?>/images/how-we-work-4.png"></br>
+			<h3 class="welcometext feature">PICK YOUR FAVORITES</h3></center>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('how-we-work-4')->toHtml() ?>
+		</div>
+	</div>
+</section>

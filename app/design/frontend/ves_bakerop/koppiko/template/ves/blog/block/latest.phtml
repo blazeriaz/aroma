@@ -1,0 +1,105 @@
+<?php
+    $moduleId = rand().time();
+    $cols =  (int)$this->getConfig( "columns" );
+    $cols = !empty($cols)?$cols:1;
+    $span = 12/$cols;
+
+    $c = $this->getGeneralConfig( 'small_imagesize', "" );
+	$tmp = explode( "x", $c );
+	$thumb_width = $thumb_height = "";
+	if( count($tmp) > 0 && (int)$tmp[0] ){
+		$thumb_width = (int)$tmp[0];
+		$thumb_height = (int)$tmp[1];
+	}
+
+?>
+<div class="block venus-latest-block col-lg-12 col-md-12 col-sm-12 col-xs-12" id="module<?php echo $moduleId; ?>">
+	<?php if( $this->getConfig("latestmod_title") ) : ?>
+	<div class="block-title">
+        <strong><span><?php echo $this->getConfig( "latestmod_title" ); ?></span></strong>
+	</div>	
+	<?php endif; ?>
+	
+		<div class="block-content">
+			<?php if( $this->getConfig("latestmod_desc") ) :?>
+			<div class="block-description">
+				<p><?php echo $this->getConfig("latestmod_desc"); ?></p>
+			</div>
+			<?php endif; ?>
+			<div class="no-margin">
+			<?php $i =0;?>
+			<?php foreach( $posts as $post ): ?>
+		
+			<?php if( $i++ % $cols == 0 ) { ?>
+				<div class="row">
+			<?php } ?>
+				<div class="col-lg-<?php echo $span;?> col-sm-6 col-xs-12 <?php if(($i-1) % $cols == 0){echo "first";}  if($i%$cols == 0){echo "last";} ?>"    >
+					<div class="post-block">
+						<?php
+							 $image = "";
+							 if($thumb_width && $thumb_height) {
+							 	$image = Mage::helper('ves_blog')->resizeImage($post->getFile(), "m", $thumb_width, $thumb_height);
+							 } else {
+							 	$image = $post->getImageURL( "s" );
+							 }
+						?>
+						<div class="post-image"><a href="<?php echo $post->getURL();?>" title="<?php echo $post->getTitle();?>">
+							<img src="<?php echo $image;?>" class="post-image" alt="<?php echo $post->getTitle();?>"/>
+						</a>
+						</div>
+						<h4><a href="<?php echo $post->getURL();?>" title="<?php echo $post->getTitle();?>"><?php echo $post->getTitle(); ?></a></h4>
+						<?php if( $this->getConfig("latest_show_commentcouter") || $this->getConfig("latest_showcreated") || $this->getConfig("latest_show_hits")) :?>
+						<div class="blog-meta row">
+
+							<?php if($this->getConfig("latest_showcreated")) { ?>
+								<div class="blog-updated col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<i class="fa fa-file-text-o"></i>
+									<?php echo $this->__( "By:" );?><a href="<?php echo $post->getAuthorURL();?>" title="<?php echo $post->getAuthor(); ?>">
+						<?php echo $post->getAuthor(); ?></a>
+								</div>
+							<?php } ?>
+
+							<?php if($this->getConfig("latest_show_commentcouter")) { ?>
+								<div class="blog-comment-count col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<i class="fa fa-comments-o"></i>
+
+									<?php echo $this->getCountingComment($post->getId());?>
+								</div>
+							<?php } ?>
+
+							<?php if($this->getConfig("latest_show_hits")) { ?>
+								<div class="blog-hits col-lg-3 col-md-3 col-sm-3 col-xs-3">
+									<i class="fa fa-heart-o"></i>
+
+									<?php echo $post->getHits(); ?>
+								</div>
+							<?php } ?>
+
+						</div>
+
+						<?php endif; ?>
+						<div class="latest-description">
+							<?php 
+					           if (strlen($post->getDescription()) > 90) :
+					            echo substr($post->getDescription(),0, 80).'...';
+					           else : 
+					            echo $post->getDescription();
+					           endif;
+					          ?>
+							<?php //echo $post->getDescription(); ?>
+						</div>
+
+						<a class="button blog-readmore" href="<?php echo $post->getURL();?>" title="<?php echo $post->getTitle();?>">
+							<?php echo $this->__("Read more");?>
+						</a>
+					</div>		
+				</div>
+				
+			<?php if( $i%$cols == 0 || $i==count($posts) ) { ?>
+				</div>
+			<?php } ?>
+			
+			<?php endforeach; ?>
+		</div>
+	</div>
+</div>

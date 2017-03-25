@@ -1,0 +1,48 @@
+<?php 
+ 
+if(isset($banners) && $banners):
+?>
+
+
+<?php /* Start Ves Parallax Module */ ?>
+<?php 
+$css_code = '<style type="text/css">';
+foreach ($banners as $item) { 
+		$item['position'] = trim($item['position']);
+		$tmp = explode(",", $item['position']);
+		if(!empty($tmp)) {
+			foreach($tmp as $k=>$v) {
+
+				$css_code .= '#ves-'.trim($v)." { background-image: url('".$this->resizeImage($item['image'], $item['image_width'], $item['image_height'])."') !important; background-attachment:fixed; }";
+			}
+		} else {
+			$css_code .= '#ves-'.$item['position']." { background-image: url('". $this->resizeImage($item['image'], $item['image_width'], $item['image_height'])."') !important; background-attachment:fixed; }";	
+		}
+}
+$css_code .= '</style>';
+$css_code = str_replace(array("\r", "\n", ''), "", $css_code);
+$css_code = str_replace('"', '\"', $css_code);
+?>
+<script type="text/javascript">
+
+jQuery(document).ready(function(){
+	jQuery('head').append("<?php echo $css_code ; ?>");
+	<?php foreach ($banners as $item) { 
+		$item['position'] = trim($item['position']);
+		$tmp = explode(",", $item['position']);
+		if(!empty($tmp)) {
+			foreach($tmp as $k=>$v) {
+				?>
+		jQuery('#ves-<?php echo trim($v); ?>').parallax("<?php echo $item['percent'] ?>", <?php echo $item['scroll'] ?>);
+				<?php
+			}
+		} else {
+			?>
+		jQuery('#ves-<?php echo $item['position']; ?>').parallax("<?php echo $item['percent'] ?>", <?php echo $item['scroll'] ?>);	
+			<?php
+		}
+	} ?>
+}) 
+</script>
+<?php endif; ?>
+<?php /* End Ves Parallax Module */ ?>

@@ -1,0 +1,21 @@
+<?php 
+
+?>
+<section id="ves-masstop2" class="ves-masstop2" style="background-color:#f8f8f8;padding-top: 30px;
+    padding-bottom: 30px;float: left;">
+	<div class="container">
+		<div class="col-sm-6 border">
+			<img src="<?php echo $this->getSkinUrl() ?>/images/our-coffe.png">
+ 			<h2 class="welcometext welcome2">OUR COFFEE</h2>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-our-coffee')->toHtml() ?>
+			<div class="know-more more"><a href="#">Know More</a></div>
+		</div>
+		<div class="col-sm-6">
+			<img src="<?php echo $this->getSkinUrl() ?>/images/corporate-service.png">
+                        <h2 class="welcometext welcome2">CORPORATE SERVICE</h2>		
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('our-services')->toHtml() ?>
+			<div class="know-more more"><a href="#">Know More</a></div>			
+		</div>
+	</div>
+
+</section>

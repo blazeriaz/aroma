@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+           <action method="addJs"><script>ves_parallax/jquery.parallax-1.1.3.js</script></action>
+        </reference>
+        <reference name="content">
+			<block type="ves_parallax/list" before="-" name="parallax.banner" template="ves/parallax/default.phtml"/>		
+		</reference>
+	</default>
+</layout>

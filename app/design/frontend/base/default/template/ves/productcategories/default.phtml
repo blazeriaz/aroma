@@ -1,0 +1,107 @@
+<?php 
+$itemsperpage = (int)$this->getConfig("limit");
+$itemsperpage = !empty($itemsperpage)?$itemsperpage:3;
+$cols =  (int)$this->getConfig( "columns" );
+$cols = !empty($cols)?$cols:1;
+$span = 12/$cols;
+
+$auto_play = $this->getConfig( "auto_play" );
+if ($auto_play) {
+    $auto_play = true;
+}
+$auto_play = false;
+$interval  = (int)$this->getConfig( "interval" );
+$interval  = !empty($interval)?$interval:5000;
+
+$moduleId = rand().time();
+
+$_catalogCatgoryHelper = Mage::helper('catalog/category');
+$cats = $this->getConfig('catsid');
+$catIds = explode(',',$cats);
+$i = 0;
+$total = count($catIds);
+?>
+
+<?php if($total) { ?>
+
+<div id="product-categories" class="block productcarousel">
+    <?php if($title) { ?>
+    <div class="block-title">
+        <h2><?php echo $this->__($title) ?></h2>  
+    </div>
+    <?php } ?>
+    <div class="block-content">
+        <div class="custom-static1">
+            <div id="product-categories<?php echo $moduleId;?>" class="carousel slide vescarousel hidden-xs">
+             <!-- Controls -->
+             <?php if($total > $cols):?>
+                <?php if( $this->getModuleConfig("enable_prcategoriesnavmodule") ){ ?>
+                <div class="carousel-controls" dir="ltr">
+                    <a class="carousel-control pull-right" href="#product-categories<?php echo $moduleId;?>" data-slide="next">                    
+                        <span class="cars-icon cars-next"><i class="fa fa-angle-right"></i></span>
+                    </a>
+                    <a class="carousel-control pull-left" href="#product-categories<?php echo $moduleId;?>" data-slide="prev">
+                        <span class="cars-icon cars-prev"><i class="fa fa-angle-left"></i></span>
+                    </a>                
+                </div>
+                <?php } //end check enable_prcategoriesnavmodule?>
+            <?php endif //end check total > cols?>
+            <div class="carousel-inner"> 
+                <?php foreach($catIds as $catId): $i++;
+                $category = Mage::getModel('catalog/category')->load($catId);
+                if($i == 1 || ($i-1) % $itemsperpage == 0) { ?>
+                <div class="row item <?php if(($i-1)==0) {?>active<?php } ?>">
+                    <?php } ?>
+                    <div class="col-lg-<?php echo $span;?> col-md-<?php echo $span;?> col-sm-<?php echo $span;?> col-xs-12">
+                        <div class="image pull-right">
+                            <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$category->getThumbnail()?>" alt="">
+                        </div>
+                        <div class="pull-left">        
+                            <h3><a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>">
+                                <?php echo $category->getName()?>
+                                <?php if($enable_price): ?>
+                                    (<?php echo $category->getProductCount() ?>)
+                                <?php endif; ?>
+                            </a></h3>
+                            <?php
+                            /* Load category by id*/
+                            $cat = Mage::getModel('catalog/category')->load($category->getId());
+                            /*Returns comma separated ids*/
+                            $subCatIds = $cat->getChildren();
+                            ?>
+                            <ul class="custom-links">
+                                <?php foreach(explode(',',$subCatIds) as $subCat) :?>
+                                    <li>
+                                        <?php
+                                        $subCategory = Mage::getModel('catalog/category')->load($subCat);
+                                        ?>
+                                        <a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($subCategory)?>">
+                                            <?php echo $subCategory->getName()?>(<?php echo $subCategory->getProductCount() ?>)
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <div class="view">
+                                <a href="<?php echo $_catalogCatgoryHelper->getCategoryUrl($category)?>"><br>View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if( $i%$itemsperpage==0 || $i==$total) { ?>
+                </div>
+                <?php } ?>
+            <?php endforeach; ?>
+        </div> <!--end carousel-inner --> 
+    </div> <!--end custom-static1 --> 
+</div> <!--end block-content -->
+</div> <!--end ves-brandcarousel -->
+<?php if($total > $cols):?>
+    <script type="text/javascript"> 
+        jQuery('#product-categories<?php echo $moduleId;?>').carousel({
+            interval:<?php echo $interval ;?>,auto:<?php echo $auto_play;?>,pause:'hover', cycle: true
+        });
+    </script>
+<?php endif?>
+
+<?php } ?>
+

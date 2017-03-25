@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+		<!-- Remove callouts and rarely used stuff -->        
+        <remove name="right.permanent.callout"/>
+        <remove name="left.permanent.callout"/>		
+        <remove name="paypal.partner.right.logo"/>
+        <remove name="currency"/>
+		<remove name="left.newsletter"/>
+		<remove name="right.reports.product.viewed"/>
+		<remove name="left.reports.product.viewed"/>
+		<remove name="cart_sidebar"/>
+        <!-- <remove name="catalog.compare.sidebar"/>
+		<remove name="right.poll"/> -->
+       
+    </default>
+</layout>
