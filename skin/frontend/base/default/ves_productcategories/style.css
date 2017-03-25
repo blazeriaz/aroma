@@ -1,0 +1,21 @@
+
+.custom-static1{
+    color: 6e6e6e;
+}
+.custom-static1 h3{color: #333333;}
+.custom-static1 li{
+        line-height: 25px;
+        list-style-type: disc;
+        margin-left:12px;
+        
+}
+.custom-static1 li a:hover{text-decoration: none;}
+.custom-static1 .custom-links{float: left;}
+.custom-static1 .view {
+padding-top: 17px;
+padding-bottom: 10px;
+}
+.custom-static1 .view a {
+color: #6dced7;
+text-transform: uppercase;
+}

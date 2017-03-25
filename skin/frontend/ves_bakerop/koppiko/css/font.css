@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Ubuntu-B';
+    src: url('fonts/Ubuntu-B.ttf');
+    src: url('fonts/Ubuntu-B.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu-R';
+    src: url('fonts/Ubuntu-R.ttf');
+    src: url('fonts/Ubuntu-R.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PetitFormalScript-R';
+    src: url('fonts/PetitFormalScript-R.ttf');
+    src: url('fonts/PetitFormalScript-R.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Brandon_blk';
+    src: url('fonts/Brandon_blk.otf');
+}
+
+@font-face {
+    font-family: 'fashionista';
+    src: url('fonts/Im fashionista.ttf');
+    src: url('fonts/Im fashionista.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis-Bold';
+    src: url('fonts/Dosis-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Dosis-Regular';
+    src: url('fonts/Dosis-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Dosis-Light';
+    src: url('fonts/Dosis-Light.otf');
+}

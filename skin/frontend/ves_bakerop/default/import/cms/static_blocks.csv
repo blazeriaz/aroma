@@ -1,0 +1,15 @@
+Block_Id,Title,Content,Identifier,Creation_Time,Update_Time,Is_Active,Stores
+1,block_header_social,"<a href=""#""> <i class=""fa fa-twitter""> </i> </a> <a href=""#""> <i class=""fa fa-google-plus""> </i> </a> <a href=""#""> <i class=""fa fa-linkedin""> </i> </a> <a href=""#""> <i class=""fa fa-pinterest-square""> </i> </a>",block-header-social,"2014-09-19 07:14:00","2015-06-23 22:15:46",1,0
+2,icon_pay_footer,"<a class=""bullet"" title=""How PayPal Works"" href=""#""> <i class=""fa fa-cc-visa""> </i> </a> <a class=""bullet"" title=""How PayPal Works"" href=""#""> <i class=""fa fa-cc-paypal""> </i> </a> <a class=""bullet"" title=""How PayPal Works"" href=""#""> <i class=""fa fa-cc-mastercard""> </i> </a> <a class=""bullet"" title=""How PayPal Works"" href=""#""> <i class=""fa fa-credit-card""> </i> </a> <a class=""bullet"" title=""How PayPal Works"" href=""#""> <i class=""fa fa-cc-stripe""> </i> </a>",icon-pay-footer,"2014-09-19 07:14:02","2015-06-23 22:16:11",1,0
+3,block_right_bottom,"<div class=""block effect""><a class=""overlay"" href=""#""><img class=""img-responsive"" src=""{{media url=""wysiwyg/banner/bakerop-right.jpg""}}"" alt="""" /></a></div>",block_right_bottom,"2014-09-19 07:14:03","2014-11-16 18:45:31",1,0
+4,bakerop_footertop,"<ul>
+<li class=""bottom-shipping"">
+<p><span>Free Shipping</span> on order over $ 99.99</p>
+</li>
+<li class=""bottom-order"">
+<p><span>Free Return</span> on order over $ 99.99</p>
+</li>
+<li class=""bottom-back"">
+<p><span>Money Back</span> A money-back guarantee</p>
+</li>
+</ul>",bakerop_footertop,"2014-10-17 11:43:39","2014-10-24 06:02:10",1,0
