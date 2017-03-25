@@ -91,7 +91,7 @@ var templateText =
             '<td class="nobr"><input id="option_image_{{id}}" type="text" name="option[image][{{id}}]" value="{{image}}" class="attribute_option_image" style="width:300px;" /><button id="add_image_{{id}}" class="scalable" type="button" onclick="MediabrowserUtility.openDialog(\'<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/cms_wysiwyg_images/index', array('static_urls_allowed' => 1)) ?>target_element_id/option_image_{{id}}/\');"><span>...</span></button></td>'+
             '<td class="nobr"><input id="option_thumb_{{id}}" type="text" name="option[thumb][{{id}}]" value="{{thumb}}" class="attribute_option_image" style="width:200px;" /><button id="add_thumb_{{id}}" class="scalable" type="button" onclick="MediabrowserUtility.openDialog(\'<?php echo Mage::getSingleton('adminhtml/url')->getUrl('*/cms_wysiwyg_images/index', array('static_urls_allowed' => 1)) ?>target_element_id/option_thumb_{{id}}/\');"><span>...</span></button></td>'+
 			'<td class="a-left">'+
-							'<textarea name="option[description][{{id}}]" class=""></textarea>'+
+							'<textarea name="option[description][{{id}}]" class="">{{description}}</textarea>'+
 						'</td>'+
             '<td class="a-left">'+
                 '<input type="hidden" class="delete-flag" name="option[delete][{{id}}]" value="" />'+
@@ -117,6 +117,9 @@ var attributeOption = {
         }
         if (!data.intype)
             data.intype = optionDefaultInputType;
+		
+		//console.log(data);
+		data.description = data.description;
 
         Element.insert(this.table, {after: this.template.evaluate(data)});
         this.bindRemoveButtons();
