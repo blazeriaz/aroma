@@ -19,3 +19,17 @@ ALTER TABLE `payment_plan`
 
 ALTER TABLE `payment_plan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  
+CREATE TABLE `aceav_subscription` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `aceav_subscription`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `aceav_subscription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
