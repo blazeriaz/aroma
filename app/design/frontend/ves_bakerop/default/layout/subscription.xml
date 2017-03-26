@@ -7,7 +7,7 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="content">
-            <block type="subscription/subscription" name="subscription" template="subscription/subscription.phtml" />
+            <block type="core/template" name="subscription_front" template="subscription/subscription.phtml" />
         </reference>
     </subscription_index_index>
 </layout>
