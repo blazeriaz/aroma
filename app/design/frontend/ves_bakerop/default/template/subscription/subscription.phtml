@@ -114,10 +114,23 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 								</ul>	
 								
 	<?php
-	/*
+	
 	$product_id = '11';
 	$product = Mage::getModel('catalog/product')->load($product_id);
+	$productMediaConfig = Mage::getModel('catalog/product_media_config');
 
+$baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
+$smallImageUrl = $productMediaConfig->getMediaUrl($product->getSmallImage());
+$thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
+?>
+<div class ="checkout-information">
+<img src="<?php echo $baseImageUrl ?>" width="300" />
+	<div class="subscribe-info">
+		
+	</div>
+</div>
+<?php
+/*
     $cart = Mage::getModel('checkout/cart');
     $cart->init();
 
