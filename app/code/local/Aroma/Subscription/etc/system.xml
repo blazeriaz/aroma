@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <aroma translate="label" module="subscription">
+            <label>Aroma Subscription</label>
+            <sort_order>250</sort_order>
+        </aroma>
+    </tabs>
+	<sections>
+        <subscription>
+            <label>Tier Setting</label>
+            <tab>aroma</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<subscription translate="label">
+                    <label>Default Tier Price</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<deluxe translate="label" module="core">
+							<label>Deluxe Tier Price</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</deluxe>
+						<basic translate="label" module="core">
+							<label>Basic Tier Price</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</basic>
+					</fields>
+				</subscription>
+            </groups>
+        </subscription>
+    </sections>    
+</config>

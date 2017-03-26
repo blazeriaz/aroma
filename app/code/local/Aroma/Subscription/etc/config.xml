@@ -63,8 +63,6 @@
 					<subscription>
                         <table>eav_subscription</table>
                     </subscription>
-				</entities>
-                <entities>
                     <paymentplan>
                         <table>payment_plan</table>
                     </paymentplan>
@@ -102,4 +100,11 @@
             </aroma_subscription>
         </blocks>
 	</global>
+	<default>
+        <subscription>
+            <subscription>
+                <show>1</show>
+			</subscription>
+        </subscription>
+    </default>
 </config>
