@@ -20,6 +20,17 @@ class Solwin_AttributeImage_Helper_Data extends Mage_Core_Helper_Abstract {
         $descriptions = Mage::getResourceModel('eav/entity_attribute_option')->getAttributeDescriptions();
         return $descriptions;
     }
+	
+	public function getAttributeParams($optionId){
+		 $paramss = $this->getAttributeParamss();
+		  $params = array_key_exists($optionId, $paramss) ? $paramss[$optionId] : '';
+		 return $params;
+	}
+	public function getAttributeParamss() {
+        $paramss = Mage::getResourceModel('eav/entity_attribute_option')->getAttributeParamss();
+        return $paramss;
+    }
+	
 	 
     public function getAttributeImages() {
         $images = Mage::getResourceModel('eav/entity_attribute_option')->getAttributeImages();
