@@ -1,0 +1,113 @@
+<h1>What is your favorite roast level?</h1>
+<ul class="roast-level">
+<?php
+$attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','roast_level');
+						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+						
+						if ($attr->usesSource()) {
+							$attributeOptions = $attr ->getSource()->getAllOptions(false);
+							
+								foreach ($attributeOptions as $option) {
+									if($option['value'] !=""){ 
+									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
+									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
+									 
+									?>
+									<li>
+									<img src="<?php echo $_img; ?>" width="200" />
+									<input id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>"/>
+									<label for="roast_level<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									<p><?php echo $description; ?></p>
+									</li>
+									<?php
+									}
+								}
+						}
+								?>
+								</li>
+								</ul>
+								<h1>Which types of coffee?</h1>
+<ul class="coffee_type">
+
+<?php
+$attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','coffee_type');
+						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+						
+						if ($attr->usesSource()) {
+							$attributeOptions = $attr ->getSource()->getAllOptions(false);
+							
+								foreach ($attributeOptions as $option) {
+									if($option['value'] !=""){ 
+									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
+									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
+									?>
+									<li>
+									<img src="<?php echo $_img; ?>" width="200" />
+									<input id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
+									<label for="coffee_type<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									<p><?php echo $description; ?></p>
+									</li>
+									<?php
+									}
+								}
+						}
+								?>
+								</li>
+								</ul>
+					<h1>How often?</h1>
+<ul class="how_often">
+
+<?php
+$attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','how_often');
+						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+						
+						if ($attr->usesSource()) {
+							$attributeOptions = $attr ->getSource()->getAllOptions(false);
+							
+								foreach ($attributeOptions as $option) {
+									if($option['value'] !=""){ 
+									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
+									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
+									?>
+									<li>
+									<img src="<?php echo $_img; ?>" width="200" />
+									<input id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
+									<label for="how_often<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									<p><?php echo $description; ?></p>
+									</li>
+									<?php
+									}
+								}
+						}
+								?>
+								</li>
+								</ul>	
+					<h1>Which Tier?</h1>
+<ul class="how_often">
+
+<?php
+$attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','tier_type');
+						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
+						
+						if ($attr->usesSource()) {
+							$attributeOptions = $attr ->getSource()->getAllOptions(false);
+							
+								foreach ($attributeOptions as $option) {
+									if($option['value'] !=""){ 
+									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
+									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
+									?>
+									<li>
+									<img src="<?php echo $_img; ?>" width="200" />
+									<input id="tier_type<?php echo $option['value']; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
+									<label for="tier_type<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									<p><?php echo $description; ?></p>
+									</li>
+									<?php
+									}
+								}
+						}
+								?>
+								</li>
+								</ul>	
+								
