@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+    <name>Solwin_AttributeImage</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This extension add images to attribute options displayed in layered navigation.</summary>
+    <description>This extension associate images to product attributes options and easily manageable from admin side.&#xD;
+Main Features:&#xD;
+1. Associate main image &amp; thumb image to product attributes options.&#xD;
+2. Display images easily in layered navigation.</description>
+    <notes>Release with no bugs.</notes>
+    <authors><author><name>Sanjay Dabhoya</name><user>solwin</user><email>stdabhoya@yahoo.com</email></author></authors>
+    <date>2015-07-23</date>
+    <time>04:40:55</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="Solwin_AttributeImage.xml" hash="eaa47bdae3740fcefee9d44038ea0a56"/></dir></target><target name="magecommunity"><dir name="Solwin"><dir name="AttributeImage"><dir name="Block"><dir name="Catalog"><dir name="Product"><dir name="Attribute"><dir name="Edit"><dir name="Tab"><file name="Options.php" hash="458a8cc0d146076ff86ef966a3e3ef6c"/></dir></dir></dir></dir></dir></dir><dir name="Helper"><dir name="Cms"><dir name="Wysiwyg"><file name="Images.php" hash="3fe53494c56e168b1962d1f7cceaac9c"/></dir></dir><file name="Data.php" hash="6bbeedcd8ac57dec284bf81e0b73c491"/></dir><dir name="Model"><dir name="Catalog"><dir name="Resource"><dir name="Eav"><dir name="Mysql4"><file name="Attribute.php" hash="41c098b9f24bf63725f9ba904969f351"/></dir></dir></dir></dir><dir name="Eav"><dir name="Entity"><dir name="Attribute"><dir name="Source"><file name="Table.php" hash="a5f795db6c5b2a5555c3e95aa2843666"/></dir></dir></dir><dir name="Mysql4"><dir name="Entity"><dir name="Attribute"><file name="Option.php" hash="7344c66933539e059d0ad7beb22fcdd6"/></dir></dir></dir></dir><file name="Observer.php" hash="5f9de7bb0ded4d476b7d2db44f72782c"/><dir name="Resource"><dir name="Mysql4"><file name="Setup.php" hash="cd17e49c9fdf966c75b622b06954ff42"/></dir></dir></dir><dir name="controllers"><dir name="Cms"><dir name="Wysiwyg"><file name="ImagesController.php" hash="ee4dba1e23d8324059787418da5b0c0f"/></dir></dir></dir><dir name="etc"><file name="config.xml" hash="ad60b5aeb29a92c7d0f58e31b3d1fe75"/></dir><dir name="sql"><dir name="solwin_attributeimage_setup"><file name="mysql4-install-1.0.0.php" hash="208d57da4f03c74c8d61f3f9559ec59a"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="solwin"><dir name="catalog"><dir name="product"><dir name="attribute"><file name="options.phtml" hash="fc0f07f8d9b623dee95844dfcf860360"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="frontend"><dir name="default"><dir name="default"><dir name="template"><dir name="catalog"><dir name="layer"><file name="filter.phtml" hash="669a6641ff6e6800e6ea3e0ec8e7cd2d"/></dir></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.3.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
