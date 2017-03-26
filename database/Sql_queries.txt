@@ -1,0 +1,1 @@
+ALTER TABLE `aceav_attribute_option` ADD `params` TEXT NOT NULL AFTER `description`;
