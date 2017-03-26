@@ -92,17 +92,18 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
                 }
             }
                 $planModel = Mage::getModel('subscription/paymentplan');
-
-                $planModel->setId($this->getRequest()->getParam('id'))
-                    ->setCreated(date("Y-m-d H:i:s"))
-					->setModified(date("Y-m-d H:i:s"))
+				if($this->getRequest()->getParam('id'))
+                $planModel->setId($this->getRequest()->getParam('id'));
+				else
+                $planModel->setCreated(date("Y-m-d H:i:s"));
+			
+				$planModel->setModified(date("Y-m-d H:i:s"))
                     ->setName($postData['name'])
                     ->setNoOfShip($postData['no_of_ship'])
 					->setPrice($postData['price'])
 					->setImage($fname)
-					->setStatus($postData['status'])
-                    ->save();
-
+					->setStatus($postData['status']);
+                $planModel->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully saved'));
                 Mage::getSingleton('adminhtml/session')->setPlanData(false);
 
