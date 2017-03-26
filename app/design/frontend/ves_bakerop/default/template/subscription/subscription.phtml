@@ -1,3 +1,4 @@
+<div class="coffee-sub-selection">
 <h1>What is your favorite roast level?</h1>
 <ul class="roast-level">
 <?php
@@ -112,7 +113,8 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 								?>
 								</li>
 								</ul>	
-								
+								<input id="custom_checkout" type="button" name="checkout" value="Go to Checkout"/>
+</div>								
 	<?php
 	
 	$product_id = '11';
@@ -123,11 +125,33 @@ $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 $smallImageUrl = $productMediaConfig->getMediaUrl($product->getSmallImage());
 $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 ?>
-<div class ="checkout-information">
+
+<div class="checkout-information" style="display:none;">
 <img src="<?php echo $baseImageUrl ?>" width="300" />
 	<div class="subscribe-info">
 		
+		<ul class="left-labelsection">
+			<li>Roast</li>
+			<li>Type</li>
+			<li>Frequency</li>
+			<li>Tier</li>
+			<li>Price</li>
+			<li>Payment Schedule</li>
+			<li>Shipping</li>
+		</ul>
+		
+			<ul class="right-valuesection">
+				<li id="roast_val">value</li>
+				<li id="type_val">value</li>
+				<li id="frequency_val">value</li>
+				<li id="tier_val">value</li>
+				<li id="price_val">value</li>
+				<li id="payment_schedule_val">value</li>
+				<li>Free</li>
+		</ul>
 	</div>
+	<input id="last_checkout" type="button" name="checkout" value="Checkout"/>
+	<input id="go_back" type="button" name="back" value="Go Back"/>
 </div>
 <?php
 /*
@@ -158,4 +182,18 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
         echo $ex->getMessage();
     }*/
 	?>
-								
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('#custom_checkout').on("click",function(){
+		
+		jQuery('.coffee-sub-selection').hide();
+		jQuery('.checkout-information').show();
+	});
+	jQuery('#go_back').on("click",function(){
+		//jQuery(this).hide();
+		jQuery('.coffee-sub-selection').show();
+		jQuery('.checkout-information').hide();
+	});
+	
+});
+</script>								
