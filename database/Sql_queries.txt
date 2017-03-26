@@ -1,1 +1,2 @@
+ALTER TABLE `aceav_attribute_option` ADD `description` TEXT NOT NULL AFTER `thumb`;
 ALTER TABLE `aceav_attribute_option` ADD `params` TEXT NOT NULL AFTER `description`;
