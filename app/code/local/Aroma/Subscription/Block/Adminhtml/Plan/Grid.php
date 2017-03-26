@@ -54,7 +54,7 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Grid extends Mage_Adminhtml_Block_
                 'align'     =>'center',
                 'width'     => '120px',
                 'index'     => 'image',
-                'renderer'  => 'Ves_Brand_Block_Adminhtml_Renderer_Image'
+                'renderer'  => 'Aroma_Subscription_Block_Adminhtml_Renderer_Image'
         )); 
 
 		
