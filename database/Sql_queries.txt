@@ -1,2 +1,21 @@
 ALTER TABLE `aceav_attribute_option` ADD `description` TEXT NOT NULL AFTER `thumb`;
 ALTER TABLE `aceav_attribute_option` ADD `params` TEXT NOT NULL AFTER `description`;
+
+CREATE TABLE `payment_plan` (
+  `id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `no_of_ship` int(11) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE `payment_plan`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `payment_plan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
