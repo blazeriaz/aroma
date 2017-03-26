@@ -38,6 +38,7 @@ class Solwin_AttributeImage_Model_Catalog_Resource_Eav_Mysql4_Attribute extends 
                            'image'         => isset($option['image'][$optionId]) ? $option['image'][$optionId] : '',
                            'thumb'         => isset($option['thumb'][$optionId]) ? $option['thumb'][$optionId] : '',
                            'description'   => isset($option['description'][$optionId]) ? $option['description'][$optionId] : '',
+                           'params'   => isset($option['params'][$optionId]) ? $option['params'][$optionId] : '',
                         );
                         $write->insert($optionTable, $data);
                         $intOptionId = $write->lastInsertId();
@@ -48,6 +49,7 @@ class Solwin_AttributeImage_Model_Catalog_Resource_Eav_Mysql4_Attribute extends 
                            'image'         => isset($option['image'][$optionId]) ? $option['image'][$optionId] : '',
                            'thumb'         => isset($option['thumb'][$optionId]) ? $option['thumb'][$optionId] : '',
                            'description'   => isset($option['description'][$optionId]) ? $option['description'][$optionId] : '',
+                           'params'   => isset($option['params'][$optionId]) ? $option['params'][$optionId] : '',
                         );
                         $write->update($optionTable, $data, $write->quoteInto('option_id=?', $intOptionId));
                     }

@@ -8,8 +8,7 @@ class Solwin_AttributeImage_Block_Catalog_Product_Attribute_Edit_Tab_Options ext
         $this->setTemplate('solwin/catalog/product/attribute/options.phtml');
     }
 	
-		public function getdescription($option_id)
-{
+		public function getdescription($option_id){
     //Get the resource model
     $resource = Mage::getSingleton('core/resource');
 
@@ -24,7 +23,24 @@ class Solwin_AttributeImage_Block_Catalog_Product_Attribute_Edit_Tab_Options ext
     //Execute the query and store the result
     $imgUrl = $readConnection->fetchOne($query);
     return $imgUrl;
-} 
+	} 
+	
+		public function getParams($option_id){
+    //Get the resource model
+    $resource = Mage::getSingleton('core/resource');
+
+    //Retrieve the read connection
+    $readConnection = $resource->getConnection('core_read');
+
+    //Retrieve our table name
+    $table = $resource->getTableName('eav/attribute_option');
+    $query = 'SELECT params FROM ' . $table . ' WHERE option_id = '
+    . (int)$option_id . ' LIMIT 1';
+
+    //Execute the query and store the result
+    $imgUrl = $readConnection->fetchOne($query);
+    return $imgUrl;
+	} 
 
     public function getOptionValues()
     {
@@ -70,6 +86,7 @@ class Solwin_AttributeImage_Block_Catalog_Product_Attribute_Edit_Tab_Options ext
                 $value['image'] = $option->getImage();
                 $value['thumb'] = $option->getThumb();
                 $value['description'] = $option->getDescription();
+                $value['params'] = $option->getParams();
                 foreach ($this->getStores() as $store) {
                     $storeValues = $this->getStoreOptionValues($store->getId());
                     if (isset($storeValues[$option->getId()])) {

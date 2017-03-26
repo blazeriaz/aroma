@@ -97,6 +97,9 @@ var templateText =
 			'<td class="a-left">'+
 							'<textarea name="option[description][{{id}}]" class="">{{description}}</textarea>'+
 						'</td>'+
+			'<td class="a-left">'+
+							'<textarea name="option[params][{{id}}]" class="">{{params}}</textarea>'+
+						'</td>'+
             '<td class="a-left">'+
                 '<input type="hidden" class="delete-flag" name="option[delete][{{id}}]" value="" />'+
                 <?php if (!$this->getReadOnly()):?>
@@ -124,6 +127,7 @@ var attributeOption = {
 		
 		//console.log(data);
 		data.description = data.description;
+		//data.params = data.params;
 
         Element.insert(this.table, {after: this.template.evaluate(data)});
         this.bindRemoveButtons();

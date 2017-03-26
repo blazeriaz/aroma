@@ -27,4 +27,12 @@ class Solwin_AttributeImage_Model_Eav_Mysql4_Entity_Attribute_Option extends Mag
 
         return $this->getReadConnection()->fetchPairs($select);
     }
+	public function getAttributeParams()
+    {
+        $select = $this->getReadConnection()
+            ->select()
+            ->from($this->getTable('eav/attribute_option'), array('option_id', 'params'));
+
+        return $this->getReadConnection()->fetchPairs($select);
+    }
 }
