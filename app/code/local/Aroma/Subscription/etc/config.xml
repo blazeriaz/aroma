@@ -45,6 +45,11 @@
 						<sort_order>0</sort_order>
 						<action>admin_subscription/adminhtml_index</action>
 					</subscription>
+					<list module="subscription">
+						<title>List</title>
+						<sort_order>0</sort_order>
+						<action>admin_subscription/adminhtml_list</action>
+					</list>
 				</children>
 			</subscription>
 		</menu>
