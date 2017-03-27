@@ -31,7 +31,7 @@
 class Aroma_Subscription_Block_Adminhtml_Renderer_Image extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract{
 	public function render(Varien_Object $row){
 		if($row->getImage()!=''){
-			$image = Mage::getBaseUrl('media').$row->getImage();
+			$image = Mage::getBaseUrl('media').'blog/'.$row->getImage();
 			return sprintf('<img src="%s" width="150px" alt="%s"/>',$image, $this->escapeHtml($row->getImage()));
 		}
 	}
