@@ -138,9 +138,51 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
 		
 	}
 	
-	public function gridAction(){
-        $this->loadLayout();
-        $this->getResponse()->setBody($this->getLayout()->createBlock("aroma_subscription/adminhtml_plan_grid")->toHtml()); 
+	public function massDeleteAction()
+	{
+		$ids = $this->getRequest()->getParam('id');      // $this->getMassactionBlock()->setFormFieldName('tax_id'); from Mage_Adminhtml_Block_Tax_Rate_Grid
+		if(!is_array($ids)) {
+		Mage::getSingleton('adminhtml/session')->addError(Mage::helper('tax')->__('Please select one of the option(s).'));
+		} else {
+		try {
+		$planModel = Mage::getModel('subscription/paymentplan');
+		foreach ($ids as $id) {
+			$planModel->load($id)->delete();
+		}
+		Mage::getSingleton('adminhtml/session')->addSuccess(
+		Mage::helper('tax')->__(
+		'Total of %d record(s) were deleted.', count($ids)
+		)
+		);
+		} catch (Exception $e) {
+		Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+		}
+		} 
+		$this->_redirect('*/*/index');
+	}
+	
+	public function massStatusAction() {
+    /*
+     * Grid massaction function to activate multiple records from the database
+     * */
+    $ids = $this->getRequest()->getParam('id');
+    if(!is_array($ids)) {
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select the records you wish to activate'));
+    } 
+    else {
+        try {
+            $model = Mage::getModel('subscription/paymentplan');
+            foreach ($ids as $id) {
+                $model->load($id)->setStatus($this->getRequest()->getParam('status'))->save(); 
+            }
+            Mage::getSingleton('adminhtml/session')->addSuccess(
+            Mage::helper('adminhtml')->__('Total of %d record(s) were marked as active.', count($ids)));
+        } 
+        catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
     }
+    $this->_redirect('*/*/');
+}
 }
 ?>
