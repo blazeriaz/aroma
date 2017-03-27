@@ -55,9 +55,7 @@
 		</menu>
 	</adminhtml>	
     <global>
-		
-
-		 <models>
+		<models>
             <subscription>
                 <class>Aroma_Subscription_Model</class>
                 <resourceModel>subscription_mysql4</resourceModel>
@@ -65,12 +63,13 @@
             <subscription_mysql4>
                 <class>Aroma_Subscription_Model_Mysql4</class>
 				<entities>
+					 <paymentplan>
+                        <table>payment_plan</table>
+                    </paymentplan>
 					<subscription>
                         <table>eav_subscription</table>
                     </subscription>
-                    <paymentplan>
-                        <table>payment_plan</table>
-                    </paymentplan>
+                   
                 </entities>
             </subscription_mysql4>
         </models>
