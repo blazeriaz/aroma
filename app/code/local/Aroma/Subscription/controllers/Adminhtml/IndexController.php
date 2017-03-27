@@ -12,11 +12,12 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
     }
     public function indexAction()
     {
-			
+		
         $this->_title($this->__('Subscription'))->_title($this->__('Payment Plans'));
         $this->loadLayout();
 		$this->_setActiveMenu('subscription/index');
 		$this->_addContent($this->getLayout()->createBlock('aroma_subscription/adminhtml_plan'));
+		
         $this->renderLayout();
     }
 	
@@ -55,6 +56,7 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
 	
 	public function saveAction() {
 		$post = $this->getRequest()->getPost();
+		
 		if ( $post ) {
             if($this->getRequest()->getPost('no_of_ship')){
                 $collection = Mage::getModel('subscription/paymentplan')->getCollection();
@@ -79,8 +81,8 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
                     $path = Mage::getBaseDir('media') . '/blog/';
                     $fname = $_FILES['image']['name']; //file name
                     $fullname = $path.$fname;
-                    $uploader = new Varien_File_Uploader('file'); //load class
-                    $uploader->setAllowedExtensions(array('image','jpg')); //Allowed extension for file
+                   $uploader = new Varien_File_Uploader('image'); //load class
+                    $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png')); //Allowed extension for file
                     $uploader->setAllowCreateFolders(true); //for creating the directory if not exists
                     $uploader->setAllowRenameFiles(false);
                     $uploader->setFilesDispersion(false);
@@ -91,19 +93,36 @@ class Aroma_Subscription_Adminhtml_IndexController extends Mage_Adminhtml_Contro
                     $fileType = "Invalid file format";
                 }
             }
-                $planModel = Mage::getModel('subscription/paymentplan');
-				if($this->getRequest()->getParam('id'))
-                $planModel->setId($this->getRequest()->getParam('id'));
-				else
-                $planModel->setCreated(date("Y-m-d H:i:s"));
 			
-				$planModel->setModified(date("Y-m-d H:i:s"))
-                    ->setName($postData['name'])
-                    ->setNoOfShip($postData['no_of_ship'])
-					->setPrice($postData['price'])
-					->setImage($fname)
-					->setStatus($postData['status']);
-                $planModel->save();
+				  
+					   
+				$arrData = array(
+							'created' => date("Y-m-d H:i:s"),
+							'modified'=> date("Y-m-d H:i:s"),
+							'name'=> $postData['name'],
+							'no_of_ship'=> $postData['no_of_ship'],
+							'price'=> $postData['price'],
+							'image'=> $fname,
+							'status'=> $postData['status'],
+							); 
+							
+				if($id = $this->getRequest()->getParam('id')){
+					$rr = Mage::getModel('subscription/paymentplan')->getCollection();
+					
+				$model = Mage::getModel('subscription/paymentplan')->load($id);
+				$model->setName($postData['name']);
+				$model->setModified($postData['name']);
+				$model->setNoOfShip($postData['no_of_ship']);
+				$model->setPrice($postData['price']);
+				$model->setImage($fname);
+				$model->setStatus($postData['status']);
+				
+				$model->setId($id)->save();  
+				}else{
+				$model = Mage::getModel('subscription/paymentplan')->setData($arrData ); 
+				$model->save();				
+				}
+				
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully saved'));
                 Mage::getSingleton('adminhtml/session')->setPlanData(false);
 
