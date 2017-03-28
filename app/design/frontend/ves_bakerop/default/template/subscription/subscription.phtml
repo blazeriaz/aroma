@@ -1,3 +1,130 @@
+<section>
+
+<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/banner.jpg'); ?>" alt="banner">
+
+</section>
+
+<section>
+<center>
+<div class="container cofsub-rost">
+<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/sdas.png'); ?>" alt="banner">
+</div>
+</center>
+</section>
+
+<section>
+<center>
+<div class="container   cofsub-select_rost">
+<div class="heading">
+<h4 style="color:gray">SELECT YOUR ROAST PROFILE PREFERENCE</h4>
+</div>
+<div class="col-sm-12">
+
+
+<div class="col-sm-4 ">
+<div class="item">
+<span class="bracket">[</span>
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/roasted-medium.jpg'); ?>" alt="medium"><br><h4>Medium</h4></a>
+<span class="rightbracket">]</span>
+</div>
+</div>
+
+<div class="col-sm-4 ">
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/roasted-medium-dark.jpg'); ?>" alt="mediun-dark"><br><h4>Medium-Dark</h4></a>
+</div>
+<div class="col-sm-4 ">
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/not-sure.jpg'); ?>" alt="not-sure"><br><h4>Not Sure</h4></a>
+</div>
+</div>
+</div>
+</center>
+</section>
+
+
+<section>
+<center>
+<div class="container   cofsub-select_blend">
+<div class="heading">
+<h4 style="color:gray">SELECT YOUR PREFERED BLEND</h4>
+</div>
+<div class="col-sm-12">
+<div class="col-sm-3">
+<a href="#"><img class="img-responsive blend" src="<?php echo $this->getSkinUrl('images/medium/pure-virgin.png'); ?>" alt="medium"><br><h4>Pure Virgin</h4></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><img class="img-responsive  blend " src="<?php echo $this->getSkinUrl('images/medium/signature-blend.png'); ?>" alt="mediun-dark"><br><h4>Signature Blend</h4></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><img class="img-responsive  blend" src="<?php echo $this->getSkinUrl('images/medium/bengalurus-pride.png'); ?>" alt="not-sure"><br><h4>Bangalore Blend</h4></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><img class="img-responsive  blend" src="<?php echo $this->getSkinUrl('images/medium/chennais-traditions.png'); ?>" alt="not-sure"><br><h4>Chennai's Tradition</h4></a>
+</div>
+</div>
+</div>
+</center>
+</section>
+
+
+<section>
+<center>
+<div class="container   cofsub-select_shiping">
+<div class="heading">
+<h4 style="color:gray">SELECT YOUR SHIPING SCHEDULE</h4>
+</div>
+<div class="col-sm-12">
+<div class="col-sm-3">
+<a href="#"><h5 class="circle-bg">Every Week</h5></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><h5 class="circle-bg">Every 2 Week</h5></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><h5 class="circle-bg">Every 3 Week</h5></a>
+</div>
+<div class="col-sm-3">
+<a href="#"><h5 class="circle-bg">Every 4 Week</h5></a>
+</div>
+</div>
+</div>
+</center>
+</section>
+
+
+<section>
+<center>
+<div class="container   cofsub-select_payment">
+<div class="heading">
+<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
+</div>
+<div class="col-sm-12">
+<div class="col-sm-4">
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/paypershiment.png'); ?>" alt="medium"><br><h5 style="margin-top: 15%;margin-bottom: 9%;">Pay Per Shipment<br>$18.99</h5></a>
+</div>
+<div class="col-sm-4">
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/6shipment.png'); ?>" alt="mediun-dark"><br><h5>6 Shipment<br>$16.14 / Shipment<br><span style="color:green">save 15%</span></h5></a>
+</div>
+<div class="col-sm-4">
+<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/12shipment.png'); ?>" alt="not-sure"><br><h5>12 Shipment<br>$15.19 / Shipment<br><span style="color:green">save 20%</span></h5></a>
+</div>
+</div>
+</div>
+</center>
+</section>
+
+<section>
+<center>
+<div class="container   cofsub-btn">
+ <h4 class="box"><a href="#" > Buy Now </a></h4>
+</div>
+</center>
+</section>
+
+<?php
+$collection = Mage::getModel('subscription/subscription')->getCollection();
+
+?>
+
 <div class="coffee-sub-selection">
 <h1>What is your favorite roast level?</h1>
 <ul class="roast-level">
