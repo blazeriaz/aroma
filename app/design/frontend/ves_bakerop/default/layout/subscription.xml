@@ -6,6 +6,10 @@
 		<reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
+		<reference name="head">
+           
+			<action method="addItem"><type>skin_css</type><name>subscription.css</name></action>
+        </reference>
         <reference name="content">
             <block type="core/template" name="subscription_front" template="subscription/subscription.phtml" />
         </reference>
