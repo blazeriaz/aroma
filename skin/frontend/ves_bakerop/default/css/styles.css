@@ -9975,6 +9975,16 @@ section#ves-masstop2 {
 	float:left;
 	width:25%
 }
-.roast-level li label,.coffee_type li label{
-	
+
+.subscribe-info{
+	width:30%
 }
+.subscribe-info .left-labelsection{
+	width:25%;
+	float:left;
+}
+.subscribe-info .right-valuesection{
+	width:25%;
+	float:right;
+}
+
