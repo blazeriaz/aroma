@@ -50,7 +50,7 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Grid extends Mage_Adminhtml_Block_
                 'index'     => 'name',
         ));
 		$this->addColumn('image', array(
-                'header'    => Mage::helper('ves_brand')->__('Avatar'),
+                'header'    => Mage::helper('ves_brand')->__('Image'),
                 'align'     =>'center',
                 'width'     => '120px',
                 'index'     => 'image',
@@ -59,12 +59,12 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Grid extends Mage_Adminhtml_Block_
 
 		
 		$this->addColumn('no_of_ship', array(
-                'header'    => Mage::helper('ves_brand')->__('No of_ship'),
+                'header'    => Mage::helper('ves_brand')->__('No of shipment'),
                 'align'     =>'left',
                 'index'     => 'no_of_ship',
         ));	
         $this->addColumn('price', array(
-                'header'    => Mage::helper('ves_brand')->__('Price'),
+                'header'    => Mage::helper('ves_brand')->__('Percentage in offer'),
                 'align'     =>'left',
                 'index'     => 'price',
         ));

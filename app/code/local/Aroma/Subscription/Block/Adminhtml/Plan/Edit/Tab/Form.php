@@ -7,7 +7,7 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Edit_Tab_Form extends Mage_Adminht
         $form = new Varien_Data_Form();
 
         $fieldset = $form->addFieldset('plan_form', array('legend'=>Mage::helper('adminhtml')->__('Plan information')));
-		
+		$fieldset->addType('image', 'Aroma_Subscription_Block_Adminhtml_Helper_Image_Required');
         $fieldset->addField('name', 'text', array(
             'label'     => Mage::helper('adminhtml')->__('Name'),
             'class'     => 'required-entry',
@@ -15,7 +15,7 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Edit_Tab_Form extends Mage_Adminht
             'name'      => 'name',
         ));
 		
-		$fieldset->addField('image', 'file', array(
+		$fieldset->addField('image', 'image', array(
             'label'     => Mage::helper('adminhtml')->__('Image'),
             'class'     => 'required-entry',
             'required'  => true,
