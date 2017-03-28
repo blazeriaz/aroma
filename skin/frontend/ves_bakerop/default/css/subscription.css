@@ -1,0 +1,173 @@
+
+/*vinutha css starts*/
+
+
+/* coffe-sub*/
+
+.cofsub-rost{
+	margin: 4% 4%;
+}
+
+
+
+ .cofsub-select_rost{
+		margin: 4% 4%; 
+ }
+.cofsub-select_rost .heading{
+    margin: 2%;
+}
+.cofsub-select_rost a{
+	text-decoration:none;
+	color:gray;
+}
+
+.cofsub-select_rost .col-sm-3:hover{
+	
+	outline: #784F40 solid 4px;
+}
+ 
+ .cofsub-select_rost .col-sm-4:hover{
+   
+	border-left:4px solid  #784F40;
+	border-right:4px solid  #784F40;
+	/*outline: #784F40 solid 4px;*/
+	
+}
+ .cofsub-select_rost .col-sm-4:hover{
+
+
+ }
+
+ .cofsub-select_blend{
+	 	margin: 4% 4%;
+ }
+ 
+  .cofsub-select_blend .heading{
+	      margin: 4%;
+  }
+  
+  .cofsub-select_blend a{
+	text-decoration:none;
+	color:gray;
+}
+  .blend{
+	  display: block;
+    margin: auto;
+    border-radius: 100%;
+    border: 10px solid #333;
+  }
+    .cofsub-select_blend .blend:hover{
+		    border: 10px solid #784F40
+	}
+ .cofsub-select_shiping{
+	 	 	margin: 4% 4%;
+ }
+ 
+  .cofsub-select_shiping .heading{
+	  	      margin: 4%;
+  }
+  
+  
+  .cofsub-select_payment{
+	  	 	 	margin: 4% 4%;
+  }
+  
+
+    .cofsub-select_payment .heading{
+	  	 	 	margin: 4%;
+  }
+  
+  .cofsub-select_payment .col-sm-4:hover{
+	outline: #784F40 solid 4px;
+}
+    .cofsub-select_payment .col-sm-4{
+		padding-top:5%;
+	}
+  .cofsub-select_payment a{
+	  	text-decoration:none;
+	color:gray;
+  }
+  
+  .cofsub-select_payment h5{
+	  line-height: 22px;
+	  font-size: 16px;
+  }
+  .cofsub-btn{
+	  	  	 	 	margin: 4% 4%;
+  }
+  
+  .cofsub-btn a{
+  text-decoration: none;
+    color: gray;
+	}
+	
+	.cofsub-btn .box{
+		border: 2px solid #332114;
+    width: 15%;
+    padding: 2% 2%;
+	}
+	
+.circle-bg {
+    color: white;
+    background: #2C2C2C;
+    padding: 67px;
+    border-radius: 50%;
+    width: 183px;
+	height:183px;
+}
+	
+.cofsub-select_shiping .circle-bg:hover{
+	text-decoration:none;
+		    background: #784F40!important;
+	}
+
+	
+
+	/* coffe-gift*/
+	
+.cofgift h3{
+	font-size: 22px;
+	    padding: 2% 2%;
+		color:#332114;
+	}
+	
+.cofgift .ptext{
+	line-height:25px;
+		color:gray;
+	}
+	
+.checkbox1{
+		color: gray;
+    font-size: 16px;
+	}
+
+/* hover bracket */
+.listWrap {
+}
+.list {
+    font-family: arial;
+    list-style-type: none;
+    width: 10%;
+}
+.item {
+    position: relative;
+}
+.bracket {
+    position:relative;
+}
+.rightbracket {
+    position:relative;
+}
+
+	
+/* responsive */
+
+@media(max-width:768px){
+	
+	.circle-bg{
+		width:45%;
+	}
+	.cofsub-btn .box{
+		    width: 22%;
+	}
+}
