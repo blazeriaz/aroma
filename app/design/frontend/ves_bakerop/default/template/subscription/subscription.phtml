@@ -1,3 +1,4 @@
+<div >
 <section>
 
 <img class="img-responsive" src="<?php echo $this->getSkinUrl('images/banner.jpg'); ?>" alt="banner">
@@ -119,15 +120,16 @@
 </div>
 </center>
 </section>
-
+</div>
 <?php
-$collection = Mage::getModel('subscription/subscription')->getCollection();
+
 
 ?>
-
+<!----------------------Html End------------------------------------->
 <div class="coffee-sub-selection">
-<h1>What is your favorite roast level?</h1>
+
 <ul class="roast-level">
+<h1>What is your favorite roast level?</h1>
 <?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','roast_level');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
@@ -142,21 +144,26 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 
 									?>
 									<li>
-									<img src="<?php echo $_img; ?>" width="200" />
-									<input id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>"/>
-									<label for="roast_level<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
-									<p><?php echo $description; ?></p>
+									
+									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>"/>
+									<label for="roast_level<?php echo $option['value']; ?>">
+										<?php if($_img!=""){ ?>
+										<img src="<?php echo $_img; ?>" width="200" />
+									<?php } ?>
+										<div class="sub_title"><?php echo $option['label'];?></div>
+										</label>
+										<p><?php echo $description; ?></p>
 									</li>
 									<?php
 									}
 								}
 						}
 								?>
-								</li>
+								
 								</ul>
-								<h1>Which types of coffee?</h1>
-<ul class="coffee_type">
-
+								
+<ul class="coffee_type" style="display:none;">
+<h1>Which types of coffee?</h1>
 <?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','coffee_type');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
@@ -170,9 +177,15 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									?>
 									<li>
-									<img src="<?php echo $_img; ?>" width="200" />
-									<input id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
-									<label for="coffee_type<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									
+									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
+									<label for="coffee_type<?php echo $option['value']; ?>"> 
+										<?php if($_img!=""){ ?>
+										<img src="<?php echo $_img; ?>" width="200" />
+									<?php } ?>
+										
+										<div class="sub_title"><?php echo $option['label'];?></div>
+										</label>
 									<p><?php echo $description; ?></p>
 									</li>
 									<?php
@@ -180,11 +193,11 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 								}
 						}
 								?>
-								</li>
+								
 								</ul>
-					<h1>How often?</h1>
-<ul class="how_often">
-
+					
+<ul class="how_often" style="display:none;">
+<h1>How often?</h1>
 <?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','how_often');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
@@ -199,9 +212,14 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $params = $this->helper('attributeimage')->getAttributeParams($option['value']);
 									?>
 									<li>
-									<img src="<?php echo $_img; ?>" width="200" />
-									<input data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
-									<label for="how_often<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									
+									<input data-title="<?php echo $option['label'];?>" class="coffee_weeks" data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
+									<label for="how_often<?php echo $option['value']; ?>">
+									<?php if($_img!=""){ ?>
+										<img src="<?php echo $_img; ?>" width="200" />
+									<?php } ?>
+										<div class="sub_title"><?php echo $option['label'];?></div>
+									</label>
 									<p><?php echo $description; ?></p>
 									</li>
 									<?php
@@ -209,11 +227,11 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 								}
 						}
 								?>
-								</li>
+								
 								</ul>	
-					<h1>Which Tier?</h1>
-<ul class="how_often">
-
+					
+<ul class="which_tier" style="display:none;">
+<h1>Which Tier?</h1>
 <?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','tier_type');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
@@ -228,9 +246,13 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									$params = $this->helper('attributeimage')->getAttributeParams($option['value']);
 									?>
 									<li>
-									<img src="<?php echo $_img; ?>" width="200" />
-									<input id="tier_type<?php echo $option['value']; ?>" class="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
-									<label for="tier_type<?php echo $option['value']; ?>"> <?php echo $option['label'];?></label>
+									
+									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
+									<label class="tier_type" for="tier_type<?php echo $option['value']; ?>">
+										
+										<img src="<?php echo $_img; ?>" width="200" />
+										<div class="sub_title"><?php echo $option['label'];?></div>
+									</label>
 									<p><?php echo $description; ?></p>
 									</li>
 									<?php
@@ -238,9 +260,66 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 								}
 						}
 								?>
-								</li>
-								</ul>	
-								<input id="custom_checkout" type="button" name="checkout" value="Go to Checkout"/>
+								
+		</ul>
+		<ul class="payment_plan" style="display:none;">
+<h1>SELECT YOUR PAYMENT PLAN</h1>
+<?php
+$payment_plan = Mage::getModel('subscription/paymentplan')->getCollection();
+$payment_plan->addFieldToFilter('status',array('eq'=>1));
+$payment_plan->getSelect()->limit(3);
+//echo '<pre>';print_r($payment_plan->getData());echo '</pre>';
+
+$default_base_price = Mage::getStoreConfig('subscription/subscription/basic');
+
+$default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe');
+
+							foreach($payment_plan as $payment){
+							
+									 $base_price = ($default_base_price * $payment->getPrice())/100;
+									 $final_base_price = $default_base_price - $base_price;
+									$deluxe_price = ($default_deluxe_price * $payment->getPrice())/100;
+									 $final_delux_price = $default_deluxe_price - $deluxe_price;
+									 $shipm_amnt_base = $final_base_price * $payment->getNoOfShip();
+									 $shipm_amnt_delux = $final_delux_price * $payment->getNoOfShip();
+									$total_ship_amount_delux = Mage::helper('core')->currency($shipm_amnt_delux, true, false);
+									 ?>
+									
+									<li>
+									
+									<input data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>"/>
+									<label for="payment_plan<?php echo $payment->getId(); ?>">
+										<?php if($payment->getImage()!=""){ ?>
+										<img src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>" width="200" />
+										<?php } ?>
+										<div class="sub_title"><?php echo $payment->getName(); ?></div>
+									</label>
+									<div class="price_per_shipment">
+									
+									<span class="base_price_default price_cus_switcher" style="display:none;" >
+										<?php echo Mage::helper('core')->currency($final_base_price, true, false); ?> / Shipment
+										<input type="hidden" name="total_base_price" class="total_price_val" value="<?php echo $total_ship_amount_base; ?>" />
+									</span>
+									<span class="delux_price_default price_cus_switcher" style="display:none;" >
+									<?php echo Mage::helper('core')->currency($final_delux_price, true, false); ?> / Shipment
+									<input type="hidden" name="total_delux_price" class="total_price_val" value="<?php echo $total_ship_amount_delux; ?>" />
+									</span>
+									
+									</div>
+									<?php if($payment->getPrice()> 0){ ?>
+										<div class="save_percent"><?php echo 'Save '.$payment->getPrice().'%'; ?></div>
+									<?php } ?>
+									</li>
+							<?php } ?>
+								
+							
+		</ul>
+		<?php
+		
+		
+		?>
+								
+	<input id="custom_checkout" style="display:none;" type="button" name="checkout" value="Go to Checkout"/>
 </div>								
 	<?php
 	
@@ -315,11 +394,61 @@ jQuery(document).ready(function(){
 		
 		jQuery('.coffee-sub-selection').hide();
 		jQuery('.checkout-information').show();
+		
+		var roast_level_value = jQuery("input[name='roast_level']:checked").attr('data-title');
+		var coffee_type_str = '';
+		 jQuery('.coffee_type:checkbox:checked').each(function(i){
+          coffee_type_str += jQuery(this).attr('data-title')+',';
+        });
+		
+		var coffee_type_selected = coffee_type_str.substring(0,coffee_type_str.length - 1);
+		var how_often_value = jQuery("input[name='how_often']:checked").attr('data-title');
+		var tier_type_value = jQuery("input[name='tier_type']:checked").attr('data-title');
+		var price_value_selector = jQuery("input[name='tier_type']:checked").attr('data-priceselector');
+		var payment_plan_value = jQuery("input[name='payment_plan']:checked").attr('data-title');
+	
+		alert(jQuery('.'+price_value_selector+' .total_price_val').val());
+		
+		var price_va = jQuery('.'+price_value_selector).html();
+		
+		
+		jQuery('#roast_val').html(roast_level_value);
+		jQuery('#type_val').html(coffee_type_selected);
+		jQuery('#frequency_val').html(how_often_value);
+		jQuery('#tier_val').html(price_value_selector);
+		jQuery('#price_val_base').html(base_total_value);
+		jQuery('#price_val_delux').html(delux_payment_value);
+		jQuery('#payment_schedule_val').html(payment_plan_value);
+				
+				
 	});
 	jQuery('#go_back').on("click",function(){
 		//jQuery(this).hide();
 		jQuery('.coffee-sub-selection').show();
 		jQuery('.checkout-information').hide();
+	});
+	
+	jQuery(".roast_level").on("click",function(){
+		if (jQuery("input[name='roast_level']").is(':checked')) {
+				jQuery('.coffee_type').show();
+		}
+
+	});
+	jQuery(".coffee_type").on("click",function(){
+		jQuery('.how_often').show();
+
+	});
+	jQuery(".coffee_weeks").on("click",function(){
+		jQuery('.which_tier').show();
+
+	});
+	jQuery(".tier_price_sel").on("click",function(){
+		var price_selector = jQuery(this).data('priceselector');
+		
+		jQuery('.payment_plan').show();
+		jQuery('.price_cus_switcher').hide();
+		jQuery('.'+price_selector).show();
+		jQuery('#custom_checkout').show();
 	});
 	
 });
