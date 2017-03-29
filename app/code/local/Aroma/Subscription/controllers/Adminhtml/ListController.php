@@ -18,5 +18,14 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
 		$this->_addContent($this->getLayout()->createBlock('aroma_subscription/adminhtml_list'));
         $this->renderLayout();
     }
+	
+	public function viewAction() {
+		$id = $this->getRequest()->getParam("id");
+		$this->_title($this->__('Subscription'))->_title($this->__('View'));
+        $this->loadLayout();
+		$this->_setActiveMenu('subscription/index');
+		$this->_addContent($this->getLayout()->createBlock('aroma_subscription/adminhtml_view'));
+        $this->renderLayout();
+	}
 }
 ?>
