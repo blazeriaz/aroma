@@ -1,136 +1,25 @@
 <div >
 <section>
-
-<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/banner.jpg'); ?>" alt="banner">
-
-</section>
-
-<section>
-<center>
-<div class="container cofsub-rost">
-<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/sdas.png'); ?>" alt="banner">
-</div>
-</center>
-</section>
-
-<section>
-<center>
-<div class="container   cofsub-select_rost">
-<div class="heading">
-<h4 style="color:gray">SELECT YOUR ROAST PROFILE PREFERENCE</h4>
-</div>
-<div class="col-sm-12">
-
-
-<div class="col-sm-4 ">
-<div class="item">
-<span class="bracket">[</span>
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/roasted-medium.jpg'); ?>" alt="medium"><br><h4>Medium</h4></a>
-<span class="rightbracket">]</span>
-</div>
-</div>
-
-<div class="col-sm-4 ">
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/roasted-medium-dark.jpg'); ?>" alt="mediun-dark"><br><h4>Medium-Dark</h4></a>
-</div>
-<div class="col-sm-4 ">
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/not-sure.jpg'); ?>" alt="not-sure"><br><h4>Not Sure</h4></a>
-</div>
-</div>
-</div>
-</center>
+	<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/banner.jpg'); ?>" alt="banner">
 </section>
 
 
-<section>
-<center>
-<div class="container   cofsub-select_blend">
-<div class="heading">
-<h4 style="color:gray">SELECT YOUR PREFERED BLEND</h4>
-</div>
-<div class="col-sm-12">
-<div class="col-sm-3">
-<a href="#"><img class="img-responsive blend" src="<?php echo $this->getSkinUrl('images/medium/pure-virgin.png'); ?>" alt="medium"><br><h4>Pure Virgin</h4></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><img class="img-responsive  blend " src="<?php echo $this->getSkinUrl('images/medium/signature-blend.png'); ?>" alt="mediun-dark"><br><h4>Signature Blend</h4></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><img class="img-responsive  blend" src="<?php echo $this->getSkinUrl('images/medium/bengalurus-pride.png'); ?>" alt="not-sure"><br><h4>Bangalore Blend</h4></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><img class="img-responsive  blend" src="<?php echo $this->getSkinUrl('images/medium/chennais-traditions.png'); ?>" alt="not-sure"><br><h4>Chennai's Tradition</h4></a>
-</div>
-</div>
-</div>
-</center>
-</section>
-
-
-<section>
-<center>
-<div class="container   cofsub-select_shiping">
-<div class="heading">
-<h4 style="color:gray">SELECT YOUR SHIPING SCHEDULE</h4>
-</div>
-<div class="col-sm-12">
-<div class="col-sm-3">
-<a href="#"><h5 class="circle-bg">Every Week</h5></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><h5 class="circle-bg">Every 2 Week</h5></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><h5 class="circle-bg">Every 3 Week</h5></a>
-</div>
-<div class="col-sm-3">
-<a href="#"><h5 class="circle-bg">Every 4 Week</h5></a>
-</div>
-</div>
-</div>
-</center>
-</section>
-
-
-<section>
-<center>
-<div class="container   cofsub-select_payment">
-<div class="heading">
-<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
-</div>
-<div class="col-sm-12">
-<div class="col-sm-4">
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/paypershiment.png'); ?>" alt="medium"><br><h5 style="margin-top: 15%;margin-bottom: 9%;">Pay Per Shipment<br>$18.99</h5></a>
-</div>
-<div class="col-sm-4">
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/6shipment.png'); ?>" alt="mediun-dark"><br><h5>6 Shipment<br>$16.14 / Shipment<br><span style="color:green">save 15%</span></h5></a>
-</div>
-<div class="col-sm-4">
-<a href="#"><img class="img-responsive" src="<?php echo $this->getSkinUrl('images/medium/12shipment.png'); ?>" alt="not-sure"><br><h5>12 Shipment<br>$15.19 / Shipment<br><span style="color:green">save 20%</span></h5></a>
-</div>
-</div>
-</div>
-</center>
-</section>
-
-<section>
-<center>
-<div class="container   cofsub-btn">
- <h4 class="box"><a href="#" > Buy Now </a></h4>
-</div>
-</center>
-</section>
-</div>
-<?php
-
-
-?>
-<!----------------------Html End------------------------------------->
 <div class="coffee-sub-selection">
-
-<ul class="roast-level">
-<h1>What is your favorite roast level?</h1>
-<?php
+<section>
+	<center>
+		<div class="container cofsub-rost">
+			<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/sdas.png'); ?>" alt="banner">
+		</div>
+	</center>
+</section>
+<section>
+	<center>
+		<div class="container   cofsub-select_rost">
+			<div class="heading">
+				<h4 style="color:gray">SELECT YOUR ROAST PROFILE PREFERENCE</h4>
+			</div>
+			<div class="col-sm-12">
+		<?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','roast_level');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
 						
@@ -143,28 +32,34 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									 
 									?>
-									<li>
+									<div class="col-sm-3 ">
 									
 									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>"/>
 									<label for="roast_level<?php echo $option['value']; ?>">
 										<?php if($_img!=""){ ?>
-										<img src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive" src="<?php echo $_img; ?>"  />
 									<?php } ?>
 										<div class="sub_title"><?php echo $option['label'];?></div>
 										</label>
 										<p><?php echo $description; ?></p>
-									</li>
+									</div>
 									<?php
 									}
 								}
 						}
-								?>
-								
-								</ul>
-								
-<ul class="coffee_type" style="display:none;">
-<h1>Which types of coffee?</h1>
-<?php
+					?>
+			</div>	
+		</div>
+	</center>
+</section>
+<section class="coffee_type" style="display:none;">
+	<center>
+		<div class="container cofsub-select_blend " >
+			<div class="heading">
+				<h4 style="color:gray">SELECT YOUR PREFERED BLEND</h4>
+			</div>
+			<div class="col-sm-12">
+			<?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','coffee_type');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
 						
@@ -176,29 +71,39 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									?>
-									<li>
+									<div class="col-sm-3">
 									
 									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
 									<label for="coffee_type<?php echo $option['value']; ?>"> 
 										<?php if($_img!=""){ ?>
-										<img src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive blend" src="<?php echo $_img; ?>" width="200" />
 									<?php } ?>
 										
 										<div class="sub_title"><?php echo $option['label'];?></div>
 										</label>
 									<p><?php echo $description; ?></p>
-									</li>
+									</div>
 									<?php
 									}
 								}
 						}
-								?>
+				?>
 								
-								</ul>
-					
-<ul class="how_often" style="display:none;">
-<h1>How often?</h1>
-<?php
+			</div>
+			
+		</div>
+	</center>
+</section>
+
+
+<section class="how_often" style="display:none;">
+	<center>
+		<div class="container   cofsub-select_shiping">
+			<div class="heading">
+				<h4 style="color:gray">SELECT YOUR SHIPING SCHEDULE</h4>
+			</div>
+			<div class="col-sm-12">
+			<?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','how_often');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
 						
@@ -211,7 +116,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									 $params = $this->helper('attributeimage')->getAttributeParams($option['value']);
 									?>
-									<li>
+									<div class="col-sm-3 circle-bg">
 									
 									<input data-title="<?php echo $option['label'];?>" class="coffee_weeks" data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
 									<label for="how_often<?php echo $option['value']; ?>">
@@ -221,18 +126,28 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 										<div class="sub_title"><?php echo $option['label'];?></div>
 									</label>
 									<p><?php echo $description; ?></p>
-									</li>
+									</div>
 									<?php
 									}
 								}
 						}
-								?>
+				?>
 								
-								</ul>	
-					
-<ul class="which_tier" style="display:none;">
-<h1>Which Tier?</h1>
-<?php
+			</div>	
+			
+		</div>
+	</center>
+</section>
+
+
+<section class="which_tier" style="display:none;">
+	<center>
+		<div class="container   cofsub-select_payment">
+			<div class="heading">
+				<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
+			</div>
+			<div class="col-sm-12">
+			<?php
 $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','tier_type');
 						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
 						
@@ -245,30 +160,39 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									$params = $this->helper('attributeimage')->getAttributeParams($option['value']);
 									?>
-									<li>
+									<div class="col-sm-4">
 									
 									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
 									<label class="tier_type" for="tier_type<?php echo $option['value']; ?>">
 										
-										<img src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive" src="<?php echo $_img; ?>" width="200" />
 										<div class="sub_title"><?php echo $option['label'];?></div>
 									</label>
 									<p><?php echo $description; ?></p>
-									</li>
+									</div>
 									<?php
 									}
 								}
 						}
 								?>
 								
-		</ul>
-		<ul class="payment_plan" style="display:none;">
-<h1>SELECT YOUR PAYMENT PLAN</h1>
-<?php
+			</div>
+			
+		</div>
+	</center>
+</section>
+<section class="payment_plan" style="display:none;">
+	<center>
+		<div class="container   cofsub-select_payment">
+			<div class="heading">
+				<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
+			</div>
+			<div class="col-sm-12">
+			<?php
 $payment_plan = Mage::getModel('subscription/paymentplan')->getCollection();
 $payment_plan->addFieldToFilter('status',array('eq'=>1));
 $payment_plan->getSelect()->limit(3);
-//echo '<pre>';print_r($payment_plan->getData());echo '</pre>';
+
 
 $default_base_price = Mage::getStoreConfig('subscription/subscription/basic');
 
@@ -285,12 +209,12 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									$total_ship_amount_delux = Mage::helper('core')->currency($shipm_amnt_delux, true, false);
 									 ?>
 									
-									<li>
+									<div class="col-sm-4">
 									
-									<input data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>"/>
+									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>"/>
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
-										<img src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>" width="200" />
+										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>" width="200" />
 										<?php } ?>
 										<div class="sub_title"><?php echo $payment->getName(); ?></div>
 									</label>
@@ -298,7 +222,7 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									
 									<span class="base_price_default price_cus_switcher" style="display:none;" >
 										<?php echo Mage::helper('core')->currency($final_base_price, true, false); ?> / Shipment
-										<input type="hidden" name="total_base_price" class="total_price_val" value="<?php echo $total_ship_amount_base; ?>" />
+										
 									</span>
 									<span class="delux_price_default price_cus_switcher" style="display:none;" >
 									<?php echo Mage::helper('core')->currency($final_delux_price, true, false); ?> / Shipment
@@ -309,18 +233,30 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									<?php if($payment->getPrice()> 0){ ?>
 										<div class="save_percent"><?php echo 'Save '.$payment->getPrice().'%'; ?></div>
 									<?php } ?>
-									</li>
+									</div>
 							<?php } ?>
 								
 							
-		</ul>
-		<?php
-		
-		
-		?>
-								
-	<input id="custom_checkout" style="display:none;" type="button" name="checkout" value="Go to Checkout"/>
-</div>								
+		</div>
+			
+		</div>
+	</center>
+</section>
+<section>
+	<center>
+		<div class="container   cofsub-btn">
+			<h4 class="box"><input id="custom_checkout" style="display:none;" type="button" name="checkout" value="Go to Checkout"/></h4>
+		</div>
+	</center>
+</section>
+</div>
+</div>
+<?php
+
+
+?>
+<!----------------------Html End------------------------------------->
+							
 	<?php
 	
 	$product_id = '11';
@@ -406,8 +342,15 @@ jQuery(document).ready(function(){
 		var tier_type_value = jQuery("input[name='tier_type']:checked").attr('data-title');
 		var price_value_selector = jQuery("input[name='tier_type']:checked").attr('data-priceselector');
 		var payment_plan_value = jQuery("input[name='payment_plan']:checked").attr('data-title');
+		var payment_base_value = jQuery("input[name='payment_plan']:checked").attr('data-baseamt');
+		var payment_deluxamt_value = jQuery("input[name='payment_plan']:checked").attr('data-deluxamt');
 	
-		alert(jQuery('.'+price_value_selector+' .total_price_val').val());
+		if(price_value_selector == 'base_price_default'){
+			jQuery('#price_val').html(payment_base_value);
+		}else if(price_value_selector == 'delux_price_default'){
+			jQuery('#price_val').html(payment_deluxamt_value);
+		}
+		
 		
 		var price_va = jQuery('.'+price_value_selector).html();
 		
@@ -415,9 +358,8 @@ jQuery(document).ready(function(){
 		jQuery('#roast_val').html(roast_level_value);
 		jQuery('#type_val').html(coffee_type_selected);
 		jQuery('#frequency_val').html(how_often_value);
-		jQuery('#tier_val').html(price_value_selector);
-		jQuery('#price_val_base').html(base_total_value);
-		jQuery('#price_val_delux').html(delux_payment_value);
+		jQuery('#tier_val').html(tier_type_value);
+		
 		jQuery('#payment_schedule_val').html(payment_plan_value);
 				
 				
@@ -448,8 +390,14 @@ jQuery(document).ready(function(){
 		jQuery('.payment_plan').show();
 		jQuery('.price_cus_switcher').hide();
 		jQuery('.'+price_selector).show();
+		//jQuery('#custom_checkout').show();
+	});
+	jQuery(".payment_plan_sel").on("click",function(){
+		
 		jQuery('#custom_checkout').show();
 	});
+	
+	payment_plan
 	
 });
 </script>								
