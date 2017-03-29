@@ -269,6 +269,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 ?>
 
 <div class="checkout-information" style="display:none;">
+<form method="post" action="<?php echo $this->getUrl('coffee-subscription/index/checkout'); ?>" name="custom_checkout" id="sub_checkout">
 <img src="<?php echo $baseImageUrl ?>" width="300" />
 	<div class="subscribe-info">
 		
@@ -290,10 +291,17 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 				<li id="price_val">value</li>
 				<li id="payment_schedule_val">value</li>
 				<li>Free</li>
+			<input type="hidden" id="roast_hidden_val" name="roast_hidden_val">	
+			<input type="hidden" id="type_hidden_val" name="type_hidden_val">	
+			<input type="hidden" id="frequency_hidden_val" name="frequency_hidden_val">	
+			<input type="hidden" id="tier_hidden_val" name="tier_hidden_val">	
+			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val">	
+				
 		</ul>
 	</div>
-	<input id="last_checkout" type="button" name="checkout" value="Checkout"/>
+	<input id="last_checkout" type="submit" name="checkout" value="Checkout"/>
 	<input id="go_back" type="button" name="back" value="Go Back"/>
+	</form>
 </div>
 <?php
 /*
@@ -326,6 +334,22 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 	?>
 <script type="text/javascript">
 jQuery(document).ready(function(){
+	
+	jQuery( "#sub_checkout" ).submit(function( event ) {
+		
+		event.preventDefault();
+		var link = jQuery('#sub_checkout').attr('action');
+		
+		jQuery.ajax({
+		  method: "POST",
+		  url: link,
+		  data:jQuery( "#sub_checkout" ).serialize()
+		})
+	  .done(function( msg ) {
+		alert( "Data Saved: " + msg );
+	  });
+		
+});
 	jQuery('#custom_checkout').on("click",function(){
 		
 		jQuery('.coffee-sub-selection').hide();
@@ -342,6 +366,7 @@ jQuery(document).ready(function(){
 		var tier_type_value = jQuery("input[name='tier_type']:checked").attr('data-title');
 		var price_value_selector = jQuery("input[name='tier_type']:checked").attr('data-priceselector');
 		var payment_plan_value = jQuery("input[name='payment_plan']:checked").attr('data-title');
+		var payment_plan_id = jQuery("input[name='payment_plan']:checked").val();
 		var payment_base_value = jQuery("input[name='payment_plan']:checked").attr('data-baseamt');
 		var payment_deluxamt_value = jQuery("input[name='payment_plan']:checked").attr('data-deluxamt');
 	
@@ -356,11 +381,16 @@ jQuery(document).ready(function(){
 		
 		
 		jQuery('#roast_val').html(roast_level_value);
+		jQuery('#roast_hidden_val').val(roast_level_value);
 		jQuery('#type_val').html(coffee_type_selected);
+		jQuery('#type_hidden_val').val(coffee_type_selected);
 		jQuery('#frequency_val').html(how_often_value);
+		jQuery('#frequency_hidden_val').val(how_often_value);
 		jQuery('#tier_val').html(tier_type_value);
+		jQuery('#tier_hidden_val').val(tier_type_value);
 		
 		jQuery('#payment_schedule_val').html(payment_plan_value);
+		jQuery('#paymentid_hidden_val').val(payment_plan_id);
 				
 				
 	});
@@ -397,7 +427,7 @@ jQuery(document).ready(function(){
 		jQuery('#custom_checkout').show();
 	});
 	
-	payment_plan
+	
 	
 });
 </script>								
