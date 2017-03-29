@@ -69,7 +69,9 @@
 					<subscription>
                         <table>eav_subscription</table>
                     </subscription>
-                   
+					<suborderdate>
+						<table>sub_order_date</table>	
+					</suborderdate>
                 </entities>
             </subscription_mysql4>
         </models>
