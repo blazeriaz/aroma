@@ -82,4 +82,6 @@ class Aroma_Subscription_Block_Adminhtml_Plan_Edit_Tab_Form extends Mage_Adminht
         $this->setForm($form);
         return parent::_prepareForm();
     }
+	
+
 }

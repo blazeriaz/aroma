@@ -31,6 +31,9 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
 	
     protected function _prepareCollection() {
         $collection = Mage::getModel('subscription/subscription')->getCollection();
+		$collection->getSelect()->joinLeft("acsub_order_date","acsub_order_date.eav_sub_id = main_table.id",array("count(eav_sub_id) as total_cnt","SUM(CASE WHEN acsub_order_date.status = 1 THEN 1 ELSE 0 END) as pending_count",
+		"SUM(CASE WHEN acsub_order_date.status = 2 THEN 1 ELSE 0 END) as complete_count"));
+		$collection->getSelect()->group("main_table.id");
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -49,6 +52,21 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
                 'align'     =>'left',
                 'index'     => 'title',
         ));
+		$this->addColumn('total_cnt', array(
+                'header'    => Mage::helper('ves_brand')->__('No. of Shipment'),
+                'align'     =>'left',
+                'index'     => 'total_cnt',
+        ));
+		$this->addColumn('pending_count', array(
+                'header'    => Mage::helper('ves_brand')->__('No. of Pending Shipment'),
+                'align'     =>'left',
+                'index'     => 'pending_count',
+        ));
+		$this->addColumn('complete_count', array(
+                'header'    => Mage::helper('ves_brand')->__('No. of Complete Shipment'),
+                'align'     =>'left',
+                'index'     => 'complete_count',
+        ));
 		
 		$this->addColumn('status', array(
                 'header'    => Mage::helper('ves_brand')->__('Status'),
@@ -61,31 +79,23 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
                         2 => Mage::helper('ves_brand')->__('Completed'),
                 ),
         ));
-
+		
+		$link= Mage::helper('adminhtml')->getUrl('admin_subscription/adminhtml_list/view/id/$id');
+    $this->addColumn('action_edit', array(
+        'header'   => $this->helper('catalog')->__('Action'),
+        'width'    => 15,
+        'sortable' => false,
+        'filter'   => false,
+        'type'     => 'action',
+        'actions'  => array(
+            array(
+                'url'     => $link,
+                'caption' => $this->helper('catalog')->__('View'),
+            ),
+        )
+    ));
         return parent::_prepareColumns();
     }
-    /**
-     * Helper function to do after load modifications
-     *
-     */
-    protected function _afterLoadCollection()
-    {
-        $this->getCollection()->walk('afterLoad');
-        parent::_afterLoadCollection();
-    }
-    /**
-     * Helper function to add store filter condition
-     *
-     * @param Mage_Core_Model_Mysql4_Collection_Abstract $collection Data collection
-     * @param Mage_Adminhtml_Block_Widget_Grid_Column $column Column information to be filtered
-     */
-    protected function _filterStoreCondition($collection, $column)
-    {
-        if (!$value = $column->getFilter()->getValue()) {
-            return;
-        }
-        
-        $this->getCollection()->addStoreFilter($value);
-    }
+    
 
 }
