@@ -9967,18 +9967,16 @@ section#ves-masstop2 {
 .how-its-work img{
 	height: 100px;
 }
-.roast-level,.coffee_type,.how_often{
+.roast-level,.coffee_type,.how_often,.which_tier,.payment_plan{
 	width:100%;
 	float:left;
 }
-.roast-level li,.coffee_type li,.how_often li{
+.roast-level li,.coffee_type li,.how_often li,.which_tier li,.payment_plan li{
 	float:left;
 	width:25%
 }
 
-.subscribe-info{
-	width:30%
-}
+
 .subscribe-info .left-labelsection{
 	width:25%;
 	float:left;
