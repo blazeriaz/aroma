@@ -13,7 +13,7 @@ class Ves_Brand_Block_Adminhtml_Renderer_Image extends Mage_Adminhtml_Block_Widg
         if(empty($val)) {
             return "";
         }
-        $url = Mage::getBaseUrl('media') .'blog/'. $val;
+        $url = Mage::getBaseUrl('media') . $val;
         $out = "<img src=". $url ." width='100px' />";
         return $out;
     }

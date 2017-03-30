@@ -12,9 +12,11 @@
 			<action method="addItem"><type>skin_css</type><name>subscription.css</name></action>
         </reference>
         <reference name="content">
-            <block type="core/template" name="subscription_front" template="subscription/subscription.phtml">
+            <block type="aroma_subscription/subscription" name="subscription_front" template="subscription/subscription.phtml">
 				<block type="checkout/onepage_billing" name="checkout.onepage.billing" as="billing" template="checkout/onepage/custom_billing.phtml"/>
+				
 			</block>
+			
         </reference>
     </subscription_index_index>
 </layout>
