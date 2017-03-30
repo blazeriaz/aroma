@@ -1,9 +1,4 @@
 <div >
-<section>
-	<img class="img-responsive" src="<?php echo $this->getSkinUrl('images/banner.jpg'); ?>" alt="banner">
-</section>
-
-
 <div class="coffee-sub-selection">
 <section>
 	<center>
@@ -268,11 +263,12 @@ $smallImageUrl = $productMediaConfig->getMediaUrl($product->getSmallImage());
 $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 ?>
 
-<div class="checkout-information" style="display:none;">
+<div class="checkout-information col-sm-12" style="display:none;">
 <form method="post" action="<?php echo $this->getUrl('coffee-subscription/index/checkout'); ?>" name="custom_checkout" id="sub_checkout">
-<img src="<?php echo $baseImageUrl ?>" width="300" />
-	<div class="subscribe-info">
-		
+
+	<div class="subscribe-info col-sm-6"> 
+	<img src="<?php echo $baseImageUrl ?>" width="300" />
+		<div class="left-checkout-section">
 		<ul class="left-labelsection">
 			<li>Roast</li>
 			<li>Type</li>
@@ -298,7 +294,12 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val">	
 				
 		</ul>
+		</div>
+		
 	</div>
+		<div class="col-sm-6 right-checkout-section">
+			<?php echo $this->getChildHtml('billing'); ?>
+		</div>
 	<input id="last_checkout" type="submit" name="checkout" value="Checkout"/>
 	<input id="go_back" type="button" name="back" value="Go Back"/>
 	</form>
