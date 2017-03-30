@@ -240,7 +240,9 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 <section>
 	<center>
 		<div class="container   cofsub-btn">
-			<h4 class="box"><input id="custom_checkout" style="display:none;" type="button" name="checkout" value="Go to Checkout"/></h4>
+			
+			 <button id="custom_checkout" style="display:none;" type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Go to Checkout')) ?>" class="button"><span><span><?php echo $this->__('Go to Checkout') ?></span></span></button>
+			
 		</div>
 	</center>
 </section>
@@ -300,8 +302,10 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 		<div class="col-sm-6 right-checkout-section">
 			<?php echo $this->getChildHtml('billing'); ?>
 		</div>
-	<input id="last_checkout" type="submit" name="checkout" value="Checkout"/>
-	<input id="go_back" type="button" name="back" value="Go Back"/>
+	
+	 <button id="last_checkout"  type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="button"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+	 <button id="go_back"  type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Go Back')) ?>" class="button"><span><span><?php echo $this->__('Go Back') ?></span></span></button>
+
 	</form>
 </div>
 <?php
