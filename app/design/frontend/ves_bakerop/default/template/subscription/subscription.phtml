@@ -66,12 +66,12 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									?>
-									<div class="col-sm-3">
+									<div class="col-sm-4">
 									
 									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
 									<label for="coffee_type<?php echo $option['value']; ?>"> 
 										<?php if($_img!=""){ ?>
-										<img class="img-responsive blend" src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive blend" src="<?php echo $_img; ?>" />
 									<?php } ?>
 										
 										<div class="sub_title"><?php echo $option['label'];?></div>
@@ -116,7 +116,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									<input data-title="<?php echo $option['label'];?>" class="coffee_weeks" data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
 									<label for="how_often<?php echo $option['value']; ?>">
 									<?php if($_img!=""){ ?>
-										<img src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive blend" src="<?php echo $_img; ?>"  />
 									<?php } ?>
 										<div class="sub_title"><?php echo $option['label'];?></div>
 									</label>
@@ -155,12 +155,12 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									$params = $this->helper('attributeimage')->getAttributeParams($option['value']);
 									?>
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 									
 									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
 									<label class="tier_type" for="tier_type<?php echo $option['value']; ?>">
 										
-										<img class="img-responsive" src="<?php echo $_img; ?>" width="200" />
+										<img class="img-responsive" src="<?php echo $_img; ?>"  />
 										<div class="sub_title"><?php echo $option['label'];?></div>
 									</label>
 									<p><?php echo $description; ?></p>
@@ -209,7 +209,7 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>"/>
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
-										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>" width="200" />
+										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>"  />
 										<?php } ?>
 										<div class="sub_title"><?php echo $payment->getName(); ?></div>
 									</label>
@@ -301,6 +301,17 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 	</div>
 		<div class="col-sm-6 right-checkout-section">
 			<?php echo $this->getChildHtml('billing'); ?>
+			<h2>Billing Information</h2>
+			<?php $payment_method = $this->getActivPaymentMethods();
+			
+			?>
+			<h2>Payment Method</h2>
+			<?php foreach($payment_method as $method){ ?>
+			<div class="col-sm-12">
+				<input id="<?php echo $method['value']; ?>" type="radio"  name="payment_method" value="<?php echo $method['value']; ?>" >
+					<label for="<?php echo $method['value']; ?>"><?php echo $method['label']; ?></label>
+			</div>
+			<?php } ?>
 		</div>
 	
 	 <button id="last_checkout"  type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="button"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
