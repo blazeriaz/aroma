@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Aroma_Changeprice>
+            <version>1.0.0</version>
+        </Aroma_Changeprice>
+    </modules>
+
+    <global>
+        <models>
+            <changeprice>
+                <class>Aroma_Changeprice_Model</class>
+            </changeprice>
+        </models>
+    </global>
+    <frontend>
+		 <events>
+			<sales_quote_add_item>
+				<observers>
+					<priceupdate_observer>
+						<type>singleton</type>
+						<class>changeprice/observer</class>
+						<method>updatePrice</method>
+					</priceupdate_observer>
+				</observers>
+			</sales_quote_add_item>
+			<!--<catalog_product_load_after>
+			<observers>
+				<quoteitem_add>
+					<class>changeprice/observer</class>
+					<method>addPostData</method>
+				</quoteitem_add>
+			</observers>
+			</catalog_product_load_after>-->
+		</events>
+    </frontend>
+</config>
