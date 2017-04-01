@@ -294,6 +294,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			<input type="hidden" id="frequency_hidden_val" name="frequency_hidden_val">	
 			<input type="hidden" id="tier_hidden_val" name="tier_hidden_val">	
 			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val">	
+			<input type="hidden" id="tier_hd_hidden_val" name="tier_hd_hidden_val">	
 				
 		</ul>
 		</div>
@@ -396,8 +397,10 @@ jQuery(document).ready(function(){
 	
 		if(price_value_selector == 'base_price_default'){
 			jQuery('#price_val').html(payment_base_value);
+			jQuery('#tier_hd_hidden_val').val('base_price_default');
 		}else if(price_value_selector == 'delux_price_default'){
 			jQuery('#price_val').html(payment_deluxamt_value);
+			jQuery('#tier_hd_hidden_val').val('delux_price_default');
 		}
 		
 		
@@ -415,6 +418,7 @@ jQuery(document).ready(function(){
 		
 		jQuery('#payment_schedule_val').html(payment_plan_value);
 		jQuery('#paymentid_hidden_val').val(payment_plan_id);
+		
 				
 				
 	});
