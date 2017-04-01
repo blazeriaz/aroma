@@ -62,9 +62,33 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
         $cart->addProduct($product, new Varien_Object($params));
         Mage::getSingleton('checkout/session')->setCartWasUpdated(true);
         $cart->save();
+		Mage::getSingleton('core/session')->unsSubscriptionRequest();
     }
     catch (Exception $ex) {
         echo $ex->getMessage();
     }
+	}
+	
+	public function coffeesubscriptionAction(){
+		
+		$data  = $this->getRequest()->getPost();
+		
+		$subscription_selected = array(
+									'roast_level'=>$data['roast_level'],
+									'coffee_type'=>$data['coffee_type'],
+									'how_often'=>$data['how_often'],
+									'tier_type'=>$data['tier_type'],
+									'total_delux_price'=>$data['total_delux_price'],
+									'payment_plan'=>$data['payment_plan'],
+									'roast_hidden_val'=>$data['roast_hidden_val'],
+									'type_hidden_val'=>$data['type_hidden_val'],
+									'frequency_hidden_val'=>$data['frequency_hidden_val'],
+									'tier_hidden_val'=>$data['tier_hidden_val'],
+									'paymentid_hidden_val'=>$data['paymentid_hidden_val'],
+									'tier_hd_hidden_val'=>$data['tier_hd_hidden_val'],
+									
+									);
+		$session = Mage::getSingleton('core/session');
+		$session->setData('subscription_request', $subscription_selected);
 	}
 }
