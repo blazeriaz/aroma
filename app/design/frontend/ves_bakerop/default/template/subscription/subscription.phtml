@@ -1,5 +1,10 @@
 <div >
-<div class="coffee-sub-selection">
+<form method="post" action="<?php echo $this->getUrl('coffee-subscription/index/checkout'); ?>" name="custom_checkout" id="sub_checkout">
+<?php 
+$subscription_request = Mage::getSingleton('core/session')->getSubscriptionRequest();
+
+?>
+<div class="coffee-sub-selection" <?php if($subscription_request['payment_plan']){ ?> style="display:none"; <?php } ?> >
 <section>
 	<center>
 		<div class="container cofsub-rost">
@@ -7,6 +12,7 @@
 		</div>
 	</center>
 </section>
+
 <section>
 	<center>
 		<div class="container   cofsub-select_rost">
@@ -29,7 +35,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									?>
 									<div class="col-sm-3 ">
 									
-									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>"/>
+									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>" <?php if($subscription_request['roast_level'] && $option['value'] == $subscription_request['roast_level']){ echo 'checked=checked'; } ?>/>
 									<label for="roast_level<?php echo $option['value']; ?>">
 										<?php if($_img!=""){ ?>
 										<img class="img-responsive" src="<?php echo $_img; ?>"  />
@@ -47,7 +53,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 		</div>
 	</center>
 </section>
-<section class="coffee_type" style="display:none;">
+<section class="coffee_type" <?php if($subscription_request['coffee_type']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 	<center>
 		<div class="container cofsub-select_blend " >
 			<div class="heading">
@@ -68,7 +74,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									?>
 									<div class="col-sm-4">
 									
-									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>"/>
+									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['coffee_type'] && $option['value'] == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 									<label for="coffee_type<?php echo $option['value']; ?>"> 
 										<?php if($_img!=""){ ?>
 										<img class="img-responsive blend" src="<?php echo $_img; ?>" />
@@ -91,7 +97,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 </section>
 
 
-<section class="how_often" style="display:none;">
+<section class="how_often" <?php if($subscription_request['how_often']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 	<center>
 		<div class="container   cofsub-select_shiping">
 			<div class="heading">
@@ -113,7 +119,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									?>
 									<div class="col-sm-3 circle-bg">
 									
-									<input data-title="<?php echo $option['label'];?>" class="coffee_weeks" data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>"/>
+									<input data-title="<?php echo $option['label'];?>" class="coffee_weeks" data-weeks="<?php echo $params; ?>" id="how_often<?php echo $option['value']; ?>"  type="radio" name="how_often" value="<?php echo $option['value']; ?>" <?php if($subscription_request['how_often'] && $option['value'] == $subscription_request['how_often']){ echo 'checked=checked'; } ?>/>
 									<label for="how_often<?php echo $option['value']; ?>">
 									<?php if($_img!=""){ ?>
 										<img class="img-responsive blend" src="<?php echo $_img; ?>"  />
@@ -135,7 +141,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 </section>
 
 
-<section class="which_tier" style="display:none;">
+<section class="which_tier" <?php if($subscription_request['tier_type']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 	<center>
 		<div class="container   cofsub-select_payment">
 			<div class="heading">
@@ -157,7 +163,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									?>
 									<div class="col-sm-6">
 									
-									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>"/>
+									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['tier_type'] && $option['value'] == $subscription_request['tier_type']){ echo 'checked=checked'; } ?>/>
 									<label class="tier_type" for="tier_type<?php echo $option['value']; ?>">
 										
 										<img class="img-responsive" src="<?php echo $_img; ?>"  />
@@ -176,7 +182,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 		</div>
 	</center>
 </section>
-<section class="payment_plan" style="display:none;">
+<section class="payment_plan" <?php if($subscription_request['payment_plan']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 	<center>
 		<div class="container   cofsub-select_payment">
 			<div class="heading">
@@ -206,7 +212,7 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									
 									<div class="col-sm-4">
 									
-									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>"/>
+									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
 										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>"  />
@@ -247,11 +253,7 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 	</center>
 </section>
 </div>
-</div>
-<?php
 
-
-?>
 <!----------------------Html End------------------------------------->
 							
 	<?php
@@ -265,8 +267,8 @@ $smallImageUrl = $productMediaConfig->getMediaUrl($product->getSmallImage());
 $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 ?>
 
-<div class="checkout-information col-sm-12" style="display:none;">
-<form method="post" action="<?php echo $this->getUrl('coffee-subscription/index/checkout'); ?>" name="custom_checkout" id="sub_checkout">
+<div class="checkout-information col-sm-12" <?php if($subscription_request['payment_plan']){ ?> style="display:block"; <?php }else{ ?> style="display:none;" <?php } ?>>
+
 
 	<div class="subscribe-info col-sm-6"> 
 	<img src="<?php echo $baseImageUrl ?>" width="300" />
@@ -282,19 +284,26 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 		</ul>
 		
 			<ul class="right-valuesection">
-				<li id="roast_val">value</li>
-				<li id="type_val">value</li>
-				<li id="frequency_val">value</li>
-				<li id="tier_val">value</li>
-				<li id="price_val">value</li>
-				<li id="payment_schedule_val">value</li>
+				<li id="roast_val"><?php echo ($subscription_request['roast_hidden_val'])?$subscription_request['roast_hidden_val']:'N/A'; ?></li>
+				<li id="type_val"><?php echo ($subscription_request['type_hidden_val'])?$subscription_request['type_hidden_val']:'N/A'; ?></li>
+				<li id="frequency_val"><?php echo ($subscription_request['frequency_hidden_val'])?$subscription_request['frequency_hidden_val']:'N/A'; ?></li>
+				<li id="tier_val"><?php echo ($subscription_request['tier_hidden_val'])?$subscription_request['tier_hidden_val']:'N/A'; ?></li>
+				<li id="price_val"><?php echo ($subscription_request['total_delux_price'])?$subscription_request['total_delux_price']:'N/A'; ?></li>
+				<?php if($subscription_request['paymentid_hidden_val']){ 
+				$payment_plan = Mage::getModel('subscription/paymentplan')->load($subscription_request['paymentid_hidden_val']);
+				$namee = $payment_plan->getName();
+				 }else{ 
+				 $namee = '';
+				 }
+				 ?>
+				<li id="payment_schedule_val"><?php echo $name; ?></li>
 				<li>Free</li>
-			<input type="hidden" id="roast_hidden_val" name="roast_hidden_val">	
-			<input type="hidden" id="type_hidden_val" name="type_hidden_val">	
-			<input type="hidden" id="frequency_hidden_val" name="frequency_hidden_val">	
-			<input type="hidden" id="tier_hidden_val" name="tier_hidden_val">	
-			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val">	
-			<input type="hidden" id="tier_hd_hidden_val" name="tier_hd_hidden_val">	
+			<input type="hidden" id="roast_hidden_val" name="roast_hidden_val" value="<?php echo ($subscription_request['roast_hidden_val'])?$subscription_request['roast_hidden_val']:''; ?>">	
+			<input type="hidden" id="type_hidden_val" name="type_hidden_val" value="<?php echo ($subscription_request['type_hidden_val'])?$subscription_request['type_hidden_val']:''; ?>">	
+			<input type="hidden" id="frequency_hidden_val" name="frequency_hidden_val" value="<?php echo ($subscription_request['frequency_hidden_val'])?$subscription_request['frequency_hidden_val']:''; ?>">	
+			<input type="hidden" id="tier_hidden_val" name="tier_hidden_val" value="<?php echo ($subscription_request['tier_hidden_val'])?$subscription_request['tier_hidden_val']:''; ?>">	
+			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val" value="<?php echo $subscription_request['paymentid_hidden_val']; ?>">	
+			<input type="hidden" id="tier_hd_hidden_val" name="tier_hd_hidden_val" value="<?php echo $subscription_request['tier_hd_hidden_val']; ?>" >	
 				
 		</ul>
 		</div>
@@ -322,7 +331,9 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 	 <button id="last_checkout" type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="button"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
 	 <button id="go_back"  type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Go Back')) ?>" class="button"><span><span><?php echo $this->__('Go Back') ?></span></span></button>
 
-	</form>
+	
+</div>
+</form>
 </div>
 <?php
 /*
@@ -356,6 +367,12 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	
+	jQuery('#billing-address-select').attr('onchange','');
+	jQuery('#billing-address-select').change(function(){
+		if(jQuery(this).val()== ''){
+			jQuery('#billing-new-address-form').show();
+		}
+	});
 	jQuery('#last_checkout').click(function(event){
 		jQuery( "#sub_checkout" ).submit();
 	});
@@ -419,6 +436,15 @@ jQuery(document).ready(function(){
 		jQuery('#payment_schedule_val').html(payment_plan_value);
 		jQuery('#paymentid_hidden_val').val(payment_plan_id);
 		
+		jQuery.ajax({
+		  method: "POST",
+		  url: '<?php echo $this->getUrl('coffee-subscription/index/coffeesubscription'); ?>',
+		  data:jQuery( "#sub_checkout" ).serialize()
+		})
+	  .done(function( msg ) {
+		  jQuery('#custom-cart').hide();
+		alert( "Data Saved: " + msg );
+	  });
 				
 				
 	});
