@@ -8,12 +8,18 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	public function checkoutAction(){
 	
 	try{
-	
+		
 		$data = Mage::app()->getRequest()->getPost();
+		//echo "<pre>";print_r($data);die;
         $customer = Mage::getModel('customer/customer');
         $password = $data['billing']['customer_password'];
-        $email = $data['billing']['email'];
-
+		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+			$email = $data['billing']['email'];
+		}
+		else {
+			$customer_data=Mage::getSingleton('customer/session')->getCustomer();
+			$email = $customer_data->getEmail(); 	
+		}		
         $customer->setWebsiteId(Mage::app()->getWebsite()->getId());
         $customer->loadByEmail($email);
         if(!$customer->getId()) {
@@ -91,11 +97,21 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
             'country_id' => $data['billing']['country_id'], /* Croatia */
             'telephone' => $data['billing']['telephone'],
         );
+	$billing_address_id = $this->getRequest()->getPost('billing_address_id'); 
+	if($billing_address_id == "") {
+		$customAddress = Mage::getModel('customer/address');
+		$customAddress->setData($addressData)
+					->setCustomerId($customer->getId())
+					->setIsDefaultBilling('1')
+					->setIsDefaultShipping('1')
+					->setSaveInAddressBook($data['billing']['save_in_address_book']);
+		if($data['billing']['save_in_address_book'] != "")			
+				$customAddress->save();
+	}
+	$billingAddress = $quote->getBillingAddress()->addData($addressData);
+	$shippingAddress = $quote->getShippingAddress()->addData($addressData);
 
-$billingAddress = $quote->getBillingAddress()->addData($addressData);
-$shippingAddress = $quote->getShippingAddress()->addData($addressData);
-
-$shippingAddress->setCollectShippingRates(true)->collectShippingRates()
+	$shippingAddress->setCollectShippingRates(true)->collectShippingRates()
                 ->setShippingMethod('flatrate_flatrate')
                 ->setPaymentMethod($data['payment_method']);
 

@@ -365,6 +365,11 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
     }*/
 	?>
 <script type="text/javascript">
+ //< ![CDATA[
+        var customForm = new VarienForm('sub_checkout');
+		
+var billingForm = new VarienForm("co-billing-form");
+    //]]>
 jQuery(document).ready(function(){
 	
 	jQuery('#billing-address-select').attr('onchange','');
@@ -372,6 +377,9 @@ jQuery(document).ready(function(){
 		if(jQuery(this).val()== ''){
 			jQuery('#billing-new-address-form').show();
 		}
+		else {
+			jQuery('#billing-new-address-form').hide();
+		}	
 	});
 	jQuery('#last_checkout').click(function(event){
 		jQuery( "#sub_checkout" ).submit();
@@ -388,7 +396,7 @@ jQuery(document).ready(function(){
 		})
 	  .done(function( msg ) {
 		  jQuery('#custom-cart').hide();
-		alert( "Data Saved: " + msg );
+			alert( "Data Saved: " + msg );
 	  });
 		
 });
@@ -442,8 +450,8 @@ jQuery(document).ready(function(){
 		  data:jQuery( "#sub_checkout" ).serialize()
 		})
 	  .done(function( msg ) {
-		  jQuery('#custom-cart').hide();
-		alert( "Data Saved: " + msg );
+		  //jQuery('#custom-cart').hide();
+		//alert( "Data Saved: " + msg );
 	  });
 				
 				
