@@ -126,7 +126,28 @@ $quote->collectTotals()->save();
 $service = Mage::getModel('sales/service_quote', $quote);
 $service->submitAll();
 $order = $service->getOrder();
-
+if($order->getIncrementId()){	
+	$subscription = Mage::getModel('subscription/subscription');
+	$subscription->setTitle('Order '.$order->getIncrementId());
+	$subscription->setOrderId($order->getIncrementId());
+	$subscription->setStatus(1);
+	$subscription->setCreated(date('Y-m-d H:i:s'));
+	$subscription->setModified(date('Y-m-d H:i:s'));
+	$subscription->save();
+	for($i=1;$i<=$payment_plan->getNoOfShip();$i++){
+		$current_date = date('Y-m-d H:i:s');  
+		$date = strtotime($current_date); $no_of_days = $i*7;
+		$date = strtotime("+".$no_of_days." day", $date);
+		$ship_date = date("Y-m-d H:i:s",$date);
+		$sub_order_date = Mage::getModel('subscription/suborderdate');
+		$sub_order_date->setEavSubId($subscription->getId());
+		$sub_order_date->setShipDate($ship_date);
+		$sub_order_date->setStatus(2);
+		$sub_order_date->setCreated(date('Y-m-d H:i:s'));
+		$sub_order_date->setModified(date('Y-m-d H:i:s'));
+		$sub_order_date->save();
+	}
+}
 printf("Created order %s\n", $order->getIncrementId());
 
 exit;
