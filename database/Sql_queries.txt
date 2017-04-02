@@ -33,3 +33,6 @@ ALTER TABLE `aceav_subscription`
   
 ALTER TABLE `aceav_subscription`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `aceav_subscription` ADD `order_id` TEXT NOT NULL AFTER `title`;
