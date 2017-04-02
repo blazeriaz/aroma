@@ -63,7 +63,9 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 			$final_delux_price = $default_deluxe_price - $deluxe_price;
 			$custom_price = $final_delux_price * $payment_plan->getNoOfShip();
 		}
+		
 		$customPrice = Mage::getSingleton('core/session')->setCustomfinalprice($custom_price);
+		
 		$product = Mage::getModel('catalog/product')->load($product_id);
     $buyInfo = array(
         'product' => $product->getId(), 
@@ -126,7 +128,8 @@ $quote->collectTotals()->save();
 $service = Mage::getModel('sales/service_quote', $quote);
 $service->submitAll();
 $order = $service->getOrder();
-if($order->getIncrementId()){	
+if($order->getIncrementId()){
+	Mage::getSingleton('core/session')->unsSubscriptionRequest();
 	$subscription = Mage::getModel('subscription/subscription');
 	$subscription->setTitle('Order '.$order->getIncrementId());
 	$subscription->setOrderId($order->getIncrementId());
@@ -148,9 +151,9 @@ if($order->getIncrementId()){
 		$sub_order_date->save();
 	}
 }
-printf("Created order %s\n", $order->getIncrementId());
 
-exit;
+
+
 	}catch(Exception $e){
 		echo $e->getMessage();
 		exit;
