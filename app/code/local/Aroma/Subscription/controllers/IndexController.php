@@ -151,7 +151,7 @@ if($order->getIncrementId()){
 		$sub_order_date->save();
 	}
 }
-
+Mage::getSingleton('core/session')->addSuccess( Mage::helper('marketplace')->__('Subscribed Successfully'));	
 
 
 	}catch(Exception $e){
