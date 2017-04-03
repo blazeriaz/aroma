@@ -270,6 +270,12 @@ Layout handle for configurable products
     </adminhtml_catalog_product_action_attribute_edit>
 
     <adminhtml_catalog_product_attribute_edit>
+		<reference name="head">
+            <action method="addJs"><file>lib/uploader/flow.min.js</file></action>
+            <action method="addJs"><file>lib/uploader/fusty-flow.js</file></action>
+            <action method="addJs"><file>lib/uploader/fusty-flow-factory.js</file></action>
+            <action method="addJs"><file>mage/adminhtml/uploader/instance.js</file></action>
+		</reference>
         <reference name="left">
             <block type="adminhtml/catalog_product_attribute_edit_tabs" name="attribute_edit_tabs"></block>
         </reference>
