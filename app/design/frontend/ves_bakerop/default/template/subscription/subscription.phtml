@@ -101,7 +101,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 	<center>
 		<div class="container   cofsub-select_shiping">
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR SHIPING SCHEDULE</h4>
+				<h4 style="color:gray">SELECT YOUR SHIPPING SCHEDULE</h4>
 			</div>
 			<div class="col-sm-12">
 			<?php
@@ -141,7 +141,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 </section>
 
 
-<section class="which_tier" <?php if($subscription_request['tier_type']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
+<section class="which_tier" <?php /*if($subscription_request['tier_type']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } */ ?> style="display:none;">
 	<center>
 		<div class="container   cofsub-select_payment">
 			<div class="heading">
@@ -154,7 +154,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 						
 						if ($attr->usesSource()) {
 							$attributeOptions = $attr ->getSource()->getAllOptions(false);
-							
+								$kk =1;
 								foreach ($attributeOptions as $option) {
 									if($option['value'] !=""){ 
 									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
@@ -163,7 +163,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									?>
 									<div class="col-sm-6">
 									
-									<input data-title="<?php echo $option['label'];?>" class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['tier_type'] && $option['value'] == $subscription_request['tier_type']){ echo 'checked=checked'; } ?>/>
+									<input data-title="<?php echo $option['label'];?>"  class="tier_price_sel" id="tier_type<?php echo $option['value']; ?>" data-priceselector="<?php echo $params; ?>"  type="radio" name="tier_type" value="<?php echo $option['value']; ?>" <?php if($kk == 1){ echo 'checked=checked'; } //if($subscription_request['tier_type'] && $option['value'] == $subscription_request['tier_type']){ echo 'checked=checked'; } ?>/>
 									<label class="tier_type" for="tier_type<?php echo $option['value']; ?>">
 										
 										<img class="img-responsive" src="<?php echo $_img; ?>"  />
@@ -173,6 +173,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									</div>
 									<?php
 									}
+									$kk++;
 								}
 						}
 								?>
@@ -277,7 +278,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			<li>Roast</li>
 			<li>Type</li>
 			<li>Frequency</li>
-			<li>Tier</li>
+			<li style="display:none;">Tier</li>
 			<li>Price</li>
 			<li>Payment Schedule</li>
 			<li>Shipping</li>
@@ -287,7 +288,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 				<li id="roast_val"><?php echo ($subscription_request['roast_hidden_val'])?$subscription_request['roast_hidden_val']:'N/A'; ?></li>
 				<li id="type_val"><?php echo ($subscription_request['type_hidden_val'])?$subscription_request['type_hidden_val']:'N/A'; ?></li>
 				<li id="frequency_val"><?php echo ($subscription_request['frequency_hidden_val'])?$subscription_request['frequency_hidden_val']:'N/A'; ?></li>
-				<li id="tier_val"><?php echo ($subscription_request['tier_hidden_val'])?$subscription_request['tier_hidden_val']:'N/A'; ?></li>
+				<li style="display:none;" id="tier_val"><?php echo ($subscription_request['tier_hidden_val'])?$subscription_request['tier_hidden_val']:'N/A'; ?></li>
 				<li id="price_val"><?php echo ($subscription_request['total_delux_price'])?$subscription_request['total_delux_price']:'N/A'; ?></li>
 				<?php if($subscription_request['paymentid_hidden_val']){ 
 				$payment_plan = Mage::getModel('subscription/paymentplan')->load($subscription_request['paymentid_hidden_val']);
@@ -310,18 +311,24 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 		
 	</div>
 		<div class="col-sm-6 right-checkout-section">
+		<h2>Billing Information</h2>
+		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+		<p class="already-user"><a href="<?php echo $this->getUrl('customer/account/login/'); ?>" title="Log In" class="ajaxlogin-login">Already a Customer Click here</a> or Use Below Form to Register</p>
+		<?php } ?>
 			<?php echo $this->getChildHtml('billing'); ?>
-			<h2>Billing Information</h2>
+			
 			<?php $payment_method = $this->getActivPaymentMethods();
 			
 			?>
 			<h2>Payment Method</h2>
-			<?php foreach($payment_method as $method){ ?>
+			<?php foreach($payment_method as $method){
+				if($method['value'] != 'paypal_billing_agreement'){
+			?>
 			<div class="col-sm-12">
 				<input id="<?php echo $method['value']; ?>" type="radio"  name="payment_method" value="<?php echo $method['value']; ?>" >
 					<label for="<?php echo $method['value']; ?>"><?php echo $method['label']; ?></label>
 			</div>
-			<?php } ?>
+				<?php } } ?>
 		</div>
 		<div style="float:left">
 		<span class="please-wait" id="custom-cart" style="display:none;float:left;">
@@ -396,7 +403,8 @@ jQuery(document).ready(function(){
 		})
 	  .done(function( msg ) {
 		  jQuery('#custom-cart').hide();
-			alert( "Data Saved: " + msg );
+		  alert('subscribed Successfully');
+			location.reload(); 
 	  });
 		
 });
@@ -473,7 +481,10 @@ jQuery(document).ready(function(){
 
 	});
 	jQuery(".coffee_weeks").on("click",function(){
-		jQuery('.which_tier').show();
+		jQuery('.which_tier').hide();
+		jQuery('.payment_plan').show();
+		jQuery('.price_cus_switcher').hide();
+		jQuery('.'+price_selector).show();
 
 	});
 	jQuery(".tier_price_sel").on("click",function(){
