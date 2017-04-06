@@ -2,7 +2,11 @@
 class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Action
 {
     public function indexAction(){
-		$this->loadLayout();     
+		
+		$this->loadLayout(); 
+		$session = Mage::getSingleton('customer/session');
+		$redirect_url = Mage::getBaseUrl().'coffee-subscription';
+		$session->setBeforeAuthUrl($redirect_url);
 		$this->renderLayout();
     }
 	public function checkoutAction(){
@@ -10,7 +14,7 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	try{
 		
 		$data = Mage::app()->getRequest()->getPost();
-		//echo "<pre>";print_r($data);die;
+		
         $customer = Mage::getModel('customer/customer');
         $password = $data['billing']['customer_password'];
 		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
@@ -71,11 +75,11 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
         'product' => $product->getId(), 
         'qty' => 1,
         'options' => array(
-            2 => $plan_name,
-            3 => $this->getRequest()->getPost('tier_hidden_val'),
-            4 => $this->getRequest()->getPost('frequency_hidden_val'),
-            5 => $this->getRequest()->getPost('type_hidden_val'),
-            6 => $this->getRequest()->getPost('roast_hidden_val')
+            2 => $this->getRequest()->getPost('type_hidden_val'),
+            3 => $plan_name,
+            4 => $this->getRequest()->getPost('roast_hidden_val'),
+            5 => $this->getRequest()->getPost('tier_hidden_val'),
+            6 => $this->getRequest()->getPost('frequency_hidden_val')
         )
     );      
 	
@@ -109,7 +113,12 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 					->setSaveInAddressBook($data['billing']['save_in_address_book']);
 		if($data['billing']['save_in_address_book'] != "")			
 				$customAddress->save();
+	}else{
+		$addressData = Mage::getModel('customer/address')->load($billing_address_id)->getData();
+		
+		
 	}
+	//print_r($addressData);exit;
 	$billingAddress = $quote->getBillingAddress()->addData($addressData);
 	$shippingAddress = $quote->getShippingAddress()->addData($addressData);
 
@@ -151,7 +160,7 @@ if($order->getIncrementId()){
 		$sub_order_date->save();
 	}
 }
-Mage::getSingleton('core/session')->addSuccess( Mage::helper('marketplace')->__('Subscribed Successfully'));	
+//Mage::getSingleton('core/session')->addSuccess( Mage::helper('marketplace')->__('Subscribed Successfully'));	
 
 
 	}catch(Exception $e){
