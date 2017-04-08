@@ -22,16 +22,16 @@ class Aroma_Statuschange_Model_Observer extends Varien_Event_Observer
 		$subscribed_order = $collection->getData();
 		$subscribed_id = $subscribed_order[0]['id'];
 		$subscr_data = Mage::getModel('subscription/subscription')->load($subscribed_id);
-		$subscr_data->setStatus(2);
+		$subscr_data->setStatus(4);
 		$subscr_data->setId($subscribed_id)->save(); 
 		$sub_dates = Mage::getModel('subscription/suborderdate')->getCollection();
 		$sub_dates->addFieldToFilter("eav_sub_id",$subscribed_id);
 		$sub_dates->addFieldToFilter("status", array("neq" => 2));
 
 		foreach($sub_dates as $subdate){
-			$dates = Mage::getModel('subscription/suborderdate')->load($subscribed_id);
+			$dates = Mage::getModel('subscription/suborderdate')->load($subdate->getId());
 			$dates->setStatus(4);
-			$subscr_data->setId($subdate->getId())->save(); 
+			$dates->setId($subdate->getId())->save(); 
 		}
 				
 				
