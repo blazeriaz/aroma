@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 07:12 PM
+-- Generation Time: Apr 08, 2017 at 11:38 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -20,15 +20,41 @@ SET time_zone = "+00:00";
 -- Database: `aroma_new`
 --
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `acsub_order_date`
+-- Table structure for table `acsub_order_date`
 --
 
-INSERT INTO `acsub_order_date` (`id`, `eav_sub_id`, `ship_date`, `created`, `modified`, `status`) VALUES
-(1, 1, '2017-03-30 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(2, 2, '2017-03-31 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(3, 1, '2017-04-01 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2);
+DROP TABLE IF EXISTS `acsub_order_date`;
+CREATE TABLE IF NOT EXISTS `acsub_order_date` (
+  `id` bigint(20) NOT NULL,
+  `eav_sub_id` bigint(20) NOT NULL,
+  `ship_date` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `acsub_order_date`
+--
+ALTER TABLE `acsub_order_date`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `acsub_order_date`
+--
+ALTER TABLE `acsub_order_date`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
