@@ -1,0 +1,2 @@
+Your order {{var data.order_no}} was {{var data.order_status}}
+Comment: {{var data.comment}}
