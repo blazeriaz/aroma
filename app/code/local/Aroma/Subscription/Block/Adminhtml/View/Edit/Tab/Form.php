@@ -46,8 +46,6 @@ class Aroma_Subscription_Block_Adminhtml_View_Edit_Tab_Form extends Mage_Adminht
 		  'onclick' => "",
 		  'onchange' => "",
 		  'value'  => '<b><b/>',
-		  'disabled' => false,
-		  'readonly' => false,
 		  'after_element_html' => '<small>Comments</small>',
 		  'tabindex' => 1
 		));
