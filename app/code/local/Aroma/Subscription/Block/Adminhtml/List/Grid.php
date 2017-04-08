@@ -87,6 +87,8 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
                 'options'   => array(
                         1 => Mage::helper('ves_brand')->__('Processing'),
                         2 => Mage::helper('ves_brand')->__('Completed'),
+                        3 => Mage::helper('ves_brand')->__('Intransist'),
+                        4 => Mage::helper('ves_brand')->__('Cancelled'),
                 ),
         ));
 		
