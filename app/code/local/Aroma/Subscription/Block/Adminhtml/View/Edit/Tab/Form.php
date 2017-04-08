@@ -42,7 +42,7 @@ class Aroma_Subscription_Block_Adminhtml_View_Edit_Tab_Form extends Mage_Adminht
           'label'     => Mage::helper('adminhtml')->__('Comment for Email'),
           'class'     => 'required-entry',
           'required'  => true,
-          'name'      => 'title',
+          'name'      => 'comment',
 		  'onclick' => "",
 		  'onchange' => "",
 		  'value'  => '<b><b/>',
