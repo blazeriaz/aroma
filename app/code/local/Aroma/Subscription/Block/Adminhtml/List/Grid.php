@@ -32,7 +32,7 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
     protected function _prepareCollection() {
         $collection = Mage::getModel('subscription/subscription')->getCollection();
 		$collection->getSelect()->joinLeft("acsub_order_date","acsub_order_date.eav_sub_id = main_table.id",array("count(eav_sub_id) as total_cnt","SUM(CASE WHEN acsub_order_date.status = 1 THEN 1 ELSE 0 END) as pending_count",
-		"SUM(CASE WHEN acsub_order_date.status = 2 THEN 1 ELSE 0 END) as complete_count"));
+		"SUM(CASE WHEN acsub_order_date.status = 2 THEN 1 ELSE 0 END) as complete_count","SUM(CASE WHEN acsub_order_date.status = 4 THEN 1 ELSE 0 END) as intransit_count","SUM(CASE WHEN acsub_order_date.status = 2 THEN 1 ELSE 0 END) as cancel_count"));
 		$collection->getSelect()->group("main_table.id");
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -66,6 +66,16 @@ class Aroma_Subscription_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_
                 'header'    => Mage::helper('ves_brand')->__('No. of Complete Shipment'),
                 'align'     =>'left',
                 'index'     => 'complete_count',
+        ));
+		$this->addColumn('intransit_count', array(
+                'header'    => Mage::helper('ves_brand')->__('No. of Intransit Shipment'),
+                'align'     =>'left',
+                'index'     => 'intransit_count',
+        ));
+		$this->addColumn('cancel_count', array(
+                'header'    => Mage::helper('ves_brand')->__('No. of Cancel Shipment'),
+                'align'     =>'left',
+                'index'     => 'cancel_count',
         ));
 		
 		$this->addColumn('status', array(
