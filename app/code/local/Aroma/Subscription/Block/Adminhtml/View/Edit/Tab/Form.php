@@ -38,7 +38,20 @@ class Aroma_Subscription_Block_Adminhtml_View_Edit_Tab_Form extends Mage_Adminht
             'values'    => $options,
         ));
 
-
+		$fieldset->addField('textarea', 'textarea', array(
+          'label'     => Mage::helper('adminhtml')->__('Comment for Email'),
+          'class'     => 'required-entry',
+          'required'  => true,
+          'name'      => 'title',
+		  'onclick' => "",
+		  'onchange' => "",
+		  'value'  => '<b><b/>',
+		  'disabled' => false,
+		  'readonly' => false,
+		  'after_element_html' => '<small>Comments</small>',
+		  'tabindex' => 1
+		));
+		
         if( Mage::getSingleton('adminhtml/session')->getOrderDate() ) {
             $form->setValues(Mage::getSingleton('adminhtml/session')->getOrderDate());
             Mage::getSingleton('adminhtml/session')->setOrderDate(null);
