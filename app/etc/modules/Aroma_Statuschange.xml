@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aroma_Statuschange>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Aroma_Statuschange>
+    </modules>
+</config>
