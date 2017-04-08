@@ -154,7 +154,7 @@ if($order->getIncrementId()){
 		$sub_order_date = Mage::getModel('subscription/suborderdate');
 		$sub_order_date->setEavSubId($subscription->getId());
 		$sub_order_date->setShipDate($ship_date);
-		$sub_order_date->setStatus(2);
+		$sub_order_date->setStatus(1);
 		$sub_order_date->setCreated(date('Y-m-d H:i:s'));
 		$sub_order_date->setModified(date('Y-m-d H:i:s'));
 		$sub_order_date->save();
