@@ -17,7 +17,7 @@ class Aroma_Subscription_Block_Adminhtml_View_Edit_Tab_Form extends Mage_Adminht
 		));
 		$options = array(array(
                     'value'     => 1,
-                    'label'     => Mage::helper('adminhtml')->__('Pending'),
+                    'label'     => Mage::helper('adminhtml')->__('Processing'),
                 ),
 
                 array(
