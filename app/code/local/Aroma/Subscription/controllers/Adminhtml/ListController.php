@@ -57,6 +57,7 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
 	
 	public function saveAction(){
 		$data = $this->getRequest()->getPost();
+		try{
 		if($data) {
 			$orderDateId     = $this->getRequest()->getParam('id');
 			$orderDateModel  = Mage::getModel('subscription/suborderdate')->load($orderDateId);
@@ -84,7 +85,7 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
                     );
 
                 if (!$mailTemplate->getSentSuccess()) {
-                    throw new Exception();
+                    //throw new Exception();
                 }
 					
 			}	
@@ -96,6 +97,11 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
 			else	
 				$this->_redirect('*/*/new');
 			return;
+		}
+		}catch(Exception $e){
+			echo $e->getMessage();
+			echo "error occured";
+			exit;
 		}
 	}
 }
