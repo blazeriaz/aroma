@@ -92,8 +92,22 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
 			$orderDateModel->setShipDate($data['ship_date']);
 			$orderDateModel->setStatus($data['status']);
 			$orderDateModel->save();
+			$eav_sub_id = $orderDateModel->getEavSubId();
+			
+			$orderSubStatus = Mage::getModel('subscription/suborderdate')->getCollection();
+			$orderSubStatus->addFieldToFilter("eav_sub_id",$eav_sub_id);
+			
+			$completedStatus = Mage::getModel('subscription/suborderdate')->getCollection();
+			$completedStatus->addFieldToFilter("eav_sub_id",$eav_sub_id);
+			$completedStatus->addFieldToFilter("status",2);
+			
+			if($orderSubStatus->getSize() == $completedStatus->getSize()) {
+					$statusUpdate = Mage::getModel('subscription/subscription')->load($eav_sub_id);
+					$statusUpdate->setStatus(2);
+					$statusUpdate->save();
+			}
 			if($this->getRequest()->getParam("id"))
-				$this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+				$this->_redirect('*/*/', array('id' => $this->getRequest()->getParam('id')));
 			else	
 				$this->_redirect('*/*/new');
 			return;
