@@ -8,6 +8,11 @@
                     <sort_order>100</sort_order>
                     <action>states/adminhtml_states</action>
                 </web_states>
+				<web_pincode>
+                    <title>Pincode</title>
+                    <sort_order>100</sort_order>
+                    <action>states/adminhtml_pincode</action>
+                </web_pincode>
             </children>
         </cms>
     </menu>

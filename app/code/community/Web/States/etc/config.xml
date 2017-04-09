@@ -17,6 +17,9 @@
                     <states>
                         <table>directory_country_region</table>
                     </states>
+					<pincode>
+                        <table>directory_pincode</table>
+                    </pincode>
                 </entities>
             </web_states_mysql4>
         </models>
