@@ -5,4 +5,9 @@
             <block type="web_states/adminhtml_states" name="web_states"/>
         </reference>
     </web_states_adminhtml_states_index>
+	<web_states_adminhtml_pincode_index>
+        <reference name="content">
+            <block type="web_states/adminhtml_pincode" name="web_pincode"/>
+        </reference>
+    </web_states_adminhtml_pincode_index>
 </layout>
