@@ -71,16 +71,22 @@ class Aroma_Subscription_Adminhtml_ListController extends Mage_Adminhtml_Control
 			$shippingAddress = $order->getShippingAddress();
 			$status = $order_status[$data['status']];
 			if($orderDateModel->getStatus() != $data['status']) {
-				$adminEmail = "vasanthrangaraju@gmail.com";
+				$senderName = Mage::getStoreConfig('trans_email/ident_general/name');
+		$senderEmail = Mage::getStoreConfig('trans_email/ident_general/email');
+		$sender  = array(
+					'name'=> $senderName,
+					'email' => $senderEmail
+					);
+				//$adminEmail = "vasanthrangaraju@gmail.com";
 				$mailTemplate = Mage::getModel('core/email_template');
                 /* @var $mailTemplate Mage_Core_Model_Email_Template */
                 $mailTemplate->setDesignConfig(array('area' => 'frontend'))
                     ->setReplyTo($post['email'])
                     ->sendTransactional(
                         Mage::getStoreConfig("subscription/email/email_template"),
-                        Mage::getStoreConfig($adminEmail),
-                        Mage::getStoreConfig($order->getCustomerEmail()),
-                        null,
+                        $sender,
+                        $order->getCustomerEmail(),
+                        $order->getCustomerFirstname(),
                         array('data' => array("order_id"=>$order_id,"order_status"=>$order_status,"comment"=>$data['comment']))
                     );
 
