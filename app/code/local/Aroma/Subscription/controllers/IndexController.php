@@ -138,6 +138,11 @@ $service = Mage::getModel('sales/service_quote', $quote);
 $service->submitAll();
 $order = $service->getOrder();
 if($order->getIncrementId()){
+	
+	$order_mail = Mage::getModel('sales/order');
+	$order_mail->loadByIncrementId($order->getIncrementId());
+	$order_mail->sendNewOrderEmail();
+	
 	Mage::getSingleton('core/session')->unsSubscriptionRequest();
 	$subscription = Mage::getModel('subscription/subscription');
 	$subscription->setTitle('Order '.$order->getIncrementId());
