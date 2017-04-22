@@ -55,17 +55,18 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 </section>
 <?php 
 $medium_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
-$medium_collection->addFieldToFilter('roast_level_new',array('in' => array(23)));
+$medium_collection->addFieldToFilter('roast_level_new',array('finset' => array(23)));
 $medium_collection->addFieldToFilter('name',array('neq'=>''))->getItems();
 
 
 $dark_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
-$dark_collection->addFieldToFilter('roast_level_new',array('in' => array(22)));
+$dark_collection->addFieldToFilter('roast_level_new',array('finset' => array(22)));
+$dark_collection->addFieldToFilter('name',array('neq'=>''))->getItems();
 
 $none_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
-$none_collection->addFieldToFilter('roast_level_new',array('in' => array(24)));
-
-
+$none_collection->addFieldToFilter('roast_level_new',array('finset' => array(24)));
+//$none_collection->addFieldToFilter('roast_level_new',array('neq'=>''));
+$none_collection->addFieldToFilter('name',array('neq'=>''))->getItems();
 
 
 ?>
@@ -77,20 +78,62 @@ $none_collection->addFieldToFilter('roast_level_new',array('in' => array(24)));
 			<div class="heading">
 				<h4 style="color:gray;font-size:15px!important;">SELECT YOUR PREFERED BLEND</h4>
 			</div>
-			<div class="col-sm-12" id="">
+			<div class="col-sm-12" id="medium_coffee" <?php if($subscription_request['roast_level'] == 11){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 			<?php foreach($medium_collection as $medium_product){
 $product = Mage::getModel('catalog/product')->load($medium_product->getEntityId());  //some ID    
 $productMediaConfig = Mage::getModel('catalog/product_media_config');
 $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 	?>
 <div class="col-sm-4">
-	<input data-title="<?php echo $medium_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['coffee_type'] && $option['value'] == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<input data-title="<?php echo $medium_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $medium_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $medium_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 	<label for="coffee_type<?php echo $medium_product->getSku();?>"> 
 		<?php if($baseImageUrl!=""){ ?>
 			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
 		<?php } ?>
 									
 		<div class="sub_title"><?php echo $medium_product->getName();?></div>
+	</label>
+	<p><?php //echo $description; ?></p>
+</div>
+<?php } ?>
+								
+			</div>
+			
+			<div class="col-sm-12" id="dark_coffee" <?php if($subscription_request['roast_level'] == 10){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
+			<?php foreach($dark_collection as $dark_product){
+$product = Mage::getModel('catalog/product')->load($dark_product->getEntityId());  //some ID    
+$productMediaConfig = Mage::getModel('catalog/product_media_config');
+$baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
+	?>
+<div class="col-sm-4">
+	<input data-title="<?php echo $dark_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $dark_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $dark_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $dark_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<label for="coffee_type<?php echo $dark_product->getSku();?>"> 
+		<?php if($baseImageUrl!=""){ ?>
+			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
+		<?php } ?>
+									
+		<div class="sub_title"><?php echo $dark_product->getName();?></div>
+	</label>
+	<p><?php //echo $description; ?></p>
+</div>
+<?php } ?>
+								
+			</div>
+			
+			<div class="col-sm-12" id="none_coffee" <?php if($subscription_request['roast_level'] == 9){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
+			<?php foreach($none_collection as $none_product){
+$product = Mage::getModel('catalog/product')->load($none_product->getEntityId());  //some ID    
+$productMediaConfig = Mage::getModel('catalog/product_media_config');
+$baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
+	?>
+<div class="col-sm-4">
+	<input data-title="<?php echo $none_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $none_product->getEntityId();?>"  type="radio" name="coffee_type" value="<?php echo $none_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $none_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<label for="coffee_type<?php echo $none_product->getEntityId();?>"> 
+		<?php if($baseImageUrl!=""){ ?>
+			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
+		<?php } ?>
+									
+		<div class="sub_title"><?php echo $none_product->getName();?></div>
 	</label>
 	<p><?php //echo $description; ?></p>
 </div>
@@ -500,6 +543,21 @@ jQuery(document).ready(function(){
 	jQuery(".roast_level").on("click",function(){
 		if (jQuery("input[name='roast_level']").is(':checked')) {
 				jQuery('.coffee_type').show();
+				jQuery('#medium_coffee').hide()
+				jQuery('#dark_coffee').hide();
+				jQuery('#none_coffee').hide();
+				if(jQuery(this).val() == 11){
+					jQuery('#medium_coffee').show()
+				
+				}
+				if(jQuery(this).val() == 10){
+					jQuery('#dark_coffee').show();
+				}
+				if(jQuery(this).val() == 9){
+					jQuery('#none_coffee').show();
+				}
+				jQuery('.how_often').hide();
+				jQuery('.payment_plan').hide();
 		}
 
 	});
