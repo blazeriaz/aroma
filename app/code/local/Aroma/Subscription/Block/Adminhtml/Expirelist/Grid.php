@@ -30,11 +30,13 @@ class Aroma_Subscription_Block_Adminhtml_Expirelist_Grid extends Mage_Adminhtml_
 	}
 	
     protected function _prepareCollection() {
+		$current_date = date("Y-m-d H:i:s");
         $collection = Mage::getModel('subscription/suborderdate')->getCollection();
         $collection->getSelect()->reset(Zend_Db_Select::COLUMNS)->columns('MIN(ship_date) as ship_date');
         $collection->addFieldToFilter("main_table.status",array("in"=>array(1,3)));
         $collection->getSelect()->join("aceav_subscription","aceav_subscription.id = main_table.eav_sub_id",array("aceav_subscription.title","aceav_subscription.id","aceav_subscription.order_id"));
-       $collection->getSelect()->group("main_table.eav_sub_id");
+		$collection->addFieldToFilter("main_table.ship_date",array("lt"=>$current_date));
+		$collection->getSelect()->group("main_table.eav_sub_id");
         $this->setCollection($collection);
         parent::_prepareCollection();
         foreach($collection as $data) {

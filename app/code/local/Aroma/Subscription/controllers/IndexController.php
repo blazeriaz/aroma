@@ -213,4 +213,11 @@ if($order->getIncrementId()){
 		$session = Mage::getSingleton('core/session');
 		$session->setData('subscription_request', $subscription_selected);
 	}
+			
+	public function checkpincodeAction() {	
+		$pincode = Mage::app()->getRequest()->getPost('pincode');
+		$collection = Mage::getModel("web_states/pincode")->getCollection();
+		$collection->addFieldToFilter("pincode",$pincode);
+		echo $collection->getSize();
+	}	
 }

@@ -12,7 +12,7 @@ class Aroma_Subscription_Adminhtml_ExpirelistController extends Mage_Adminhtml_C
     }
     public function indexAction()
     {		
-        $this->_title($this->__('Subscription'))->_title($this->__('Upcoming List'));
+        $this->_title($this->__('Subscription'))->_title($this->__('Expire List'));
         $this->loadLayout();
 		$this->_setActiveMenu('subscription/index');
 		$this->_addContent($this->getLayout()->createBlock('aroma_subscription/adminhtml_expirelist'));
