@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bluethink_Ccavenues>
+            <version>0.1.0</version>
+        </Bluethink_Ccavenues>
+    </modules>
+    <frontend>
+        <routers>
+            <ccavenues>
+                <use>standard</use>
+                <args>
+                    <module>Bluethink_Ccavenues</module>
+                    <frontName>ccavenues</frontName>
+                </args>
+            </ccavenues>
+        </routers>
+        <layout>
+            <updates>
+                <ccavenues>
+                    <file>ccavenues.xml</file>
+                </ccavenues>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<ccavenues>
+				<use>admin</use>
+				<args>
+					<module>Bluethink_Ccavenues</module>
+					<frontName>ccavenues</frontName>
+				</args>
+			</ccavenues>
+        </routers>
+    </admin>
+    <adminhtml>
+		
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Bluethink_Ccavenues>
+							<title>Ccavenues Module</title>
+							<sort_order>10</sort_order>
+						</Bluethink_Ccavenues>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<ccavenues>
+					<file>ccavenues.xml</file>
+				</ccavenues>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <ccavenues>
+                <class>Bluethink_Ccavenues_Model</class>
+                <resourceModel>ccavenues_mysql4</resourceModel>
+            </ccavenues>
+            <ccavenues_mysql4>
+                <class>Bluethink_Ccavenues_Model_Mysql4</class>
+                <entities>
+                    <ccavenues>
+                        <table>ccavenues</table>
+                    </ccavenues>
+                </entities>
+            </ccavenues_mysql4>
+        </models>
+        <resources>
+            <ccavenues_setup>
+                <setup>
+                    <module>Bluethink_Ccavenues</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ccavenues_setup>
+            <ccavenues_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ccavenues_write>
+            <ccavenues_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ccavenues_read>
+        </resources>
+        <blocks>
+            <ccavenues>
+                <class>Bluethink_Ccavenues_Block</class>
+            </ccavenues>
+        </blocks>
+        <helpers>
+            <ccavenues>
+                <class>Bluethink_Ccavenues_Helper</class>
+            </ccavenues>
+        </helpers>
+    </global>
+
+      <!-- Start for payment -->
+      
+    <default>
+        <payment>
+            <ccavenues>
+                <model>ccavenues/ccavenues</model>
+                    <active>1</active>
+                        <order_status>pending</order_status>
+                            <title>Ccavenues</title>
+                            <payment_action>sale</payment_action>
+                            <allowspecific>0</allowspecific>
+                            <sort_order>1</sort_order>
+            </ccavenues>
+        </payment>
+    </default>
+    
+    <!-- End for payment -->
+
+</config>
