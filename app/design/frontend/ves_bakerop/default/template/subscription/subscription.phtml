@@ -17,7 +17,7 @@ $subscription_request = Mage::getSingleton('core/session')->getSubscriptionReque
 	<center>
 		<div class="container   cofsub-select_rost">
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR ROAST PROFILE PREFERENCE</h4>
+				<h4 style="color:gray;font-size:15px!important;">SELECT YOUR ROAST PROFILE PREFERENCE</h4>
 			</div>
 			<div class="col-sm-12">
 		<?php
@@ -33,7 +33,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									 
 									?>
-									<div class="col-sm-3 ">
+									<div class="col-sm-3 roa">
 									
 									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>" <?php if($subscription_request['roast_level'] && $option['value'] == $subscription_request['roast_level']){ echo 'checked=checked'; } ?>/>
 									<label for="roast_level<?php echo $option['value']; ?>">
@@ -57,7 +57,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 	<center>
 		<div class="container cofsub-select_blend " >
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR PREFERED BLEND</h4>
+				<h4 style="color:gray;font-size:15px!important;">SELECT YOUR PREFERED BLEND</h4>
 			</div>
 			<div class="col-sm-12">
 			<?php
@@ -77,7 +77,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['coffee_type'] && $option['value'] == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 									<label for="coffee_type<?php echo $option['value']; ?>"> 
 										<?php if($_img!=""){ ?>
-										<img class="img-responsive blend" src="<?php echo $_img; ?>" />
+										<div class="ima"><img class="img-responsive blend" src="<?php echo $_img; ?>" /></div>
 									<?php } ?>
 										
 										<div class="sub_title"><?php echo $option['label'];?></div>
@@ -101,7 +101,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 	<center>
 		<div class="container   cofsub-select_shiping">
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR SHIPPING SCHEDULE</h4>
+				<h4 style="color:gray;font-size:15px!important;">SELECT YOUR SHIPPING SCHEDULE</h4>
 			</div>
 			<div class="col-sm-12">
 			<?php
@@ -124,10 +124,12 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									<?php if($_img!=""){ ?>
 										<img class="img-responsive blend" src="<?php echo $_img; ?>"  />
 									<?php } ?>
-										<div class="sub_title"><?php echo $option['label'];?></div>
-									</label>
+										<div class="vm1">
 									<p><?php echo $description; ?></p>
-									</div>
+									<div class="sub_title"><?php echo $option['label'];?></div>
+									</div></div>
+									</label>
+									
 									<?php
 									}
 								}
@@ -145,7 +147,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 	<center>
 		<div class="container   cofsub-select_payment">
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
+				<h4 style="color:gray;margin:0px!important;font-size:15px!important;">SELECT YOUR PAYMENT PLAN</h4>
 			</div>
 			<div class="col-sm-12">
 			<?php
@@ -187,7 +189,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 	<center>
 		<div class="container   cofsub-select_payment">
 			<div class="heading">
-				<h4 style="color:gray">SELECT YOUR PAYMENT PLAN</h4>
+				<h4 style="color:gray;font-size:15px!important;margin-bottom:35px;">PLEASE SELECT YOUR PAYMENT PLAN</h4>
 			</div>
 			<div class="col-sm-12">
 			<?php
@@ -214,13 +216,15 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									<div class="col-sm-4">
 									
 									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
+									<div class="bs">
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
 										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>"  />
 										<?php } ?>
 										<div class="sub_title"><?php echo $payment->getName(); ?></div>
-									</label>
-									<div class="price_per_shipment">
+										<div class="price_per_shipment"></div>
+									
+									
 									
 									<span class="base_price_default price_cus_switcher" style="display:none;" >
 										<?php echo Mage::helper('core')->currency($final_base_price, true, false); ?> / Shipment
@@ -231,11 +235,13 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									<input type="hidden" name="total_delux_price" class="total_price_val" value="<?php echo $total_ship_amount_delux; ?>" />
 									</span>
 									
-									</div>
+									
+									
 									<?php if($payment->getPrice()> 0){ ?>
 										<div class="save_percent"><?php echo 'Save '.$payment->getPrice().'%'; ?></div>
 									<?php } ?>
-									</div>
+									</label>
+									</div></div>
 							<?php } ?>
 								
 							
@@ -267,13 +273,14 @@ $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 $smallImageUrl = $productMediaConfig->getMediaUrl($product->getSmallImage());
 $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 ?>
-
 <div class="checkout-information col-sm-12" <?php if($subscription_request['payment_plan']){ ?> style="display:block"; <?php }else{ ?> style="display:none;" <?php } ?>>
 
 
-	<div class="subscribe-info col-sm-6"> 
+	<div class="subscribe-info col-sm-4"> 
+		<div class="sub1">
 	<img src="<?php echo $baseImageUrl ?>" width="300" />
 		<div class="left-checkout-section">
+<div class="la1">
 		<ul class="left-labelsection">
 			<li>Roast</li>
 			<li>Type</li>
@@ -283,7 +290,8 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			<li>Payment Schedule</li>
 			<li>Shipping</li>
 		</ul>
-		
+</div>
+		<div class="ra1">
 			<ul class="right-valuesection">
 				<li id="roast_val"><?php echo ($subscription_request['roast_hidden_val'])?$subscription_request['roast_hidden_val']:'N/A'; ?></li>
 				<li id="type_val"><?php echo ($subscription_request['type_hidden_val'])?$subscription_request['type_hidden_val']:'N/A'; ?></li>
@@ -306,14 +314,15 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			<input type="hidden" id="paymentid_hidden_val" name="paymentid_hidden_val" value="<?php echo $subscription_request['paymentid_hidden_val']; ?>">	
 			<input type="hidden" id="tier_hd_hidden_val" name="tier_hd_hidden_val" value="<?php echo $subscription_request['tier_hd_hidden_val']; ?>" >	
 				
-		</ul>
+		</ul></div>
 		</div>
-		
+	</div>	
 	</div>
-		<div class="col-sm-6 right-checkout-section">
+		<div class="col-sm-8 right-checkout-section">
+<div class="subscription-address">
 		<h2>Billing Information</h2>
 		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
-		<p class="already-user"><a href="<?php echo $this->getUrl('customer/account/login/'); ?>" title="Log In" class="ajaxlogin-login">Already a Customer Click here</a> or Use Below Form to Register</p>
+		<p class="already-user">Already a Customer <a href="<?php echo $this->getUrl('customer/account/login/'); ?>" title="Log In" class="ajaxlogin-login">Click here</a> or Use Below Form to Register</p>
 		<?php } ?>
 			<?php echo $this->getChildHtml('billing'); ?>
 			
@@ -330,6 +339,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 			</div>
 				<?php } } ?>
 		</div>
+</div>
 		<div style="float:left">
 		<span class="please-wait" id="custom-cart" style="display:none;float:left;">
             <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
@@ -403,8 +413,12 @@ jQuery(document).ready(function(){
 		})
 	  .done(function( msg ) {
 		  jQuery('#custom-cart').hide();
-		  alert('subscribed Successfully');
-			location.reload(); 
+		  var obj = jQuery.parseJSON(msg);
+		  if(obj.payment_method == 'ccavenues'){
+			  window.location = obj.url;
+		  }else{
+			  location.reload(); 
+		  }
 	  });
 		
 });
