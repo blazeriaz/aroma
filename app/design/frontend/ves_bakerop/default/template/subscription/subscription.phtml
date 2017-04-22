@@ -334,7 +334,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
 				if($method['value'] != 'paypal_billing_agreement'){
 			?>
 			<div class="col-sm-12">
-				<input id="<?php echo $method['value']; ?>" type="radio"  name="payment_method" value="<?php echo $method['value']; ?>" >
+				<input class="validate-one-required-by-name" id="<?php echo $method['value']; ?>" type="radio"  name="payment_method" value="<?php echo $method['value']; ?>" >
 					<label for="<?php echo $method['value']; ?>"><?php echo $method['label']; ?></label>
 			</div>
 				<?php } } ?>
@@ -385,7 +385,7 @@ $thumbnailUrl  = $productMediaConfig->getMediaUrl($product->getThumbnail());
  //< ![CDATA[
         var customForm = new VarienForm('sub_checkout');
 		
-var billingForm = new VarienForm("co-billing-form");
+//var billingForm = new VarienForm("co-billing-form");
     //]]>
 jQuery(document).ready(function(){
 	
@@ -399,9 +399,16 @@ jQuery(document).ready(function(){
 		}	
 	});
 	jQuery('#last_checkout').click(function(event){
-		jQuery( "#sub_checkout" ).submit();
+		
+		var formToValidate = $('sub_checkout');
+		var validator = new Validation(formToValidate);
+		if(validator.validate()) {
+			jQuery( "#sub_checkout" ).submit();
+		}
 	});
 	jQuery( "#sub_checkout" ).submit(function( event ) {
+		
+		
 		jQuery('#custom-cart').show();
 		event.preventDefault();
 		var link = jQuery('#sub_checkout').attr('action');
