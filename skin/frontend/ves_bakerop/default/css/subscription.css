@@ -6,14 +6,12 @@ a:hover, a:focus{
 }
 /* coffe-sub*/
 
-.cofsub-rost{
-	margin: 4% 4%;
+.cofsub-rost, .checkout-information{
+	margin: 50px auto;
 }
 
-
-
  .cofsub-select_rost{
-		margin: 4% 4%; 
+		margin: 4% 0%; 
  }
 .cofsub-select_rost .heading{
     margin: 2%;
@@ -23,13 +21,8 @@ a:hover, a:focus{
 	color:gray;
 }
 
-
- 
-
-
-
  .cofsub-select_blend{
-	 	margin: 4% 4%;
+	 	margin: 4% 0%;
  }
  
   .cofsub-select_blend .heading{
@@ -43,14 +36,16 @@ a:hover, a:focus{
   .blend{
 	  display: block;
     margin: auto;
-    border-radius: 100%;
-    border: 10px solid #333;
+    border-radius: 50%;
+width:215px;
+height:215px;
+    border: 3px solid #c7966c;
   }
-    .cofsub-select_blend .blend:hover{
+   /* .cofsub-select_blend .blend:hover{
 		    border: 10px solid #784F40
-	}
+	}*/
  .cofsub-select_shiping{
-	 	 	margin: 4% 4%;
+	 	 	margin: 4% 0%;
  }
  
   .cofsub-select_shiping .heading{
@@ -59,18 +54,18 @@ a:hover, a:focus{
   
   
   .cofsub-select_payment{
-	  	 	 	margin: 4% 4%;
+	  	 	 	margin: 4% 0%;
   }
   
 
-    .cofsub-select_payment .heading{
+ /*   .cofsub-select_payment .heading{
 	  	 	 	margin: 4%;
-  }
+  }*/
   
 
-    .cofsub-select_payment .col-sm-4{
+/*    .cofsub-select_payment .col-sm-4{
 		padding-top:5%;
-	}
+	}*/
   .cofsub-select_payment a{
 	  	text-decoration:none;
 	color:gray;
@@ -81,7 +76,7 @@ a:hover, a:focus{
 	  font-size: 16px;
   }
   .cofsub-btn{
-	  	  	 	 	margin: 4% 4%;
+	  	  	 	 	margin: 4% 0%;
   }
   
   .cofsub-btn a{
@@ -98,10 +93,11 @@ a:hover, a:focus{
 .circle-bg {
     color: white;
     background: #2C2C2C;
-padding-top: 32%;
     border-radius: 50%;
-    width: 170px;
-	height:170px;
+    width: 150px;
+	height:150px;
+margin: 0 5%;
+display:table;
 }
 	
 .cofsub-select_shiping .circle-bg:hover{
@@ -238,9 +234,9 @@ margin-top: -112%;
 	
 
 	
-	.circle-bg{
+/*	.circle-bg{
 	padding-top: 55%;
-	}
+	}*/
 }
 @media(max-width:768px){
 			.padng-ship1{
@@ -256,7 +252,7 @@ margin-top: -112%;
 					margin-bottom: 10%;
 		}
 .circle-bg{
-	padding-top:15%;
+/*	padding-top:15%;*/
 }
 	.cofsub-btn .box{
 		    width: 22%;
@@ -266,7 +262,163 @@ margin-top: -112%;
 @media(max-width:610px){
 	
 	.circle-bg{
-	padding-top:20%;
+	/*padding-top:20%;*/
 }
 	
+}
+.vm1 .sub_title{
+color:#fff!important;
+}
+.cofsub-select_shiping input[type="radio"]{
+left:-13px;
+position:absolute;
+}
+.vm1{
+display:table-cell;
+vertical-align:middle;
+cursor:pointer;
+color:#fff;
+}
+.vm1 p{
+margin-bottom:0px!important;
+}
+.bs label {
+    padding: 20px;
+   box-shadow:0px 0px 3px 3px #e8e6e6;
+    min-height: 200px;
+    min-width: 286px;
+cursor:pointer;
+border: 2px solid transparent;
+}
+.bs label:hover{
+border: 2px solid #aac9d1;
+}
+.ima{
+border:15px solid #333;
+border-radius:50%;
+margin-bottom:20px;
+}
+.cofsub-select_blend .ima:hover{
+border:15px solid #744f3e;
+cursor:pointer;
+}
+.roa img {
+    width: 200px;
+    height: 185px;
+}
+.roa label{
+box-shadow:0px 0px 3px 3px #e8e6e6;
+cursor:pointer;
+margin-bottom:17px;
+border: 2px solid transparent;
+}
+button#custom_checkout{
+color:gray;
+border:2px solid #000;
+background-color:#fff!important;
+padding:0 40px!important;
+height:65px!important;
+}
+.sub_title {
+    color: gray;
+    font-size: 15px;
+}
+.roa label:hover{
+border: 2px solid #aac9d1;
+}
+.right-checkout-section .field.name-middlename {
+    display: none;
+}
+#billing-new-address-form .field.name-middlename{
+display:none;
+}
+@media (min-width: 768px){
+.subscription-address{
+width:95%;
+padding:30px;
+}
+.circle-bg{
+margin:0 5% 20px 5%;
+}}
+@media (max-width: 767px){
+.subscription-address{
+width:100%;
+padding:30px 5px;
+}
+.sub1{
+margin-bottom:30px;
+}
+.form-list .field,.form-list .input-text, select, .form-list input.input-text{
+width:100%!important;
+}}
+.subscription-address{
+display:block;
+border:1px solid #e6e6e6;
+float:left;
+margin-bottom:20px;
+}
+.sub1{
+float: left;
+    border: 1px solid #e6e6e6;
+    padding: 20px 8px;
+width:100%;
+}
+.left-checkout-section{
+width:100%;
+float:left;
+}
+.subscribe-info .right-valuesection{
+width:auto;
+float:right;
+}
+.la1{
+    width: 49%;
+}
+.ra1{
+    width: 49%;
+    display:inline;
+}
+.already-user a{
+text-decoration:underline!important;
+}
+@media (min-width: 768px){
+input#billing:street1{
+width:97%!important;
+}
+.form-list .input-text{
+width:94.3%!important;
+}
+select{
+width:95%;
+}
+.subscribe-info .left-labelsection{
+width:100%!important;
+}}
+.checkout-information .button, input.button{
+color:gray!important;
+border:1px solid #000!important;
+}
+.checkout-information .button:hover, input.button:hover{
+background-color:#fff!important;
+color:gray!important;
+border:1px solid #000!important;
+}
+.form-list .input-text:focus, select:focus {
+    outline: none;
+border-color:#312112!important;
+}
+.form-control:focus{
+border-color:#312112!important;
+box-shadow:none!important;
+}
+.checkout-information .button, input.button:focus{
+outline:none;
+}
+.sub1 img{
+margin-bottom:25px;
+border-bottom: 1px solid #e6e6e6;
+}
+.circle-bg label{
+    vertical-align: middle;
+    display: table-cell;
 }
