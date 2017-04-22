@@ -87,7 +87,6 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	$quote->addProduct($product, new Varien_Object($buyInfo));
 
 	
-	
 	$addressData = array (
             'firstname' => $data['billing']['firstname'],
             'lastname' => $data['billing']['lastname'],
@@ -118,7 +117,7 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 		
 		
 	}
-	//print_r($addressData);exit;
+	
 	$billingAddress = $quote->getBillingAddress()->addData($addressData);
 	$shippingAddress = $quote->getShippingAddress()->addData($addressData);
 
@@ -164,6 +163,18 @@ if($order->getIncrementId()){
 		$sub_order_date->setModified(date('Y-m-d H:i:s'));
 		$sub_order_date->save();
 	}
+	$url= '';
+	if($data['payment_method'] == 'ccavenues'){ 
+	if(!Mage::getStoreConfig( 'payment/ccavenues/testmode_flag')){
+          $url = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction";
+      }else{
+          $url = "https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction";
+      }
+	  
+	  //$this->_redirectUrl($url);
+	}
+	$result = array('status'=>'success','payment_method'=>$data['payment_method'],'url'=>$url);
+	echo json_encode($result);
 }
 //Mage::getSingleton('core/session')->addSuccess( Mage::helper('marketplace')->__('Subscribed Successfully'));	
 
