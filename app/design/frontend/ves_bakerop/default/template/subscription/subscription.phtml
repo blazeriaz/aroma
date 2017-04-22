@@ -402,8 +402,24 @@ jQuery(document).ready(function(){
 		
 		var formToValidate = $('sub_checkout');
 		var validator = new Validation(formToValidate);
+		var pincode = jQuery('.postcode').val(); 
+		var link = "<?php echo Mage::getBaseUrl().'coffee-subscription/index/check_pincode/'?>";
 		if(validator.validate()) {
-			jQuery( "#sub_checkout" ).submit();
+			jQuery.ajax({
+				method: "POST",
+				url: '<?php echo $this->getUrl('coffee-subscription/index/checkpincode'); ?>',
+				data : {pincode:jQuery('.postcode').val()},
+				success:function(response){
+					if(response == 0) {	
+					alert("pincode not exist");
+					return false;
+					}
+					else {
+						jQuery( "#sub_checkout" ).submit();		
+					}	
+				}	
+			});
+			
 		}
 	});
 	jQuery( "#sub_checkout" ).submit(function( event ) {
