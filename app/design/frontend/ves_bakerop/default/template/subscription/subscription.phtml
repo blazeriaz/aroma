@@ -33,7 +33,7 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
 									 
 									?>
-									<div class="col-sm-3 roa">
+									<div class="col-sm-4 roa">
 									
 									<input class="roast_level" data-title="<?php echo $option['label'];?>" id="roast_level<?php echo $option['value']; ?>"  type="radio" name="roast_level" value="<?php echo $option['value']; ?>" <?php if($subscription_request['roast_level'] && $option['value'] == $subscription_request['roast_level']){ echo 'checked=checked'; } ?>/>
 									<label for="roast_level<?php echo $option['value']; ?>">
@@ -53,42 +53,48 @@ $attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('cata
 		</div>
 	</center>
 </section>
+<?php 
+$medium_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
+$medium_collection->addFieldToFilter('roast_level_new',array('in' => array(23)));
+$medium_collection->addFieldToFilter('name',array('neq'=>''))->getItems();
+
+
+$dark_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
+$dark_collection->addFieldToFilter('roast_level_new',array('in' => array(22)));
+
+$none_collection = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('roast_level_new');
+$none_collection->addFieldToFilter('roast_level_new',array('in' => array(24)));
+
+
+
+
+?>
+
+
 <section class="coffee_type" <?php if($subscription_request['coffee_type']){ ?> style="display:block;" <?php }else{ ?> style="display:none;" <?php } ?>>
 	<center>
 		<div class="container cofsub-select_blend " >
 			<div class="heading">
 				<h4 style="color:gray;font-size:15px!important;">SELECT YOUR PREFERED BLEND</h4>
 			</div>
-			<div class="col-sm-12">
-			<?php
-$attributeId = Mage::getResourceModel('eav/entity_attribute')->getIdByCode('catalog_product','coffee_type');
-						$attr = Mage::getModel('catalog/resource_eav_attribute')->load($attributeId);
-						
-						if ($attr->usesSource()) {
-							$attributeOptions = $attr ->getSource()->getAllOptions(false);
-							
-								foreach ($attributeOptions as $option) {
-									if($option['value'] !=""){ 
-									 $_img = $this->helper('attributeimage')->getAttributeImage($option['value']);
-									 $description = $this->helper('attributeimage')->getAttributeDescription($option['value']);
-									?>
-									<div class="col-sm-4">
+			<div class="col-sm-12" id="">
+			<?php foreach($medium_collection as $medium_product){
+$product = Mage::getModel('catalog/product')->load($medium_product->getEntityId());  //some ID    
+$productMediaConfig = Mage::getModel('catalog/product_media_config');
+$baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
+	?>
+<div class="col-sm-4">
+	<input data-title="<?php echo $medium_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['coffee_type'] && $option['value'] == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<label for="coffee_type<?php echo $medium_product->getSku();?>"> 
+		<?php if($baseImageUrl!=""){ ?>
+			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
+		<?php } ?>
 									
-									<input data-title="<?php echo $option['label'];?>" class="coffee_type" id="coffee_type<?php echo $option['value']; ?>"  type="checkbox" name="coffee_type" value="<?php echo $option['value']; ?>" <?php if($subscription_request['coffee_type'] && $option['value'] == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
-									<label for="coffee_type<?php echo $option['value']; ?>"> 
-										<?php if($_img!=""){ ?>
-										<div class="ima"><img class="img-responsive blend" src="<?php echo $_img; ?>" /></div>
-									<?php } ?>
-										
-										<div class="sub_title"><?php echo $option['label'];?></div>
-										</label>
-									<p><?php echo $description; ?></p>
-									</div>
-									<?php
-									}
-								}
-						}
-				?>
+		<div class="sub_title"><?php echo $medium_product->getName();?></div>
+	</label>
+	<p><?php //echo $description; ?></p>
+</div>
+<?php } ?>
 								
 			</div>
 			
@@ -402,24 +408,8 @@ jQuery(document).ready(function(){
 		
 		var formToValidate = $('sub_checkout');
 		var validator = new Validation(formToValidate);
-		var pincode = jQuery('.postcode').val(); 
-		var link = "<?php echo Mage::getBaseUrl().'coffee-subscription/index/check_pincode/'?>";
 		if(validator.validate()) {
-			jQuery.ajax({
-				method: "POST",
-				url: '<?php echo $this->getUrl('coffee-subscription/index/checkpincode'); ?>',
-				data : {pincode:jQuery('.postcode').val()},
-				success:function(response){
-					if(response == 0) {	
-					alert("pincode not exist");
-					return false;
-					}
-					else {
-						jQuery( "#sub_checkout" ).submit();		
-					}	
-				}	
-			});
-			
+			jQuery( "#sub_checkout" ).submit();
 		}
 	});
 	jQuery( "#sub_checkout" ).submit(function( event ) {
