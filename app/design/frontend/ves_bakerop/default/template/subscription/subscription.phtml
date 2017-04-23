@@ -524,9 +524,11 @@ jQuery(document).ready(function(){
 		}
 		if(price_value_selector == 'base_price_default'){
 			jQuery('#price_val').html(payment_base_value);
+			jQuery(".total_price_val").val(payment_base_value);
 			jQuery('#tier_hd_hidden_val').val('base_price_default');
 		}else if(price_value_selector == 'delux_price_default'){
 			jQuery('#price_val').html(payment_deluxamt_value);
+			jQuery(".total_price_val").val(payment_deluxamt_value);
 			jQuery('#tier_hd_hidden_val').val('delux_price_default');
 		}
 		
