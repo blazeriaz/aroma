@@ -265,7 +265,7 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									
 									<div class="col-sm-4">
 									
-									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-percent="<?php echo $payment->getPrice(); ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
+									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-no_of_ship="<?php echo $payment->getNoOfShip();?>" data-percent="<?php echo $payment->getPrice(); ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
 									<div class="bs">
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
@@ -514,7 +514,7 @@ jQuery(document).ready(function(){
 		var payment_base_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
 		var payment_deluxamt_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
 		var pay_per = jQuery("input[name='payment_plan']:checked").attr('data-percent');
-		var no_of_ship = jQuery("input[name='payment_plan']:checked").val();
+		var no_of_ship = jQuery("input[name='payment_plan']:checked").attr('data-no_of_ship');
 		
 		if(pay_per != 0){
 			payment_base_value = (payment_base_value - ((payment_base_value*pay_per)/100))*no_of_ship;
