@@ -514,9 +514,13 @@ jQuery(document).ready(function(){
 		var payment_base_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
 		var payment_deluxamt_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
 		var pay_per = jQuery("input[name='payment_plan']:checked").attr('data-percent');
+		var no_of_ship = jQuery("input[name='payment_plan']:checked").val();
+		
 		if(pay_per != 0){
-			payment_base_value = payment_base_value - ((payment_base_value*pay_per)/100);
-			payment_deluxamt_value = payment_deluxamt_value - ((payment_deluxamt_value*pay_per)/100);
+			payment_base_value = (payment_base_value - ((payment_base_value*pay_per)/100))*no_of_ship;
+			payment_deluxamt_value = (payment_deluxamt_value - ((payment_deluxamt_value*pay_per)/100))*no_of_ship;
+			payment_base_value = payment_base_value.toFixed(2);
+			payment_deluxamt_value = payment_deluxamt_value.toFixed(2);
 		}
 		if(price_value_selector == 'base_price_default'){
 			jQuery('#price_val').html(payment_base_value);
@@ -525,6 +529,7 @@ jQuery(document).ready(function(){
 			jQuery('#price_val').html(payment_deluxamt_value);
 			jQuery('#tier_hd_hidden_val').val('delux_price_default');
 		}
+		
 		
 		
 		var price_va = jQuery('.'+price_value_selector).html();
