@@ -14,7 +14,7 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	try{
 		
 		$data = Mage::app()->getRequest()->getPost();
-		
+		//print_r($data);die;	
         $customer = Mage::getModel('customer/customer');
         $password = $data['billing']['customer_password'];
 		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
@@ -51,7 +51,8 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	$default_base_price = Mage::getStoreConfig('subscription/subscription/basic');
 
 		$default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe');
-		$product_id = '11';
+		$product_id = 11;
+		$default_base_price = $default_deluxe_price = Mage::getModel("catalog/product")->load($data['coffee_type'])->getPrice();
 		$payment_plan = Mage::getModel('subscription/paymentplan')->load($this->getRequest()->getPost('paymentid_hidden_val'));
 		$plan_name = $payment_plan->getName();
 		$payment_plan->getNoOfShip();

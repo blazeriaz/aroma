@@ -85,7 +85,7 @@ $productMediaConfig = Mage::getModel('catalog/product_media_config');
 $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 	?>
 <div class="col-sm-4">
-	<input data-title="<?php echo $medium_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $medium_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $medium_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<input data-title="<?php echo $medium_product->getName();?>" data-price="<?php echo $product->getPrice(); 			?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $medium_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $medium_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 	<label for="coffee_type<?php echo $medium_product->getSku();?>"> 
 		<?php if($baseImageUrl!=""){ ?>
 			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
@@ -260,18 +260,19 @@ $default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe')
 									 $shipm_amnt_base = $final_base_price * $payment->getNoOfShip();
 									 $shipm_amnt_delux = $final_delux_price * $payment->getNoOfShip();
 									$total_ship_amount_delux = Mage::helper('core')->currency($shipm_amnt_delux, true, false);
+
 									 ?>
 									
 									<div class="col-sm-4">
 									
-									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
+									<input data-baseamt="<?php echo $shipm_amnt_base; ?>" data-deluxamt="<?php echo $total_ship_amount_delux; ?>" data-percent="<?php echo $payment->getPrice(); ?>" data-title="<?php echo $payment->getName(); ?>" class="payment_plan_sel" id="payment_plan<?php echo $payment->getId(); ?>"  type="radio" name="payment_plan" value="<?php echo $payment->getId(); ?>" <?php if($subscription_request['payment_plan'] && $payment->getId() == $subscription_request['payment_plan']){ echo 'checked=checked'; } ?>/>
 									<div class="bs">
 									<label for="payment_plan<?php echo $payment->getId(); ?>">
 										<?php if($payment->getImage()!=""){ ?>
 										<img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'blog/'.$payment->getImage(); ?>"  />
 										<?php } ?>
 										<div class="sub_title"><?php echo $payment->getName(); ?></div>
-										<div class="price_per_shipment"></div>
+										<div class="price_per_shipment"></div>	
 									
 									
 									
@@ -451,8 +452,24 @@ jQuery(document).ready(function(){
 		
 		var formToValidate = $('sub_checkout');
 		var validator = new Validation(formToValidate);
+		var pincode = jQuery('.postcode').val(); 
+		var link = "<?php echo Mage::getBaseUrl().'coffee-subscription/index/check_pincode/'?>";
 		if(validator.validate()) {
-			jQuery( "#sub_checkout" ).submit();
+			jQuery.ajax({
+				method: "POST",
+				url: '<?php echo $this->getUrl('coffee-subscription/index/checkpincode'); ?>',
+				data : {pincode:jQuery('.postcode').val()},
+				success:function(response){
+					if(response == 0) {	
+					alert("pincode not exist");
+					return false;
+					}
+					else {
+						jQuery( "#sub_checkout" ).submit();		
+					}			
+				}	
+			});
+			
 		}
 	});
 	jQuery( "#sub_checkout" ).submit(function( event ) {
@@ -496,9 +513,13 @@ jQuery(document).ready(function(){
 		var price_value_selector = jQuery("input[name='tier_type']:checked").attr('data-priceselector');
 		var payment_plan_value = jQuery("input[name='payment_plan']:checked").attr('data-title');
 		var payment_plan_id = jQuery("input[name='payment_plan']:checked").val();
-		var payment_base_value = jQuery("input[name='payment_plan']:checked").attr('data-baseamt');
-		var payment_deluxamt_value = jQuery("input[name='payment_plan']:checked").attr('data-deluxamt');
-	
+		var payment_base_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
+		var payment_deluxamt_value = jQuery("input[name='coffee_type']:checked").attr('data-price');
+		var pay_per = jQuery("input[name='payment_plan']:checked").attr('data-percent');
+		if(pay_per != 0){
+			payment_base_value = payment_base_value - ((payment_base_value*pay_per)/100);
+			payment_deluxamt_value = payment_deluxamt_value - ((payment_deluxamt_value*pay_per)/100);
+		}
 		if(price_value_selector == 'base_price_default'){
 			jQuery('#price_val').html(payment_base_value);
 			jQuery('#tier_hd_hidden_val').val('base_price_default');
