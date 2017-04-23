@@ -78,9 +78,9 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
         'options' => array(
             2 => $this->getRequest()->getPost('type_hidden_val'),
             3 => $plan_name,
-            4 => $this->getRequest()->getPost('roast_hidden_val'),
+            4 => $this->getRequest()->getPost('frequency_hidden_val'),
             5 => $this->getRequest()->getPost('tier_hidden_val'),
-            6 => $this->getRequest()->getPost('frequency_hidden_val')
+            6 => $this->getRequest()->getPost('roast_hidden_val')
         )
     );      
 	
