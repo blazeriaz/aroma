@@ -85,7 +85,7 @@ $productMediaConfig = Mage::getModel('catalog/product_media_config');
 $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 	?>
 <div class="col-sm-4">
-	<input data-title="<?php echo $medium_product->getName();?>" data-price="<?php echo $product->getPrice(); 			?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $medium_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $medium_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<input data-title="<?php echo $medium_product->getName();?>" data-img="<?php echo $baseImageUrl; ?>" data-price="<?php echo $product->getPrice();?>" class="coffee_type" id="coffee_type<?php echo $medium_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $medium_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $medium_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 	<label for="coffee_type<?php echo $medium_product->getSku();?>"> 
 		<?php if($baseImageUrl!=""){ ?>
 			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
@@ -106,7 +106,7 @@ $productMediaConfig = Mage::getModel('catalog/product_media_config');
 $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 	?>
 <div class="col-sm-4">
-	<input data-title="<?php echo $dark_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $dark_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $dark_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $dark_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<input data-title="<?php echo $dark_product->getName();?>" data-img="<?php echo $baseImageUrl; ?>" data-price="<?php echo $product->getPrice();?>" class="coffee_type" id="coffee_type<?php echo $dark_product->getSku();?>"  type="radio" name="coffee_type" value="<?php echo $dark_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $dark_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 	<label for="coffee_type<?php echo $dark_product->getSku();?>"> 
 		<?php if($baseImageUrl!=""){ ?>
 			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
@@ -127,7 +127,7 @@ $productMediaConfig = Mage::getModel('catalog/product_media_config');
 $baseImageUrl  = $productMediaConfig->getMediaUrl($product->getImage());
 	?>
 <div class="col-sm-4">
-	<input data-title="<?php echo $none_product->getName();?>" class="coffee_type" id="coffee_type<?php echo $none_product->getEntityId();?>"  type="radio" name="coffee_type" value="<?php echo $none_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $none_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
+	<input data-title="<?php echo $none_product->getName();?>" data-img="<?php echo $baseImageUrl; ?>" data-price="<?php echo $product->getPrice();?>" class="coffee_type" id="coffee_type<?php echo $none_product->getEntityId();?>"  type="radio" name="coffee_type" value="<?php echo $none_product->getEntityId(); ?>" <?php if($subscription_request['coffee_type'] && $none_product->getEntityId() == $subscription_request['coffee_type']){ echo 'checked=checked'; } ?>/>
 	<label for="coffee_type<?php echo $none_product->getEntityId();?>"> 
 		<?php if($baseImageUrl!=""){ ?>
 			<div class="ima"><img class="img-responsive blend" src="<?php echo $baseImageUrl; ?>" /></div>
@@ -502,12 +502,10 @@ jQuery(document).ready(function(){
 		jQuery('.checkout-information').show();
 		
 		var roast_level_value = jQuery("input[name='roast_level']:checked").attr('data-title');
-		var coffee_type_str = '';
-		 jQuery('.coffee_type:checkbox:checked').each(function(i){
-          coffee_type_str += jQuery(this).attr('data-title')+',';
-        });
+		var coffee_type_str = jQuery("input[name='coffee_type']:checked").attr('data-title');
 		
-		var coffee_type_selected = coffee_type_str.substring(0,coffee_type_str.length - 1);
+		
+		var coffee_type_selected = coffee_type_str;
 		var how_often_value = jQuery("input[name='how_often']:checked").attr('data-title');
 		var tier_type_value = jQuery("input[name='tier_type']:checked").attr('data-title');
 		var price_value_selector = jQuery("input[name='tier_type']:checked").attr('data-priceselector');
@@ -543,6 +541,8 @@ jQuery(document).ready(function(){
 		
 		jQuery('#payment_schedule_val').html(payment_plan_value);
 		jQuery('#paymentid_hidden_val').val(payment_plan_id);
+		var img = jQuery("input[name='coffee_type']:checked").attr('data-img');
+		jQuery('.sub1 img').attr('src', img);
 		
 		jQuery.ajax({
 		  method: "POST",
