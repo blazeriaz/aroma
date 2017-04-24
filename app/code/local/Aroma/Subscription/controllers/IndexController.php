@@ -14,7 +14,8 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	try{
 		
 		$data = Mage::app()->getRequest()->getPost();
-		//print_r($data);die;	
+		
+		
         $customer = Mage::getModel('customer/customer');
         $password = $data['billing']['customer_password'];
 		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
@@ -51,12 +52,97 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
 	$default_base_price = Mage::getStoreConfig('subscription/subscription/basic');
 
 		$default_deluxe_price = Mage::getStoreConfig('subscription/subscription/deluxe');
-		$product_id = 11;
+		$product_id = $data['coffee_type'];
 		$default_base_price = $default_deluxe_price = Mage::getModel("catalog/product")->load($data['coffee_type'])->getPrice();
 		$payment_plan = Mage::getModel('subscription/paymentplan')->load($this->getRequest()->getPost('paymentid_hidden_val'));
 		$plan_name = $payment_plan->getName();
 		$payment_plan->getNoOfShip();
 		$payment_plan->getPrice();
+		/*---------------------------------------------------------*/
+		$sub_str = '';
+		$sub_str .='Coffee Type : '.$data['type_hidden_val'].', ';
+		$sub_str .='Shipping Schedule : '.$data['frequency_hidden_val'].', ';
+		$sub_str .='Roast Preference : '.$data['roast_hidden_val'].', ';
+		$sub_str .='Payment Plan : '.$plan_name;
+		
+$product = Mage::getModel('catalog/product')->load($product_id);
+
+
+$option_custom = array();
+$subscription = false;
+if(count($product->getOptions()) > 0){
+   
+
+    foreach ($product->getOptions() as $o) {
+        $optionType = $o->getType();
+		if ($optionType == 'drop_down') {
+			if($o->getIsRequire() == 1){
+				$values = $o->getValues();
+				//$option_custom[$0->getOptionId()] = 
+				$kk =1;
+				foreach ($values as $k => $v) {
+					if($kk == 1){
+						$option_custom[$o->getOptionId()] =  $v->getOptionTypeId();
+						
+					}
+					
+					$kk++;
+				}
+			}
+        }else {
+			if($o->getDefaultTitle() == 'subscription'){
+				$subscription = true;
+				$option_custom[$o->getOptionId()] = $sub_str;
+			}else{
+				if($o->getIsRequire() == 1){
+				$option_custom[$o->getOptionId()] = 'other Required options';
+				}
+			}
+           
+        }
+		
+    }
+
+}
+
+if(!$subscription){
+	$options = array(
+        array(
+            'title' => 'subscription',
+            'type' => 'area',
+            'is_require' => 0,
+            'sort_order' => 1,
+        ),
+        
+);
+	
+	$product->setHasOptions(true)->save();
+	
+	foreach($options as $option_data){
+		$option = Mage::getModel('catalog/product_option')
+			->setProductId($product->getId())
+			->setStoreId($product->getStoreId())
+			->addData($option_data);
+
+		$value = Mage::getModel('catalog/product_option_value');
+		$value->setOption($option);
+		$option->addValue($value);
+
+		$option->save();
+		
+		$option_custom[$option->getOptionId()] = $sub_str;
+		//print_r($option->getData());
+		$product->addOption($option);
+		$product->save();
+	}
+	
+}
+    	
+		/*---------------------------------------------------------*/
+		
+		
+		
+		
 		$tier_hd_hidden_val = $this->getRequest()->getPost('tier_hd_hidden_val');
 		if($tier_hd_hidden_val == 'base_price_default'){
 			$base_price = ($default_base_price * $payment_plan->getPrice())/100;
@@ -75,13 +161,7 @@ class Aroma_Subscription_IndexController extends Mage_Core_Controller_Front_Acti
     $buyInfo = array(
         'product' => $product->getId(), 
         'qty' => 1,
-        'options' => array(
-            2 => $this->getRequest()->getPost('type_hidden_val'),
-            3 => $plan_name,
-            4 => $this->getRequest()->getPost('frequency_hidden_val'),
-            5 => $this->getRequest()->getPost('tier_hidden_val'),
-            6 => $this->getRequest()->getPost('roast_hidden_val')
-        )
+        'options' => $option_custom
     );      
 	
 	
