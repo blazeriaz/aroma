@@ -24,14 +24,6 @@
 					</priceupdate_observer>
 				</observers>
 			</sales_quote_add_item>
-			<!--<catalog_product_load_after>
-			<observers>
-				<quoteitem_add>
-					<class>changeprice/observer</class>
-					<method>addPostData</method>
-				</quoteitem_add>
-			</observers>
-			</catalog_product_load_after>-->
 		</events>
     </frontend>
 </config>
