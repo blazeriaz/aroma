@@ -8,8 +8,7 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
 		<reference name="head">
-           
-			<action method="addItem"><type>skin_css</type><name>subscription.css</name></action>
+           <action method="addItem"><type>skin_css</type><name>css/subscription.css</name></action>
         </reference>
         <reference name="content">
             <block type="aroma_subscription/subscription" name="subscription_front" template="subscription/subscription.phtml">
