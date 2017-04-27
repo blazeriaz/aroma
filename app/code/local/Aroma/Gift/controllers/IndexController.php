@@ -14,7 +14,7 @@ class Aroma_Gift_IndexController extends Mage_Core_Controller_Front_Action
 	try{
 		
 		$data = Mage::app()->getRequest()->getPost();
-		echo "<pre>";print_r($data);die;
+		//echo "<pre>";print_r($data);die;
         $customer = Mage::getModel('customer/customer');
         $password = $data['billing']['customer_password'];
 		if(!Mage::getSingleton('customer/session')->isLoggedIn()){
@@ -183,12 +183,28 @@ if(!$subscription){
             'telephone' => $data['billing']['telephone'],
         );
 	$billing_address_id = $this->getRequest()->getPost('billing_address_id'); 
+	$shippingData = array (
+            'firstname' => $data['shipping']['firstname'],
+            'lastname' => $data['shipping']['lastname'],
+            'street' => array (
+                '0' => $data['shipping']['street'][0],
+                '1' => $data['shipping']['street'][1],
+            ),
+         
+            'city' => $data['shipping']['city'],
+            'region_id' => $data['shipping']['region_id'],
+            'region' => $data['shipping']['region'],
+            'postcode' => $data['shipping']['postcode'],
+            'country_id' => $data['shipping']['country_id'], /* Croatia */
+            'telephone' => $data['shipping']['telephone'],
+        );
+	$shipping_address_id = $this->getRequest()->getPost('shipping_address_id'); 
 	if($billing_address_id == "") {
 		$customAddress = Mage::getModel('customer/address');
 		$customAddress->setData($addressData)
 					->setCustomerId($customer->getId())
 					->setIsDefaultBilling('1')
-					->setIsDefaultShipping('1')
+					//->setIsDefaultShipping('1')
 					->setSaveInAddressBook($data['billing']['save_in_address_book']);
 		if($data['billing']['save_in_address_book'] != "")			
 				$customAddress->save();
@@ -197,9 +213,23 @@ if(!$subscription){
 		
 		
 	}
+	if($shipping_address_id == "") {
+		$customAddress = Mage::getModel('customer/address');
+		$customAddress->setData($addressData)
+					->setCustomerId($customer->getId())
+					//->setIsDefaultBilling('1')
+					->setIsDefaultShipping('1')
+					->setSaveInAddressBook($data['billing']['save_in_address_book']);
+		if($data['billing']['save_in_address_book'] != "")			
+				$customAddress->save();
+	}else{
+		$shippingData = Mage::getModel('customer/address')->load($shipping_address_id)->getData();
+		
+		
+	}
 	
 	$billingAddress = $quote->getBillingAddress()->addData($addressData);
-	$shippingAddress = $quote->getShippingAddress()->addData($addressData);
+	$shippingAddress = $quote->getShippingAddress()->addData($shippingData);
 
 	$shippingAddress->setCollectShippingRates(true)->collectShippingRates()
                 ->setShippingMethod('flatrate_flatrate')
