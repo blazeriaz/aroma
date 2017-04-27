@@ -449,6 +449,14 @@ jQuery(document).ready(function(){
 			jQuery('#billing-new-address-form').hide();
 		}	
 	});
+	jQuery('#shipping-address-select').change(function(){
+		if(jQuery(this).val()== ''){
+			jQuery('#shipping-new-address-form').show();
+		}
+		else {
+			jQuery('#shipping-new-address-form').hide();
+		}	
+	});
 	jQuery('#last_checkout').click(function(event){
 		
 		var formToValidate = $('sub_checkout');
